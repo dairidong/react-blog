@@ -1,4 +1,4 @@
-import { FC, JSX, ReactNode } from 'react';
+import { FC, ReactElement } from 'react';
 
 export interface User {
   id: number;
@@ -13,18 +13,12 @@ export type PageProps<T extends Record<string, unknown> = Record<string, unknown
   };
 };
 
+export type LayoutFunc = (page: ReactElement) => ReactElement;
+
 export type PageFC = FC & {
   default: {
-    layout: JSX.Element
+    layout?: LayoutFunc | LayoutFunc[]
   }
 };
 
-export type PageReactNode = ReactNode & {
-  default: {
-    layout: JSX.Element
-  }
-};
-
-export type Page =
-    | PageFC
-    | PageReactNode;
+export type Page = PageFC;

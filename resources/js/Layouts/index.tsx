@@ -1,10 +1,9 @@
-import { FC } from 'react';
-import { Page } from '@/types';
+import { FC, PropsWithChildren } from 'react';
 
-const Layout: FC<{ page: Page }> = ({ page }) => (
+const Layout: FC<PropsWithChildren> = ({ children }) => (
   <>
     <div>header</div>
-    {page}
+    {children}
   </>
 );
 
