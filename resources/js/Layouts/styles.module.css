@@ -1,0 +1,11 @@
+.header{
+    @apply
+    min-h-[6rem]
+    flex justify-between md:justify-around items-center
+    px-[5%] border-b border-black
+    text-black dark:text-white
+}
+
+.logo {
+    @apply text-3xl font-bold  font-digit border-2 border-black p-3 shadow-[6px_6px]
+}
