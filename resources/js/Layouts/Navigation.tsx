@@ -23,10 +23,14 @@ const Navigation: FC = () => {
     <NavigationMenu className="font-ali hidden md:flex">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="text-xl">分类</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="text-xl">文章</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="flex flex-col items-center gap-3 p-5 border border-black">
-              {categories.map((category) => <li key={category.id}>{category.title}</li>)}
+            <ul className="flex flex-col gap-3 p-5 border border-black min-w-[10rem]">
+              {categories.map((category) => (
+                <li key={category.id} className="inline-flex pl-2">
+                  {category.title}
+                </li>
+              ))}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
