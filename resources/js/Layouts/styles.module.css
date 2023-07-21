@@ -21,7 +21,7 @@
     opacity-95 md:hidden aria-hidden:translate-y-[-100%];
 
     &.withAnimation {
-        @apply transition-transform duration-200 ease-linear;
+        @apply transition-transform duration-300 ease-linear;
     }
 }
 
