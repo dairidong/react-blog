@@ -6,7 +6,7 @@ export default function Home() {
       <Head>
         <title>This is title</title>
       </Head>
-      This is Home.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet corporis culpa cupiditate deleniti deserunt doloremque dolores ducimus eos illum ipsum magnam minima nostrum quis repellendus totam vero voluptate, voluptatibus!
     </div>
   );
 }

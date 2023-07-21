@@ -1,11 +1,65 @@
-.header{
-    @apply
-    min-h-[6rem]
+.navbarContainer {
+    @apply bg-background relative
+    border-b border-primary
+    text-primary;
+}
+
+.navbar {
+    @apply bg-background min-h-[6rem] px-[5%]
     flex justify-between md:justify-around items-center
-    px-[5%] border-b border-black
-    text-black dark:text-white
+    z-20  relative;
 }
 
 .logo {
-    @apply text-3xl font-bold  font-digit border-2 border-black p-3 shadow-[6px_6px]
+    @apply text-3xl font-bold  font-digit border-2 border-primary p-3 shadow-[6px_6px];
 }
+
+.mobileNavContainer {
+    @apply
+    bg-background w-screen shadow-[0_1px] shadow-primary h-[calc(100vh-100%)]
+    absolute left-0 top-[100%] overflow-hidden z-10
+    opacity-95 md:hidden aria-hidden:translate-y-[-100%];
+
+    &.withAnimation {
+        @apply transition-transform duration-200 ease-linear;
+    }
+}
+
+.mobileNav {
+    @apply max-w-none p-5;
+}
+
+.mobileNavTrigger {
+    @apply flex flex-col justify-around
+    md:hidden w-9 h-10
+    transition-transform duration-500;
+
+    &[aria-expanded=true] {
+        @apply justify-center items-center rotate-180 relative
+    }
+
+    > .line {
+        @apply w-full bg-primary h-1 rounded;
+
+        &:nth-child(2) {
+            @apply duration-700
+        }
+    }
+
+    &[aria-expanded=true] > .line {
+        @apply absolute;
+
+        &:first-child {
+            @apply w-full rotate-45 duration-500
+        }
+
+        &:nth-child(2) {
+            @apply w-full scale-0 duration-500;
+        }
+
+        &:nth-child(3) {
+            @apply w-full -rotate-45 duration-500
+        }
+    }
+}
+

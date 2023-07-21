@@ -47,6 +47,7 @@ module.exports = {
     "@typescript-eslint/no-unused-vars": "off",
     "unused-imports/no-unused-imports": "error",
     "react/no-children-prop": 0,
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "react/require-default-props": 0
   }
 }

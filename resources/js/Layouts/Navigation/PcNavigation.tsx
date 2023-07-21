@@ -10,7 +10,7 @@ import {
 import { cn } from '@/lib/utils';
 import { Category } from '@/types/models';
 
-const Navigation: FC = () => {
+const PcNavigation: FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
@@ -19,6 +19,7 @@ const Navigation: FC = () => {
       setCategories(response.data.data);
     })();
   }, []);
+
   return (
     <NavigationMenu className="font-ali hidden md:flex">
       <NavigationMenuList>
@@ -44,4 +45,4 @@ const Navigation: FC = () => {
   );
 };
 
-export default Navigation;
+export default PcNavigation;
