@@ -12,6 +12,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList, navigationMenuTriggerStyle,
 } from '@/Components/ui/navigation-menu';
+import Link from '@/Layouts/Link';
 
 export interface MenuControlState {
   menuOpen: boolean,
@@ -71,9 +72,17 @@ const MobileNavigation = forwardRef<HTMLDivElement>((props, ref) => {
         <NavigationMenu className={styles.mobileNav}>
           <NavigationMenuList className="flex-col gap-6">
             <NavigationMenuItem>
-              <NavigationMenuLink asChild>
-                <div className={cn(navigationMenuTriggerStyle(), 'text-3xl')}>文章</div>
-              </NavigationMenuLink>
+              <Link
+                href={route('articles.index')}
+                closeMenu
+              >
+                <NavigationMenuLink asChild>
+                  <div className={cn(navigationMenuTriggerStyle(), 'text-3xl')}>
+                    文章
+                  </div>
+                </NavigationMenuLink>
+              </Link>
+
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink asChild>

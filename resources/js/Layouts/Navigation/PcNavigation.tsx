@@ -1,5 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import axios from 'axios';
+import { Icon } from '@iconify/react';
+import githubIcon from '@iconify/icons-mdi/github';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -9,6 +11,7 @@ import {
 } from '@/Components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
 import { Category } from '@/types/models';
+import Link from '@/Layouts/Link';
 
 const PcNavigation: FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -24,7 +27,9 @@ const PcNavigation: FC = () => {
     <NavigationMenu className="font-ali hidden md:flex">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="text-xl">文章</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="text-xl">
+            <Link href={route('articles.index')}>文章</Link>
+          </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="flex flex-col gap-3 p-5 border border-black min-w-[10rem]">
               {categories.map((category) => (
@@ -38,6 +43,19 @@ const PcNavigation: FC = () => {
         <NavigationMenuItem>
           <NavigationMenuLink asChild>
             <div className={cn(navigationMenuTriggerStyle(), 'text-xl')}>关于</div>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+
+        <NavigationMenuItem>
+          <NavigationMenuLink asChild>
+            <a
+              href="https://github.com/dairidong"
+              className={cn(navigationMenuTriggerStyle(), 'text-xl')}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Icon icon={githubIcon} className="text-4xl" />
+            </a>
           </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
