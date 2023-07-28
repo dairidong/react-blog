@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import styles from './styles.module.css';
+import styles from './styles.module.pcss';
 import PcNavigation from '@/Layouts/Navigation/PcNavigation';
 
 import Link from '@/Layouts/Link';

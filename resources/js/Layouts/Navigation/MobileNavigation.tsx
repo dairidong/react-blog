@@ -5,7 +5,7 @@ import React, {
   createContext, FC, forwardRef, MouseEvent, ProviderProps, useContext,
 } from 'react';
 import { cn } from '@/lib/utils';
-import styles from '@/Layouts/styles.module.css';
+import styles from '@/Layouts/styles.module.pcss';
 import {
   NavigationMenu,
   NavigationMenuItem,

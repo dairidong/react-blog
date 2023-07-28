@@ -24,7 +24,7 @@ const PcNavigation: FC = () => {
   }, []);
 
   return (
-    <NavigationMenu className="font-ali hidden md:flex">
+    <NavigationMenu className="hidden md:flex">
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger className="text-xl">

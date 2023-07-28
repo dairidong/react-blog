@@ -1,22 +1,20 @@
 .navbarContainer {
-    @apply bg-background relative
-    border-b border-primary
-    text-primary;
+    @apply bg-background relative container;
 }
 
 .navbar {
-    @apply bg-background min-h-[6rem] px-[5%]
-    flex justify-between md:justify-around items-center
-    z-20  relative;
+    @apply bg-background min-h-[6rem]
+    flex justify-between items-center
+    z-20 relative;
 }
 
 .logo {
-    @apply text-3xl font-bold  font-digit border-2 border-primary p-3 shadow-[6px_6px];
+    @apply text-3xl font-bold font-digit border-2 border-primary p-3 shadow-[6px_6px];
 }
 
 .mobileNavContainer {
     @apply
-    bg-background w-screen shadow-[0_1px] shadow-primary h-[calc(100vh-100%)]
+    bg-background w-screen h-[calc(100vh-100%)]
     absolute left-0 top-[100%] overflow-hidden z-10
     opacity-95 md:hidden aria-hidden:translate-y-[-100%];
 

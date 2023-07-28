@@ -4,11 +4,6 @@
 }
 
 @font-face {
-    font-family: 'smiley-sans';
-    src: url("../fonts/SmileySans-Oblique.ttf.woff2");
-}
-
-@font-face {
     font-family: 'Alimama-HeiTi';
     src: url("../fonts/AlimamaShuHeiTi-Bold.woff2");
 }

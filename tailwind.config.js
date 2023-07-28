@@ -71,9 +71,8 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        digit: ['PressStart2P-Regular'],
-        smiley: ['smiley-sans'],
-        ali: ['Alimama-HeiTi'],
+        digit: ['PressStart2P-Regular', 'ui-sans-serif', 'system-ui'],
+        ali: ['Alimama-HeiTi', 'ui-sans-serif', 'system-ui'],
       },
     },
   },
