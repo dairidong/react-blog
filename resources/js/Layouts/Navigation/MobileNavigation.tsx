@@ -77,7 +77,7 @@ const MobileNavigation = forwardRef<HTMLDivElement>((props, ref) => {
                 closeMenu
               >
                 <NavigationMenuLink asChild>
-                  <div className={cn(navigationMenuTriggerStyle(), 'tw-text-3xl')}>
+                  <div className={cn(navigationMenuTriggerStyle(), '!tw-text-3xl')}>
                     文章
                   </div>
                 </NavigationMenuLink>
@@ -86,14 +86,14 @@ const MobileNavigation = forwardRef<HTMLDivElement>((props, ref) => {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
-                <div className={cn(navigationMenuTriggerStyle(), 'tw-text-3xl')}>关于</div>
+                <div className={cn(navigationMenuTriggerStyle(), '!tw-text-3xl')}>关于</div>
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
                 <a
                   href="https://github.com/dairidong"
-                  className={cn(navigationMenuTriggerStyle(), 'tw-text-3xl tw-gap-2')}
+                  className={cn(navigationMenuTriggerStyle(), '!tw-text-3xl tw-gap-1')}
                 >
                   <Icon icon={githubIcon} className="tw-text-5xl" />
                   Github
