@@ -1,62 +1,66 @@
 .navbarContainer {
-    @apply bg-background relative container;
+    @apply tw-bg-background tw-relative tw-container;
 }
 
 .navbar {
-    @apply bg-background min-h-[6rem]
-    flex justify-between items-center
-    z-20 relative;
+    @apply tw-bg-background tw-min-h-[6rem]
+    tw-flex tw-justify-between tw-items-center
+    tw-z-20 tw-relative;
 }
 
 .logo {
-    @apply text-3xl font-bold font-digit border-2 border-primary p-3 shadow-[6px_6px];
+    @apply tw-text-3xl tw-font-bold tw-font-digit tw-border-2 tw-border-primary tw-p-3 tw-shadow-[6px_6px];
 }
 
 .mobileNavContainer {
     @apply
-    bg-background w-screen h-[calc(100vh-100%)]
-    absolute left-0 top-[100%] overflow-hidden z-10
-    opacity-95 md:hidden aria-hidden:translate-y-[-100%];
+    tw-bg-background tw-w-screen tw-h-[calc(100vh-100%)]
+    tw-absolute tw-left-0 tw-top-[100%] tw-overflow-hidden tw-z-10
+    tw-opacity-95 md:tw-hidden aria-hidden:tw-translate-y-[-100%];
 
     &.withAnimation {
-        @apply transition-transform duration-300 ease-linear;
+        @apply tw-transition-transform tw-duration-300 tw-ease-linear;
     }
+}
+
+.categories {
+    @apply tw-flex tw-flex-col tw-gap-3 tw-p-5 tw-border tw-border-black tw-min-w-[10rem];
 }
 
 .mobileNav {
-    @apply max-w-none p-5;
+    @apply tw-max-w-none tw-p-5;
 }
 
 .mobileNavTrigger {
-    @apply flex flex-col justify-around
-    md:hidden w-9 h-10
-    transition-transform duration-500;
+    @apply tw-flex tw-flex-col tw-justify-around
+    md:tw-hidden tw-w-9 tw-h-10
+    tw-transition-transform tw-duration-500;
 
     &[aria-expanded=true] {
-        @apply justify-center items-center rotate-180 relative
+        @apply tw-justify-center tw-items-center tw-rotate-180 tw-relative;
     }
 
     > .line {
-        @apply w-full bg-primary h-1 rounded;
+        @apply tw-w-full tw-bg-primary tw-h-1 tw-rounded;
 
         &:nth-child(2) {
-            @apply duration-700
+            @apply tw-duration-700
         }
     }
 
     &[aria-expanded=true] > .line {
-        @apply absolute;
+        @apply tw-absolute;
 
         &:first-child {
-            @apply w-full rotate-45 duration-500
+            @apply tw-w-full tw-rotate-45 tw-duration-500;
         }
 
         &:nth-child(2) {
-            @apply w-full scale-0 duration-500;
+            @apply tw-w-full tw-scale-0 tw-duration-500;
         }
 
         &:nth-child(3) {
-            @apply w-full -rotate-45 duration-500
+            @apply tw-w-full -tw-rotate-45 tw-duration-500;
         }
     }
 }

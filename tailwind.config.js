@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  prefix: 'tw-',
   darkMode: ["class"],
   content: [
     './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',

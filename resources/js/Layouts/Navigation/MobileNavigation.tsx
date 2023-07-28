@@ -70,14 +70,14 @@ const MobileNavigation = forwardRef<HTMLDivElement>((props, ref) => {
     >
       {menuOpen && (
         <NavigationMenu className={styles.mobileNav}>
-          <NavigationMenuList className="flex-col gap-6">
+          <NavigationMenuList className="tw-flex-col tw-gap-6">
             <NavigationMenuItem>
               <Link
                 href={route('articles.index')}
                 closeMenu
               >
                 <NavigationMenuLink asChild>
-                  <div className={cn(navigationMenuTriggerStyle(), 'text-3xl')}>
+                  <div className={cn(navigationMenuTriggerStyle(), 'tw-text-3xl')}>
                     文章
                   </div>
                 </NavigationMenuLink>
@@ -86,16 +86,16 @@ const MobileNavigation = forwardRef<HTMLDivElement>((props, ref) => {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
-                <div className={cn(navigationMenuTriggerStyle(), 'text-3xl')}>关于</div>
+                <div className={cn(navigationMenuTriggerStyle(), 'tw-text-3xl')}>关于</div>
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
                 <a
                   href="https://github.com/dairidong"
-                  className={cn(navigationMenuTriggerStyle(), 'text-3xl gap-2')}
+                  className={cn(navigationMenuTriggerStyle(), 'tw-text-3xl tw-gap-2')}
                 >
-                  <Icon icon={githubIcon} className="text-5xl" />
+                  <Icon icon={githubIcon} className="tw-text-5xl" />
                   Github
                 </a>
               </NavigationMenuLink>

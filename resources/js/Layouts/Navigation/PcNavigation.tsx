@@ -12,6 +12,7 @@ import {
 import { cn } from '@/lib/utils';
 import { Category } from '@/types/models';
 import Link from '@/Layouts/Link';
+import styles from '../styles.module.pcss';
 
 const PcNavigation: FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -24,16 +25,16 @@ const PcNavigation: FC = () => {
   }, []);
 
   return (
-    <NavigationMenu className="hidden md:flex">
+    <NavigationMenu className="tw-hidden md:tw-flex">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="text-xl">
+          <NavigationMenuTrigger className="tw-text-xl">
             <Link href={route('articles.index')}>文章</Link>
           </NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="flex flex-col gap-3 p-5 border border-black min-w-[10rem]">
+            <ul className={styles.categories}>
               {categories.map((category) => (
-                <li key={category.id} className="inline-flex pl-2">
+                <li key={category.id} className="tw-inline-flex tw-pl-2">
                   {category.title}
                 </li>
               ))}
@@ -42,7 +43,7 @@ const PcNavigation: FC = () => {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink asChild>
-            <div className={cn(navigationMenuTriggerStyle(), 'text-xl')}>关于</div>
+            <div className={cn(navigationMenuTriggerStyle(), 'tw-text-xl')}>关于</div>
           </NavigationMenuLink>
         </NavigationMenuItem>
 
@@ -50,11 +51,11 @@ const PcNavigation: FC = () => {
           <NavigationMenuLink asChild>
             <a
               href="https://github.com/dairidong"
-              className={cn(navigationMenuTriggerStyle(), 'text-xl')}
+              className={cn(navigationMenuTriggerStyle(), 'tw-text-xl')}
               target="_blank"
               rel="noreferrer"
             >
-              <Icon icon={githubIcon} className="text-4xl" />
+              <Icon icon={githubIcon} className="tw-text-4xl" />
             </a>
           </NavigationMenuLink>
         </NavigationMenuItem>

@@ -72,9 +72,15 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply tw-border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply tw-bg-background tw-text-foreground;
   }
+}
+
+@layer components {
+    .heading-title {
+        @apply tw-my-4 tw-text-4xl tw-tracking-tight tw-text-primary md:tw-text-5xl lg:tw-text-6xl;
+    }
 }
