@@ -2,7 +2,7 @@ import { FC, PropsWithChildren } from 'react';
 import Header from '@/Layouts/Header';
 
 const Layout: FC<PropsWithChildren> = ({ children }) => (
-  <div className="tw-text-primary tw-bg-background">
+  <div className="tw-text-foreground tw-bg-background tw-font-ali-shuhei tw-antialiased">
     <header>
       <Header />
     </header>

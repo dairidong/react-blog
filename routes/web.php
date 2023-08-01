@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/articles', [\App\Http\Controllers\ArticleController::class, 'index'])->name('articles.index');
+Route::resource('/articles', ArticleController::class)->only(['index', 'show']);

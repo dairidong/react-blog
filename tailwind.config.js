@@ -73,9 +73,13 @@ module.exports = {
       },
       fontFamily: {
         digit: ['PressStart2P-Regular', 'ui-sans-serif', 'system-ui'],
-        ali: ['Alimama-HeiTi', 'ui-sans-serif', 'system-ui'],
+        'ali-shuhei': ['AlimamaShuHeiTi-Bold', 'ui-sans-serif', 'system-ui'],
+        'ali-puhui': ['AlibabaPuHuiTi-3', 'ui-sans-serif', 'system-ui'],
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require('@tailwindcss/typography'),
+  ],
 }

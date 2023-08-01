@@ -9,7 +9,7 @@
     tw-flex tw-items-center tw-gap-1
     tw-text-xl md:tw-text-2xl tw-transform
     tw-bg-primary tw-text-primary-foreground
-    lg:tw-bg-background lg:tw-text-primary
+    lg:tw-bg-background lg:tw-text-foreground
     hover:tw-bg-primary hover:tw-text-primary-foreground;
 
     &.next {
@@ -19,4 +19,13 @@
     &.prev {
         @apply tw-skew-x-12;
     }
+}
+
+.article {
+    @apply tw-prose lg:tw-prose-lg tw-max-w-full lg:tw-max-w-screen-md
+    prose-code:tw-text-lg prose-p:tw-my-1.5
+    prose-code:before:tw-content-[''] prose-code:after:tw-content-['']
+    prose-h1:tw-text-center prose-h1:tw-max-w-[32ch] prose-h1:tw-leading-normal
+    tw-font-ali-puhui prose-h1:tw-font-ali-shuhei prose-strong:tw-font-extrabold
+    [--tw-prose-body:hsl(var(--foreground))]
 }

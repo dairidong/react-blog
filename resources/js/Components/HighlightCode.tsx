@@ -1,0 +1,35 @@
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { CodeComponent } from 'react-markdown/lib/ast-to-react';
+import { cn } from '@/lib/utils';
+
+const HighlightCode: CodeComponent = ({
+  node,
+  inline,
+  className,
+  children,
+  ...props
+}) => {
+  const match = /language-(\w+)/.exec(className || '');
+  return !inline && match ? (
+    <SyntaxHighlighter
+      {...props}
+      children={String(children).replace(/\n$/, '')}
+      style={atomDark}
+      language={match[1]}
+      showLineNumbers
+    />
+  ) : (
+    <code
+      {...props}
+      className={cn(
+        className,
+        'tw-relative tw-rounded tw-bg-muted tw-px-[0.3rem] tw-py-[0.2rem] tw-font-mono tw-text-sm',
+      )}
+    >
+      {children}
+    </code>
+  );
+};
+
+export default HighlightCode;
