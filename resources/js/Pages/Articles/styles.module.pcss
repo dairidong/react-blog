@@ -4,7 +4,15 @@
 }
 
 .articleCartTitle {
-    @apply tw-leading-normal hover:tw-underline hover:tw-decoration-4 hover:tw-underline-offset-2;
+    @apply tw-leading-normal;
+
+    & a {
+        @apply tw-no-underline
+        tw-bg-gradient-to-b tw-from-black tw-to-black
+        tw-bg-[length:0_5px] tw-bg-[left_bottom_-2px] tw-bg-no-repeat
+        hover:tw-bg-[length:100%_5px]
+        tw-transition-[background-size] tw-duration-500;
+    }
 }
 
 .paginationBtn {
