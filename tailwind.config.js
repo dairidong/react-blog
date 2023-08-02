@@ -1,12 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  prefix: 'tw-',
+  prefix: "tw-",
   darkMode: ["class"],
   content: [
-    './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-    './storage/framework/views/*.php',
-    './resources/views/**/*.blade.php',
-    './resources/js/**/*.tsx',
+    "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
+    "./storage/framework/views/*.php",
+    "./resources/views/**/*.blade.php",
+    "./resources/js/**/*.tsx",
   ],
   theme: {
     container: {
@@ -59,12 +59,12 @@ module.exports = {
       },
       keyframes: {
         "accordion-down": {
-          from: {height: 0},
-          to: {height: "var(--radix-accordion-content-height)"},
+          from: { height: 0 },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {height: "var(--radix-accordion-content-height)"},
-          to: {height: 0},
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: 0 },
         },
       },
       animation: {
@@ -72,14 +72,12 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        digit: ['PressStart2P-Regular', 'ui-sans-serif', 'system-ui'],
-        'ali-shuhei': ['AlimamaShuHeiTi-Bold', 'ui-sans-serif', 'system-ui'],
-        'ali-puhui': ['AlibabaPuHuiTi-3', 'ui-sans-serif', 'system-ui'],
+        digit: ["PressStart2P-Regular", "ui-sans-serif", "system-ui"],
+        "ali-shuhei": ["AlimamaShuHeiTi-Bold", "ui-sans-serif", "system-ui"],
+        "ali-puhui": ["AlibabaPuHuiTi-3", "ui-sans-serif", "system-ui"],
       },
     },
   },
-  plugins: [
-    require("tailwindcss-animate"),
-    require('@tailwindcss/typography'),
-  ],
-}
+  // eslint-disable-next-line global-require,import/no-extraneous-dependencies
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+};

@@ -1,19 +1,18 @@
-import React, { useRef, useState } from 'react';
-import styles from './styles.module.pcss';
-import PcNavigation from '@/Layouts/Navigation/PcNavigation';
+import React, { useRef, useState } from "react";
+import styles from "./styles.module.pcss";
+import PcNavigation from "@/Layouts/Navigation/PcNavigation";
 
-import Link from '@/Layouts/Link';
-import MobileNavigation,
-{
+import Link from "@/Layouts/Link";
+import MobileNavigation, {
   MobileNavControlProvider,
   MobileNavTrigger,
-} from '@/Layouts/Navigation/MobileNavigation';
+} from "@/Layouts/Navigation/MobileNavigation";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const triggerMenu = (withAnimation:boolean) => {
+  const triggerMenu = (withAnimation: boolean) => {
     menuRef.current?.classList.toggle(styles.withAnimation, withAnimation);
     setMenuOpen(!menuOpen);
   };
@@ -22,13 +21,14 @@ const Header = () => {
     <div className={styles.navbarContainer}>
       <MobileNavControlProvider
         value={{
-          menuOpen, triggerMenu,
+          menuOpen,
+          triggerMenu,
         }}
       >
         <div className={styles.navbar}>
           {/* Logo */}
           <div>
-            <Link href={route('home')} className={styles.logo} closeMenu>
+            <Link href={route("home")} className={styles.logo} closeMenu>
               DRD
             </Link>
           </div>

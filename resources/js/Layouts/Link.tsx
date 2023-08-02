@@ -1,12 +1,12 @@
-import { FC, useContext } from 'react';
-import { InertiaLinkProps, Link as InertiaLink } from '@inertiajs/react';
-import { MobileNavControlContext } from '@/Layouts/Navigation/MobileNavigation';
+import { FC, useContext } from "react";
+import { InertiaLinkProps, Link as InertiaLink } from "@inertiajs/react";
+import { MobileNavControlContext } from "@/Layouts/Navigation/MobileNavigation";
 
 type Props = InertiaLinkProps & {
-  closeMenu?: boolean,
+  closeMenu?: boolean;
 };
 
-const Link:FC<Props> = ({ closeMenu = false, ...props }) => {
+const Link: FC<Props> = ({ closeMenu = false, ...props }) => {
   const { menuOpen, triggerMenu } = useContext(MobileNavControlContext);
   const onFinish = () => {
     if (closeMenu && menuOpen) {

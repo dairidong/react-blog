@@ -1,8 +1,8 @@
-import { FC, PropsWithChildren } from 'react';
-import Header from '@/Layouts/Header';
+import { FC, PropsWithChildren } from "react";
+import Header from "@/Layouts/Header";
 
 const Layout: FC<PropsWithChildren> = ({ children }) => (
-  <div className="tw-text-foreground tw-bg-background tw-font-ali-shuhei tw-antialiased">
+  <div>
     <header>
       <Header />
     </header>

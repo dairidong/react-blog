@@ -3,6 +3,10 @@
     tw-flex tw-flex-col tw-justify-between tw-h-full;
 }
 
+.articleCartTitle {
+    @apply tw-leading-normal hover:tw-underline hover:tw-decoration-4 hover:tw-underline-offset-2;
+}
+
 .paginationBtn {
     @apply tw-border-4 tw-border-black
     tw-cursor-pointer tw-py-2 tw-px-5 md:tw-px-10
@@ -22,10 +26,19 @@
 }
 
 .article {
-    @apply tw-prose lg:tw-prose-lg tw-max-w-full lg:tw-max-w-screen-md
-    prose-code:tw-text-lg prose-p:tw-my-1.5
+    @apply
+        /* base */
+    tw-prose lg:tw-prose-lg tw-max-w-full lg:tw-max-w-screen-md
+    tw-font-ali-puhui
+    prose-strong:tw-font-extrabold
+        /* code */
+    prose-code:md:tw-text-lg
     prose-code:before:tw-content-[''] prose-code:after:tw-content-['']
+        /* p */
+    prose-p:tw-my-1.5
+        /* heading */
     prose-h1:tw-text-center prose-h1:tw-max-w-[32ch] prose-h1:tw-leading-normal
-    tw-font-ali-puhui prose-h1:tw-font-ali-shuhei prose-strong:tw-font-extrabold
+    prose-h1:tw-font-ali-shuhei
+        /* variables */
     [--tw-prose-body:hsl(var(--foreground))]
 }

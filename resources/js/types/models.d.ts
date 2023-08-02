@@ -13,5 +13,5 @@ export interface Article {
   published_at: string | Date;
   created_at: string | Date;
   updated_at: string | Date;
-  category?: Category
+  category?: Category;
 }

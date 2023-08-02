@@ -13,10 +13,20 @@
         "noEmit": true,
         "skipLibCheck": true,
         "paths": {
-            "@/*": ["./resources/js/*"],
-            "@styles/*": ["./resources/css/*"]
-        },
+            "@/*": [
+                "./resources/js/*"
+            ],
+            "@styles/*": [
+                "./resources/css/*"
+            ]
+        }
     },
-    "include": ["resources/js/**/*.ts", "resources/js/**/*.tsx", "resources/js/**/*.d.ts"],
-    "exclude": ["node_modules/*"]
+    "include": [
+        "resources/js/**/*.ts",
+        "resources/js/**/*.tsx",
+        "resources/js/**/*.d.ts"
+    ],
+    "exclude": [
+        "node_modules/*"
+    ]
 }

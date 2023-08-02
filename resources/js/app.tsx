@@ -1,11 +1,12 @@
-import './bootstrap';
-import '@styles/app.css';
+import "./bootstrap";
+import "@styles/app.css";
 
-import { createRoot } from 'react-dom/client';
-import { createInertiaApp } from '@inertiajs/react';
-import { resolvePage } from '@/lib/utils';
+import { createRoot } from "react-dom/client";
+import { createInertiaApp } from "@inertiajs/react";
+import { resolvePage } from "@/lib/utils";
 
-const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
+const appName =
+  window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
 
 createInertiaApp({
   title: (title) => `${title} - ${appName}`,
@@ -16,6 +17,7 @@ createInertiaApp({
     root.render(<App {...props} />);
   },
   progress: {
-    color: '#4B5563',
+    color: "hsl(var(--foreground))",
+    showSpinner: true,
   },
 });
