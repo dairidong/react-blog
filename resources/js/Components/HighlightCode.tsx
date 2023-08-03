@@ -1,5 +1,5 @@
-import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { PrismAsync as SyntaxHighlighter } from "react-syntax-highlighter";
 import { CodeComponent } from "react-markdown/lib/ast-to-react";
 import { FC, PropsWithChildren } from "react";
 import { cn } from "@/lib/utils";

@@ -1,6 +1,6 @@
 import { FC, useContext } from "react";
 import { InertiaLinkProps, Link as InertiaLink } from "@inertiajs/react";
-import { MobileNavControlContext } from "@/Layouts/Navigation/MobileNavigation";
+import MobileNavControlContext from "./Navigations/MobileNavigation/MobileNavControlContext";
 
 type Props = InertiaLinkProps & {
   closeMenu?: boolean;

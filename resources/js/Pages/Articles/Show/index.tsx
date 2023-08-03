@@ -12,7 +12,7 @@ const components: Components = {
   pre: ({ children }) => children,
 };
 
-const Show: FC<{ article: Article }> = ({ article }) => (
+const Show: FC<{ article: Required<Article> }> = ({ article }) => (
   <>
     <Head title={article.title} />
     <div className="tw-mt-5 lg:tw-mt-10">
@@ -21,7 +21,7 @@ const Show: FC<{ article: Article }> = ({ article }) => (
           <h1>{article.title}</h1>
 
           <ReactMarkdown
-            children={article.content!}
+            children={article.content}
             remarkPlugins={[remarkGfm]}
             components={components}
           />

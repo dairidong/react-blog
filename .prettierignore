@@ -1,3 +1,4 @@
 /public
 /bootstrap/ssr
 /node_modules
+/vendor

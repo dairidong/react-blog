@@ -1,19 +1,23 @@
 import React, { useRef, useState } from "react";
 import styles from "./styles.module.pcss";
-import PcNavigation from "@/Layouts/Navigation/PcNavigation";
+import mobileStyles from "./Navigations/MobileNavigation/styles.module.pcss";
+import PcNavigation from "./Navigations/PcNavigation";
 
-import Link from "@/Layouts/Link";
-import MobileNavigation, {
-  MobileNavControlProvider,
-  MobileNavTrigger,
-} from "@/Layouts/Navigation/MobileNavigation";
+import Link from "./Link";
+import { MobileNavControlProvider } from "./Navigations/MobileNavigation/MobileNavControlContext";
+import MobileNavTrigger from "./Navigations/MobileNavigation/MobileNavTrigger";
+import MobileNavigation from "./Navigations/MobileNavigation";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
   const triggerMenu = (withAnimation: boolean) => {
-    menuRef.current?.classList.toggle(styles.withAnimation, withAnimation);
+    menuRef.current?.classList.toggle(
+      mobileStyles.withAnimation,
+      withAnimation,
+    );
+
     setMenuOpen(!menuOpen);
   };
 
@@ -39,7 +43,6 @@ const Header = () => {
             aria-controls="mobile-nav"
           />
         </div>
-
         <MobileNavigation ref={menuRef} />
       </MobileNavControlProvider>
     </div>
