@@ -1,12 +1,11 @@
-import "./bootstrap";
 import "@styles/app.css";
-
 import { createRoot } from "react-dom/client";
 import { createInertiaApp } from "@inertiajs/react";
 import { resolvePage } from "@/lib/utils";
 
 const appName =
-  window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
+  window.document.getElementsByTagName("title")[0]?.innerText ||
+  import.meta.env.VITE_APP_NAME;
 
 createInertiaApp({
   title: (title) => `${title} - ${appName}`,

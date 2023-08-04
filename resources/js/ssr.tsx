@@ -5,7 +5,7 @@ import { Page } from "@inertiajs/core";
 import route from "../../vendor/tightenco/ziggy/dist/index.m";
 import { resolvePage } from "@/lib/utils";
 
-const appName = "Laravel";
+const appName = import.meta.env.VITE_APP_NAME;
 
 createServer((page: Page) =>
   createInertiaApp({
