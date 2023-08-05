@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { memo, useRef, useState } from "react";
 import styles from "./styles.module.pcss";
 import mobileStyles from "./Navigations/MobileNavigation/styles.module.pcss";
 import PcNavigation from "./Navigations/PcNavigation";
@@ -8,7 +8,8 @@ import { MobileNavControlProvider } from "./Navigations/MobileNavigation/MobileN
 import MobileNavTrigger from "./Navigations/MobileNavigation/MobileNavTrigger";
 import MobileNavigation from "./Navigations/MobileNavigation";
 
-const Header = () => {
+// use memo to prevent repeated render
+const Header = memo(() => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -47,6 +48,6 @@ const Header = () => {
       </MobileNavControlProvider>
     </div>
   );
-};
+});
 
 export default Header;

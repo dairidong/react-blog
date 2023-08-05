@@ -19,9 +19,9 @@ export const resolvePage: PageResolver = async (name) => {
     `../Pages/${name}.tsx`,
     import.meta.glob<Page>("../Pages/**/*.tsx"),
   );
-  currentPage.default.layout =
-    currentPage.default.layout ||
-    ((page: ReactElement) => <Layout children={page} />);
+  currentPage.default.layout ??= (page: ReactElement) => (
+    <Layout children={page} />
+  );
   return currentPage;
 };
 
