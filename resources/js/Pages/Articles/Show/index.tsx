@@ -1,16 +1,13 @@
 import { FC } from "react";
 import { Head } from "@inertiajs/react";
-import ReactMarkdown, { Components } from "react-markdown";
+import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypePrism from "rehype-prism-plus";
 import { Article } from "@/types/models";
 import styles from "./styles.module.pcss";
-import HighlightCode from "@/Components/HighlightCode";
-
-const components: Components = {
-  code: HighlightCode,
-  // 由 code 组件渲染 pre 标签，所以 pre 标签直接返回 children 即可
-  pre: ({ children }) => children,
-};
+import "@styles/prism.pcss";
+import Pre from "@/Components/Articles/Pre";
+import Code from "@/Components/Articles/Code";
 
 const Show: FC<{ article: Required<Article> }> = ({ article }) => (
   <>
@@ -23,7 +20,11 @@ const Show: FC<{ article: Required<Article> }> = ({ article }) => (
           <ReactMarkdown
             children={article.content}
             remarkPlugins={[remarkGfm]}
-            components={components}
+            rehypePlugins={[rehypePrism]}
+            components={{
+              pre: Pre,
+              code: Code,
+            }}
           />
         </article>
       </div>
