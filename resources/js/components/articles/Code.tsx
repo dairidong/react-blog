@@ -1,6 +1,6 @@
 import { CodeComponent } from "react-markdown/lib/ast-to-react";
 import { ReactNode } from "react";
-import { ScrollArea } from "@/Components/ui/scroll-area";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const createLineNumbers = (count: number) => {
   const spanArr: ReactNode[] = [];

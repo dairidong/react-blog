@@ -10,10 +10,10 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/Components/ui/navigation-menu";
+} from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { Category } from "@/types/models";
-import Link from "@/Layouts/Header/Link";
+import Link from "@/layouts/Header/Link";
 import styles from "./styles.module.pcss";
 
 const PcNavigation: FC = () => {

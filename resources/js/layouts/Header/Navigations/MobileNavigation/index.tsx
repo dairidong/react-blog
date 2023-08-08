@@ -3,7 +3,7 @@ import githubIcon from "@iconify/icons-mdi/github";
 import React, { forwardRef, useContext } from "react";
 import { cn } from "@/lib/utils";
 import styles from "./styles.module.pcss";
-import Link from "@/Layouts/Header/Link";
+import Link from "@/layouts/Header/Link";
 import MobileNavControlContext from "./MobileNavControlContext";
 
 const MobileNavigation = forwardRef<HTMLDivElement>((props, ref) => {

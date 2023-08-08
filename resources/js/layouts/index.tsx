@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren, useRef } from "react";
 import { createPortal } from "react-dom";
-import Header from "@/Layouts/Header";
-import Footer from "@/Layouts/Footer";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
   // layoutRef，确认客户端渲染再加载 layout 内容

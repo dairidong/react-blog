@@ -11,7 +11,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/Components/ui/card";
+} from "@/components/ui/card";
 import styles from "./styles.module.pcss";
 import { cn, formatTime } from "@/lib/utils";
 

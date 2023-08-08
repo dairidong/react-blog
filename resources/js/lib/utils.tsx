@@ -8,7 +8,7 @@ import locale_zhCn from "dayjs/locale/zh-cn";
 import relativeTime from "dayjs/plugin/relativeTime";
 import duration from "dayjs/plugin/duration";
 import { Page } from "@/types";
-import Layout from "@/Layouts";
+import Layout from "@/layouts";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -16,8 +16,8 @@ export function cn(...inputs: ClassValue[]) {
 
 export const resolvePage: PageResolver = async (name) => {
   const currentPage = await resolvePageComponent<Page>(
-    `../Pages/${name}.tsx`,
-    import.meta.glob<Page>("../Pages/**/*.tsx"),
+    `../pages/${name}.tsx`,
+    import.meta.glob<Page>("../pages/**/*.tsx"),
   );
   currentPage.default.layout ??= (page: ReactElement) => (
     <Layout children={page} />
