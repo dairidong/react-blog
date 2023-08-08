@@ -36,13 +36,13 @@ code[class*="language-"],
 pre[class*="language-"] {
     @apply tw-text-[hsl(220,14%,71%)] tw-text-left tw-text-base md:tw-text-lg
     tw-whitespace-pre tw-break-normal tw-leading-normal tw-font-code
-    tw-bg-[hsl(220,13%,18%)] tw-hyphens-none;
+    tw-bg-[hsl(217.78,30.34%,17.45%)] tw-hyphens-none;
     text-shadow: 0 1px rgba(0, 0, 0, 0.3);
     direction: ltr;
     word-spacing: normal;
-    -moz-tab-size: 2;
-    -o-tab-size: 2;
-    tab-size: 2;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
 }
 
 /* Selection */
@@ -82,7 +82,7 @@ pre[class*="language-"] {
 .token.comment,
 .token.prolog,
 .token.cdata {
-    @apply tw-text-[hsl(220,10%,40%)];
+    @apply tw-text-[hsl(215,20.22%,65.1%)];
 }
 
 .token.doctype,
@@ -422,7 +422,7 @@ pre code.diff-highlight .token.token.inserted:not(.prefix) *::selection {
 .prism-previewer-angle.prism-previewer-angle:before,
 .prism-previewer-time.prism-previewer-time:before,
 .prism-previewer-easing.prism-previewer-easing {
-    background: hsl(219, 13%, 22%);
+    @apply tw-bg-[hsl(219,13%,22%)];
 }
 
 /* For angle, this is the positive area (eg. 90deg will display one quadrant in this colour) */
