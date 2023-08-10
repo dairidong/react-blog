@@ -8,13 +8,13 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
   const layoutRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div ref={layoutRef}>
+    <div ref={layoutRef} className="tw-flex tw-min-h-screen tw-flex-col">
       <header>
         {layoutRef.current !== null &&
           createPortal(<Header />, layoutRef.current.querySelector("header")!)}
       </header>
-      <main>{children}</main>
-      <footer>
+      <main className="tw-flex-1">{children}</main>
+      <footer className="tw-justify-self-end">
         {layoutRef.current !== null &&
           createPortal(<Footer />, layoutRef.current.querySelector("footer")!)}
       </footer>
