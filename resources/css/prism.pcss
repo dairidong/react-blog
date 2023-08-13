@@ -445,3 +445,10 @@ pre code.diff-highlight .token.token.inserted:not(.prefix) *::selection {
     @apply tw-fill-transparent;
 }
 
+h2, h3 {
+    @apply tw-flex tw-flex-row tw-gap-2;
+
+    &:hover > a > span.icon.icon-link {
+        @apply before:tw-content-['#'] tw-text-muted-foreground;
+    }
+}
