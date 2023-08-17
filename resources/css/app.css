@@ -74,13 +74,14 @@
   * {
     @apply tw-border-border;
   }
-  body {
-    @apply tw-bg-background tw-text-foreground tw-font-ali-shuhei tw-antialiased tw-min-h-screen;
-  }
 }
 
 @layer components {
     .heading-title {
         @apply tw-my-4 tw-text-4xl tw-tracking-tight tw-text-foreground md:tw-text-5xl lg:tw-text-6xl;
+    }
+
+    .logo {
+        @apply tw-text-3xl tw-font-bold tw-font-digit tw-border-2 tw-border-primary tw-p-3 tw-shadow-[6px_6px];
     }
 }

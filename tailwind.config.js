@@ -84,6 +84,9 @@ module.exports = {
           "monospace",
         ],
       },
+      aria: {
+        invalid: 'invalid="true"',
+      },
     },
   },
   // eslint-disable-next-line global-require,import/no-extraneous-dependencies

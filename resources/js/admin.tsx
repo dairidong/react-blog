@@ -1,7 +1,7 @@
-import "@styles/app.css";
 import { createRoot } from "react-dom/client";
 import { createInertiaApp } from "@inertiajs/react";
-import { resolveFrontendPage } from "@/lib/utils";
+import { resolveAdminPage } from "@/lib/utils";
+import "@styles/app.css";
 
 const appName =
   window.document.getElementsByTagName("title")[0]?.innerText ||
@@ -9,14 +9,10 @@ const appName =
 
 createInertiaApp({
   title: (title) => `${title} - ${appName}`,
-  resolve: resolveFrontendPage,
+  resolve: resolveAdminPage,
   setup({ el, App, props }) {
     const root = createRoot(el);
 
     root.render(<App {...props} />);
-  },
-  progress: {
-    color: "hsl(var(--foreground))",
-    showSpinner: true,
   },
 });

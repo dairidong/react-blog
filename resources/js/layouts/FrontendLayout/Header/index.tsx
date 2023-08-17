@@ -7,6 +7,7 @@ import Link from "./Link";
 import { MobileNavControlProvider } from "./Navigations/MobileNavigation/MobileNavControlContext";
 import MobileNavTrigger from "./Navigations/MobileNavigation/MobileNavTrigger";
 import MobileNavigation from "./Navigations/MobileNavigation";
+import Logo from "@/components/Logo";
 
 // use memo to prevent repeated render
 const Header = memo(() => {
@@ -33,8 +34,8 @@ const Header = memo(() => {
         <div className={styles.navbar}>
           {/* Logo */}
           <div>
-            <Link href={route("home")} className={styles.logo} closeMenu>
-              DRD
+            <Link href={route("home")} closeMenu>
+              <Logo />
             </Link>
           </div>
 
