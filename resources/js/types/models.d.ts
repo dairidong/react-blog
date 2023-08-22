@@ -1,3 +1,20 @@
+export interface Authenticatable {
+  id: number;
+  name: string;
+}
+
+export interface User extends Authenticatable {
+  email: string;
+  email_verified_at: string;
+}
+
+export interface Administrator extends Authenticatable {
+  username: string;
+  avatar: string | null;
+  created_at: string | Date;
+  updated_at: string | Date;
+}
+
 export interface Category {
   id: number;
   title: string;

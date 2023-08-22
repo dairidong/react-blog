@@ -7,7 +7,6 @@ use App\Http\Requests\Admin\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
 class AuthenticationController extends Controller
@@ -23,7 +22,12 @@ class AuthenticationController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('admin.dashboard'));
+        return redirect()->intended(route('admin.dashboard'))->with([
+            'message' => [
+                'type' => 'success',
+                'text' => '登录成功',
+            ]
+        ]);
     }
 
     public function destroy(Request $request): RedirectResponse
@@ -34,6 +38,6 @@ class AuthenticationController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect(route('admin.login'));
+        return to_route('admin.login');
     }
 }

@@ -1,125 +1,218 @@
-import { LikeOutlined, UserOutlined } from "@ant-design/icons";
-import type { ProSettings } from "@ant-design/pro-components";
+import React, { FC, PropsWithChildren, useEffect, useState } from "react";
 import {
-  PageContainer,
-  ProLayout,
-  SettingDrawer,
-} from "@ant-design/pro-components";
-import { Button, Descriptions, Result, Space, Statistic } from "antd";
-import { FC, PropsWithChildren, useState } from "react";
+  MenuOutlined,
+  UploadOutlined,
+  UserOutlined,
+  VideoCameraOutlined,
+} from "@ant-design/icons";
+import type { MenuTheme } from "antd";
+import {
+  Avatar,
+  Button,
+  Drawer,
+  Dropdown,
+  Layout,
+  Menu,
+  Space,
+  theme,
+} from "antd";
+import { StyleProvider } from "@ant-design/cssinjs";
+import { Link, usePage } from "@inertiajs/react";
+import useMessage from "antd/es/message/useMessage";
+import { Message, PageProps } from "@/types";
+import { Administrator } from "@/types/models";
 
-const content = (
-  <Descriptions size="small" column={2}>
-    <Descriptions.Item label="创建人">张三</Descriptions.Item>
-    <Descriptions.Item label="联系方式">
-      <a>421421</a>
-    </Descriptions.Item>
-    <Descriptions.Item label="创建时间">2017-01-10</Descriptions.Item>
-    <Descriptions.Item label="更新时间">2017-10-10</Descriptions.Item>
-    <Descriptions.Item label="备注">
-      中国浙江省杭州市西湖区古翠路
-    </Descriptions.Item>
-  </Descriptions>
-);
+const { Header, Content, Sider } = Layout;
 
 const AdminLayout: FC<PropsWithChildren> = ({ children }) => {
-  const [settings, setSetting] = useState<Partial<ProSettings> | undefined>({
-    fixSiderbar: true,
-  });
-  const [pathname, setPathname] = useState("/welcome");
-  return (
-    <div
-      id="test-pro-layout"
-      style={{
-        height: "100vh",
-      }}
+  const [collapsed, setCollapsed] = useState(false);
+  const [showSider, setShowSider] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [messageApi, contextHolder] = useMessage();
+  const {
+    token: { colorBgContainer, colorText },
+  } = theme.useToken();
+
+  const {
+    flash: { message },
+    auth: { user },
+  } = usePage<
+    PageProps<
+      {
+        flash: { message: Message };
+      },
+      Administrator
     >
-      <ProLayout
-        location={{
-          pathname,
+  >().props;
+
+  useEffect(() => {
+    if (message) {
+      messageApi.open({
+        type: message.type,
+        content: message.text,
+      });
+    }
+  }, [message]);
+
+  const menuContent = (menuTheme: MenuTheme = "dark") => (
+    <>
+      <div
+        className="tw-font-digit tw-text-3xl"
+        style={{
+          margin: "1rem 0",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          whiteSpace: "nowrap",
+          color: menuTheme === "dark" ? "#fff" : colorText,
         }}
-        waterMarkProps={{
-          content: "Pro Layout",
-        }}
-        menuItemRender={(item, dom) => (
-          <a
-            onClick={() => {
-              setPathname(item.path || "/welcome");
-            }}
-          >
-            {dom}
-          </a>
-        )}
-        avatarProps={{
-          icon: <UserOutlined />,
-        }}
-        {...settings}
       >
-        <PageContainer
-          content={content}
-          tabList={[
-            {
-              tab: "基本信息",
-              key: "base",
-            },
-            {
-              tab: "详细信息",
-              key: "info",
-            },
-          ]}
-          extraContent={
-            <Space size={24}>
-              <Statistic
-                title="Feedback"
-                value={1128}
-                prefix={<LikeOutlined />}
-              />
-              <Statistic title="Unmerged" value={93} suffix="/ 100" />
-            </Space>
-          }
-          extra={[
-            <Button key="3">操作</Button>,
-            <Button key="2">操作</Button>,
-            <Button key="1" type="primary">
-              主操作
-            </Button>,
-          ]}
-          footer={[
-            <Button key="3">重置</Button>,
-            <Button key="2" type="primary">
-              提交
-            </Button>,
-          ]}
+        D{(collapsed && showSider) || "RD"}
+      </div>
+      <Menu
+        theme={menuTheme}
+        mode="inline"
+        defaultSelectedKeys={["1"]}
+        items={[
+          {
+            key: "1",
+            icon: <UserOutlined />,
+            label: "nav 1",
+          },
+          {
+            key: "2",
+            icon: <VideoCameraOutlined />,
+            label: "nav 2",
+          },
+          {
+            key: "3",
+            icon: <UploadOutlined />,
+            label: "nav 3",
+          },
+        ]}
+        style={{
+          border: "none",
+        }}
+      />
+    </>
+  );
+
+  return (
+    <StyleProvider hashPriority="high">
+      {contextHolder}
+      <Layout style={{ minHeight: "100vh" }}>
+        <Sider
+          trigger={null}
+          collapsed={collapsed}
+          collapsible
+          breakpoint="lg"
+          style={{
+            display: !showSider ? "none" : "block",
+          }}
+          onBreakpoint={(broken) => {
+            setShowSider(!broken);
+            if (!broken) {
+              setDrawerOpen(false);
+            }
+          }}
         >
-          <div
+          {menuContent()}
+        </Sider>
+
+        <Drawer
+          open={drawerOpen}
+          closeIcon={false}
+          placement="left"
+          onClose={() => {
+            setDrawerOpen(false);
+          }}
+          contentWrapperStyle={{
+            maxWidth: "50vw",
+          }}
+          bodyStyle={{
+            padding: 0,
+          }}
+        >
+          {menuContent("light")}
+        </Drawer>
+
+        <Layout>
+          <Header
             style={{
-              height: "120vh",
-              minHeight: 600,
+              padding: 0,
+              paddingRight: 32,
+              background: colorBgContainer,
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
             }}
           >
-            <Result
-              status="404"
-              style={{
-                height: "100%",
-                background: "#fff",
+            <Button
+              type="text"
+              icon={<MenuOutlined />}
+              onClick={() => {
+                if (showSider) {
+                  setCollapsed(!collapsed);
+                } else {
+                  setDrawerOpen(!drawerOpen);
+                }
               }}
-              title="Hello World"
-              subTitle="Sorry, you are not authorized to access this page."
-              extra={<Button type="primary">Back Home</Button>}
+              style={{
+                fontSize: "16px",
+                width: 64,
+                height: 64,
+              }}
             />
-          </div>
-        </PageContainer>
-      </ProLayout>
-      <SettingDrawer
-        pathname={pathname}
-        getContainer={() => document.getElementById("test-pro-layout")}
-        settings={settings}
-        onSettingChange={(changeSetting) => {
-          setSetting(changeSetting);
-        }}
-        disableUrlParams
-      />
-    </div>
+
+            <Dropdown
+              menu={{
+                items: [
+                  {
+                    key: "logout",
+                    label: (
+                      <Link
+                        href={route("admin.logout")}
+                        method="delete"
+                        as="button"
+                      >
+                        登出
+                      </Link>
+                    ),
+                  },
+                ],
+              }}
+            >
+              <Space className="user-info tw-cursor-pointer">
+                <Avatar
+                  size="large"
+                  alt="user-avatar"
+                  style={{
+                    // 样式兼容
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  {...{
+                    icon: <UserOutlined />,
+                  }}
+                />
+                <div className="username">{user.name}</div>
+              </Space>
+            </Dropdown>
+          </Header>
+          <Content
+            style={{
+              margin: "24px 16px",
+              padding: 24,
+              minHeight: 280,
+              background: colorBgContainer,
+            }}
+          >
+            {children}
+          </Content>
+        </Layout>
+      </Layout>
+    </StyleProvider>
   );
 };
 

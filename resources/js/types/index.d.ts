@@ -1,15 +1,15 @@
 import { FC, ReactElement } from "react";
-
-export interface User {
-  id: number;
-  name: string;
-  email: string;
-  email_verified_at: string;
-}
+import { NoticeType } from "antd/es/message/interface";
+import { Authenticatable, User } from "@/types/models";
 
 export type PageProps<
   T extends Record<string, unknown> = Record<string, unknown>,
-> = T & {};
+  E extends Authenticatable = User,
+> = T & {
+  auth: {
+    user: E;
+  };
+};
 
 export type LayoutFunc = (page: ReactElement) => ReactElement;
 
@@ -50,4 +50,9 @@ export interface LaravelPagination extends BasePagination {
      */
     active: boolean;
   }[];
+}
+
+export interface Message {
+  type: NoticeType;
+  text: string;
 }

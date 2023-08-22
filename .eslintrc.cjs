@@ -32,13 +32,7 @@ module.exports = {
         namedComponents: ["function-declaration", "function-expression", "arrow-function"]
       }
     ],
-    'max-len': [
-      "error",
-      {
-        "code": 100,
-        "ignoreComments": true
-      }
-    ],
+    'max-len': 0,
     "operator-linebreak": [
       "error",
       "after",
