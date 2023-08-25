@@ -8,7 +8,7 @@ const appName =
   import.meta.env.VITE_APP_NAME;
 
 createInertiaApp({
-  title: (title) => `${title} - ${appName}`,
+  title: (title) => `${title} - ${appName} 后台`,
   resolve: resolveAdminPage,
   setup({ el, App, props }) {
     const root = createRoot(el);
