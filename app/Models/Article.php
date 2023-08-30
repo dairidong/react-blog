@@ -29,11 +29,6 @@ class Article extends Model
         });
     }
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
-
     protected function isPublished(): Attribute
     {
         return Attribute::make(

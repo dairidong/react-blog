@@ -11,9 +11,8 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::query()
-            ->select('id', 'category_id', 'title', 'description', 'slug', 'created_at', 'published_at', 'updated_at')
+            ->select('id', 'title', 'description', 'slug', 'created_at', 'published_at', 'updated_at')
             ->published()
-            ->with('category:id,title')
             ->orderByDesc('published_at')
             ->simplePaginate(9);
 
@@ -24,7 +23,6 @@ class ArticleController extends Controller
 
     public function show(Article $article)
     {
-        $article->load('category:id,title');
         return Inertia::render('Articles/Show/index', [
             'article' => $article
         ]);

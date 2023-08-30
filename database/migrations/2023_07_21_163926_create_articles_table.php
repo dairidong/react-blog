@@ -18,8 +18,6 @@ return new class extends Migration
             $table->longText('content');
             $table->string('slug')->nullable()->unique();
 
-            $table->foreignIdFor(\App\Models\Category::class);
-
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();

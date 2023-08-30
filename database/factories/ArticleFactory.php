@@ -18,14 +18,11 @@ class ArticleFactory extends Factory
      */
     public function definition(): array
     {
-        $categories = Category::query()->pluck('id');
-
         return [
             'title' => fake()->sentence(),
             'description' => fake()->paragraph(2),
             'content' => fake()->text(),
 
-            'category_id' => $categories->isEmpty() ? Category::factory() : $categories->random(),
             'published_at' => Arr::random(([now(), null]))
         ];
     }

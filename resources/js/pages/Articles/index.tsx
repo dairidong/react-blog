@@ -49,10 +49,6 @@ const Articles: FC<{ articles: SimplePagination<Article> }> = ({
                 </CardHeader>
                 <CardFooter className="tw-justify-between">
                   <section>{formatTime(article.created_at)}</section>
-                  {/* TODO 分类 换成 Link */}
-                  <section className="tw-underline tw-decoration-4 tw-underline-offset-4">
-                    {article.category!.title}
-                  </section>
                 </CardFooter>
               </Card>
             </li>
