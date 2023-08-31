@@ -1,8 +1,7 @@
-import { ProFormProps } from "@ant-design/pro-components";
 import { Head, useForm } from "@inertiajs/react";
 import React, { ComponentPropsWithoutRef, FC, useEffect } from "react";
 import { StyleProvider } from "@ant-design/cssinjs";
-import { Form } from "antd";
+import { Form, FormProps } from "antd";
 import { Callbacks } from "rc-field-form/es/interface";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import { Button } from "@/components/ui/button";
@@ -74,7 +73,7 @@ const Login = () => {
     });
   };
 
-  const submit: ProFormProps<Credentials>["onFinish"] = async (formData) => {
+  const submit: FormProps<Credentials>["onFinish"] = async (formData) => {
     post(route("admin.login"));
   };
 

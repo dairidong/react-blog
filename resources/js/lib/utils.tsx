@@ -46,9 +46,10 @@ dayjs.locale(locale_zhCn);
 export const formatTime = (
   date: dayjs.ConfigType,
   template: string = "YYYY-MM-DD",
+  human: boolean = true,
 ) => {
   if (dayjs().isAfter(dayjs(date).add(15, "day"))) {
     return dayjs(date).format(template);
   }
-  return dayjs(date).fromNow();
+  return human ? dayjs(date).fromNow() : dayjs(date).format(template);
 };

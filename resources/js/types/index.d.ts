@@ -35,7 +35,7 @@ export interface BasePagination<T> {
 
 export interface SimplePagination<T> extends BasePagination<T> {}
 
-export interface LaravelPagination extends BasePagination {
+export interface LaravelPagination<T> extends BasePagination<T> {
   last_page: number;
   last_page_url: string;
   total: number;

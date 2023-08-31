@@ -1,9 +1,9 @@
 import React, { FC, PropsWithChildren, useEffect, useState } from "react";
 import {
+  FileTextOutlined,
+  HomeOutlined,
   MenuOutlined,
-  UploadOutlined,
   UserOutlined,
-  VideoCameraOutlined,
 } from "@ant-design/icons";
 import type { MenuTheme } from "antd";
 import {
@@ -25,6 +25,32 @@ import { Administrator } from "@/types/models";
 const { Header, Content, Sider } = Layout;
 
 type Props = PageProps<{ flash: { message: Message } }, Administrator>;
+
+const sideMenu = [
+  {
+    key: "admin.dashboard",
+    icon: <HomeOutlined />,
+    label: <Link href={route("admin.dashboard")}>总览</Link>,
+  },
+  {
+    key: "admin.articles.index",
+    icon: <FileTextOutlined />,
+    label: <Link href={route("admin.articles.index")}>文章</Link>,
+  },
+];
+
+const dropdownMenu = {
+  items: [
+    {
+      key: "logout",
+      label: (
+        <Link href={route("admin.logout")} method="delete" as="button">
+          登出
+        </Link>
+      ),
+    },
+  ],
+};
 
 const AdminLayoutContainer: FC<PropsWithChildren> = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -67,24 +93,8 @@ const AdminLayoutContainer: FC<PropsWithChildren> = ({ children }) => {
       <Menu
         theme={menuTheme}
         mode="inline"
-        defaultSelectedKeys={["1"]}
-        items={[
-          {
-            key: "1",
-            icon: <UserOutlined />,
-            label: "nav 1",
-          },
-          {
-            key: "2",
-            icon: <VideoCameraOutlined />,
-            label: "nav 2",
-          },
-          {
-            key: "3",
-            icon: <UploadOutlined />,
-            label: "nav 3",
-          },
-        ]}
+        defaultSelectedKeys={[route().current() ?? ""]}
+        items={sideMenu}
         style={{
           border: "none",
         }}
@@ -157,24 +167,7 @@ const AdminLayoutContainer: FC<PropsWithChildren> = ({ children }) => {
                 }}
               />
 
-              <Dropdown
-                menu={{
-                  items: [
-                    {
-                      key: "logout",
-                      label: (
-                        <Link
-                          href={route("admin.logout")}
-                          method="delete"
-                          as="button"
-                        >
-                          登出
-                        </Link>
-                      ),
-                    },
-                  ],
-                }}
-              >
+              <Dropdown menu={dropdownMenu}>
                 <Space className="user-info tw-cursor-pointer">
                   <Avatar
                     size="large"
