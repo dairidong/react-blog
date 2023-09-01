@@ -5,7 +5,6 @@ import {
   MenuOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import type { MenuTheme } from "antd";
 import {
   App,
   Avatar,
@@ -13,7 +12,6 @@ import {
   Drawer,
   Dropdown,
   Layout,
-  Menu,
   Space,
   theme,
 } from "antd";
@@ -21,50 +19,52 @@ import { StyleProvider } from "@ant-design/cssinjs";
 import { Link, usePage } from "@inertiajs/react";
 import { Message, PageProps } from "@/types";
 import { Administrator } from "@/types/models";
+import SideMenu from "./components/SideMenu";
 
-const { Header, Content, Sider } = Layout;
+const { Header, Sider } = Layout;
 
 type Props = PageProps<{ flash: { message: Message } }, Administrator>;
-
-const sideMenu = [
-  {
-    key: "admin.dashboard",
-    icon: <HomeOutlined />,
-    label: <Link href={route("admin.dashboard")}>总览</Link>,
-  },
-  {
-    key: "admin.articles.index",
-    icon: <FileTextOutlined />,
-    label: <Link href={route("admin.articles.index")}>文章</Link>,
-  },
-];
-
-const dropdownMenu = {
-  items: [
-    {
-      key: "logout",
-      label: (
-        <Link href={route("admin.logout")} method="delete" as="button">
-          登出
-        </Link>
-      ),
-    },
-  ],
-};
 
 const AdminLayoutContainer: FC<PropsWithChildren> = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [showSider, setShowSider] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { message: AntMessage } = App.useApp();
+
   const {
-    token: { colorBgContainer, colorText },
+    token: { colorBgContainer },
   } = theme.useToken();
 
   const {
     flash: { message },
     auth: { user },
   } = usePage<Props>().props;
+
+  const menuItems = [
+    {
+      key: "admin.dashboard",
+      icon: <HomeOutlined />,
+      label: <Link href={route("admin.dashboard")}>总览</Link>,
+    },
+    {
+      key: "admin.articles.index",
+      icon: <FileTextOutlined />,
+      label: <Link href={route("admin.articles.index")}>文章</Link>,
+    },
+  ];
+
+  const dropdownMenu = {
+    items: [
+      {
+        key: "logout",
+        label: (
+          <Link href={route("admin.logout")} method="delete" as="button">
+            登出
+          </Link>
+        ),
+      },
+    ],
+  };
 
   useEffect(() => {
     if (message) {
@@ -74,33 +74,6 @@ const AdminLayoutContainer: FC<PropsWithChildren> = ({ children }) => {
       });
     }
   }, [message]);
-
-  const menuContent = (menuTheme: MenuTheme = "dark") => (
-    <>
-      <div
-        className="tw-font-digit tw-text-3xl"
-        style={{
-          margin: "1rem 0",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          whiteSpace: "nowrap",
-          color: menuTheme === "dark" ? "#fff" : colorText,
-        }}
-      >
-        D{(collapsed && showSider) || "RD"}
-      </div>
-      <Menu
-        theme={menuTheme}
-        mode="inline"
-        defaultSelectedKeys={[route().current() ?? ""]}
-        items={sideMenu}
-        style={{
-          border: "none",
-        }}
-      />
-    </>
-  );
 
   return (
     <App>
@@ -121,7 +94,11 @@ const AdminLayoutContainer: FC<PropsWithChildren> = ({ children }) => {
               }
             }}
           >
-            {menuContent()}
+            <SideMenu
+              collapsed={collapsed}
+              showSider={showSider}
+              menuItems={menuItems}
+            />
           </Sider>
 
           <Drawer
@@ -136,7 +113,12 @@ const AdminLayoutContainer: FC<PropsWithChildren> = ({ children }) => {
               padding: 0,
             }}
           >
-            {menuContent("light")}
+            <SideMenu
+              collapsed={collapsed}
+              showSider={showSider}
+              menuItems={menuItems}
+              menuTheme="light"
+            />
           </Drawer>
 
           <Layout>
@@ -172,12 +154,6 @@ const AdminLayoutContainer: FC<PropsWithChildren> = ({ children }) => {
                   <Avatar
                     size="large"
                     alt="user-avatar"
-                    style={{
-                      // 样式兼容
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
                     src={user.avatar}
                     icon={<UserOutlined />}
                   />
@@ -185,16 +161,9 @@ const AdminLayoutContainer: FC<PropsWithChildren> = ({ children }) => {
                 </Space>
               </Dropdown>
             </Header>
-            <Content
-              style={{
-                margin: "24px 16px",
-                padding: 24,
-                minHeight: 280,
-                background: colorBgContainer,
-              }}
-            >
-              {children}
-            </Content>
+
+            {/** ************************** Content ************************* */}
+            {children}
           </Layout>
         </Layout>
       </StyleProvider>

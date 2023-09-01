@@ -2,6 +2,7 @@ import { createRoot } from "react-dom/client";
 import { createInertiaApp } from "@inertiajs/react";
 import { resolveAdminPage } from "@/lib/utils";
 import "@styles/app.css";
+import "@styles/antd_fix.pcss";
 
 const appName =
   window.document.getElementsByTagName("title")[0]?.innerText ||

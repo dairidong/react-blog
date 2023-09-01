@@ -16,7 +16,7 @@ class ArticleController extends Controller
             ->orderByDesc('id')
             ->paginate($request->input('pageSize', 10));
 
-        return Inertia::render("Articles/index", [
+        return Inertia::render("Articles/Index/index", [
             "articles" => $articles,
         ]);
     }

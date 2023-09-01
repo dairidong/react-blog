@@ -1,17 +1,16 @@
-import { Head, router } from "@inertiajs/react";
+import { Head, Link, router } from "@inertiajs/react";
 import { FC } from "react";
-import { Button, List, Switch, theme } from "antd";
+import { Button, Col, List, Row, Switch, theme } from "antd";
 import { PaginationConfig } from "antd/es/pagination";
-import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
+import { DeleteTwoTone, EditTwoTone, PlusOutlined } from "@ant-design/icons";
 import { LaravelPagination } from "@/types";
 import { Article } from "@/types/models";
 import { formatTime } from "@/lib/utils";
+import ContentContainer from "@/layouts/AdminLayout/components/ContentContainer";
 
 const timeTemplate = "YYYY年MM月DD日 HH:mm:ss";
 
-const Articles: FC<{ articles: LaravelPagination<Article> }> = ({
-  articles,
-}) => {
+const Index: FC<{ articles: LaravelPagination<Article> }> = ({ articles }) => {
   const {
     token: { colorTextSecondary },
   } = theme.useToken();
@@ -20,7 +19,7 @@ const Articles: FC<{ articles: LaravelPagination<Article> }> = ({
     pageSize: articles.per_page,
     total: articles.total,
     current: articles.current_page,
-    showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
+    showTotal: (total, range) => `总共 ${articles.total} 项`,
     showSizeChanger: true,
 
     onChange: (page, pageSize) =>
@@ -36,7 +35,7 @@ const Articles: FC<{ articles: LaravelPagination<Article> }> = ({
   return (
     <>
       <Head title="文章" />
-      <div>
+      <ContentContainer>
         <List<Article>
           rowKey="id"
           dataSource={articles.data}
@@ -45,9 +44,11 @@ const Articles: FC<{ articles: LaravelPagination<Article> }> = ({
             <div className="tw-flex tw-justify-between">
               <h1 className="tw-text-3xl tw-font-bold">文章列表</h1>
               <div className="actions">
-                <Button type="primary" size="large">
-                  新建 +
-                </Button>
+                <Link href={route("admin.articles.create")}>
+                  <Button type="primary" size="large" icon={<PlusOutlined />}>
+                    新建
+                  </Button>
+                </Link>
               </div>
             </div>
           }
@@ -76,33 +77,32 @@ const Articles: FC<{ articles: LaravelPagination<Article> }> = ({
               />
 
               {/* 次要内容：时间 */}
-              <ul
+              <Row
+                align="middle"
+                gutter={20}
                 style={{
-                  display: "flex",
-                  alignItems: "start",
-                  gap: 20,
                   color: colorTextSecondary,
                 }}
               >
-                <li className="tw-flex tw-flex-col">
+                <Col xs={0} md={12}>
                   <div>创建时间：</div>
                   <div>
                     {formatTime(article.created_at, timeTemplate, false)}
                   </div>
-                </li>
-                <li className="tw-flex tw-flex-col">
+                </Col>
+                <Col xs={0} sm={0} md={12}>
                   <div>最后更新时间：</div>
                   <div>
                     {formatTime(article.updated_at, timeTemplate, false)}
                   </div>
-                </li>
-              </ul>
+                </Col>
+              </Row>
             </List.Item>
           )}
         />
-      </div>
+      </ContentContainer>
     </>
   );
 };
 
-export default Articles;
+export default Index;
