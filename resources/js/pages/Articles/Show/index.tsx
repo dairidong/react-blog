@@ -8,8 +8,8 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { Article } from "@/types/models";
 import styles from "./styles.module.pcss";
 import "@styles/prism.pcss";
-import Pre from "@/components/articles/Pre";
-import Code from "@/components/articles/Code";
+import Pre from "./components/Pre";
+import Code from "./components/Code";
 
 const Show: FC<{ article: Required<Article> }> = ({ article }) => {
   return (
