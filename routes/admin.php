@@ -19,5 +19,7 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::prefix('/articles')->name('articles.')->group(function () {
         Route::get('/', [ArticleController::class, 'index'])->name('index');
+        Route::inertia('/create', 'Articles/Create/index')->name('create');
+        Route::post('/', [ArticleController::class, 'store'])->name('store');
     });
 });

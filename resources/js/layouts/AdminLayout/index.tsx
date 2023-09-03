@@ -84,6 +84,7 @@ const AdminLayoutContainer: FC<PropsWithChildren> = ({ children }) => {
             collapsed={collapsed}
             collapsible
             breakpoint="lg"
+            width={300}
             style={{
               display: !showSider ? "none" : "block",
             }}
@@ -150,7 +151,7 @@ const AdminLayoutContainer: FC<PropsWithChildren> = ({ children }) => {
               />
 
               <Dropdown menu={dropdownMenu}>
-                <Space className="user-info tw-cursor-pointer">
+                <Space className="user-info" style={{ cursor: "pointer" }}>
                   <Avatar
                     size="large"
                     alt="user-avatar"

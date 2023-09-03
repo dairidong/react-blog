@@ -20,6 +20,13 @@ class Article extends Model
 
     ];
 
+    protected $fillable = [
+        'title',
+        'slug',
+        'description',
+        'content'
+    ];
+
     protected static function booted()
     {
         static::saving(function (Article $article) {

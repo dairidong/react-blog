@@ -1,12 +1,18 @@
-import React, { FC, PropsWithChildren } from "react";
+import React, { FC } from "react";
 import { Layout, theme } from "antd";
+import { BasicProps } from "antd/es/layout/layout";
 
 const { Content } = Layout;
 
-const ContentContainer: FC<PropsWithChildren> = ({ children }) => {
+const ContentContainer: FC<BasicProps & React.RefAttributes<HTMLElement>> = ({
+  children,
+  style,
+  ...props
+}) => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
   return (
     <Content
       style={{
@@ -14,7 +20,9 @@ const ContentContainer: FC<PropsWithChildren> = ({ children }) => {
         padding: 24,
         minHeight: 280,
         background: colorBgContainer,
+        ...style,
       }}
+      {...props}
     >
       {children}
     </Content>

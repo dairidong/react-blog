@@ -60,6 +60,7 @@
         "clsx": "^1.2.1",
         "dayjs": "^1.11.9",
         "laravel-vite-plugin": "^0.7.5",
+        "lodash": "^4.17.21",
         "lucide-react": "^0.258.0",
         "rc-field-form": "^1.37.0",
         "react": "^18.2.0",
@@ -70,6 +71,7 @@
         "rehype-slug": "^5.1.0",
         "remark-gfm": "^3.0.1",
         "tailwind-merge": "^1.13.2",
-        "tailwindcss-animate": "^1.0.6"
+        "tailwindcss-animate": "^1.0.6",
+        "vditor": "^3.9.5"
     }
 }

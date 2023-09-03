@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CreateArticleRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -19,5 +20,14 @@ class ArticleController extends Controller
         return Inertia::render("Articles/Index/index", [
             "articles" => $articles,
         ]);
+    }
+
+    public function store(CreateArticleRequest $request)
+    {
+        $article = new Article($request->validated());
+
+        $article->save();
+
+        return to_route('admin.articles.index');
     }
 }
