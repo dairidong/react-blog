@@ -1,7 +1,8 @@
 import { Head, useForm } from "@inertiajs/react";
-import { Button, Divider, Form, Input, Typography } from "antd";
+import { App, Button, Divider, Form, Input, Typography } from "antd";
 import { Callbacks, FieldData } from "rc-field-form/es/interface";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Vditor from "vditor";
 import ContentContainer from "@/layouts/AdminLayout/components/ContentContainer";
 import { Article } from "@/types/models";
 import Editor from "@/components/Editor";
@@ -19,14 +20,16 @@ const Create = () => {
       content: "",
     });
 
-  const onFinish: Callbacks<ArticleFormFields>["onFinish"] = (values) => {
-    post(route("admin.articles.store"));
-  };
+  const { message } = App.useApp();
 
   const [form] = Form.useForm();
 
+  const [editor, setEditor] = useState<Vditor>();
+
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
+      message.error("创建文章失败");
+
       const fields: FieldData[] = Object.entries(data).map(([field, value]) => {
         const error = errors[field as keyof ArticleFormFields];
         return {
@@ -37,7 +40,13 @@ const Create = () => {
       });
       form.setFields(fields);
     }
-  }, [errors]);
+  }, [errors, form]);
+
+  const onFinish: Callbacks<ArticleFormFields>["onFinish"] = (values) => {
+    post(route("admin.articles.store"), {
+      onSuccess: () => editor?.clearCache(),
+    });
+  };
 
   const onValuesChange: Callbacks<ArticleFormFields>["onValuesChange"] = (
     changedValues,

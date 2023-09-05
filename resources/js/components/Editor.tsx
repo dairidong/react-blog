@@ -1,45 +1,63 @@
 import "vditor/dist/index.css";
 import Vditor from "vditor";
-import { FC, HTMLAttributes, useCallback, useEffect, useRef } from "react";
+import {
+  Dispatch,
+  FC,
+  HTMLAttributes,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useRef,
+} from "react";
 import { clsx } from "clsx";
 
 type Props = {
   value?: string;
   onChange?: (value: string) => void;
   options?: IOptions;
+  setEditor?: Dispatch<SetStateAction<Vditor>>;
 } & Omit<HTMLAttributes<HTMLDivElement>, "onChange">;
 
 const Editor: FC<Props> = ({
   value = "",
-  onChange = () => {},
   options = {},
+  onChange = () => {},
+  setEditor,
   className,
   ...props
 }) => {
   const editorRef = useRef<HTMLDivElement>(null);
   const triggerChange = useCallback((changedValue: string) => {
     if (changedValue === "\n") {
-      onChange("");
+      onChange?.("");
     } else {
-      onChange(changedValue);
+      onChange?.(changedValue);
     }
   }, []);
 
   useEffect(() => {
+    let vditor: Vditor;
     if (editorRef.current) {
-      const vditor = new Vditor(editorRef.current, {
+      const { id } = editorRef.current;
+
+      vditor = new Vditor(editorRef.current, {
         after: () => {
           if (value) vditor.setValue(value);
         },
         cache: {
-          id: "vditor",
+          id: id ? `vditor-${id}` : "vditor",
           after: (cache: string) => triggerChange(cache),
         },
         input: (input: string) => triggerChange(input),
         minHeight: 600,
         ...options,
       });
+      setEditor?.(vditor);
     }
+
+    return () => {
+      vditor?.destroy();
+    };
   }, []);
 
   return (
