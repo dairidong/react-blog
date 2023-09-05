@@ -52,10 +52,8 @@ class Article extends Model
     {
         return preg_match('/^\d+$/', $value)
             ? self::query()->where('id', $value)
-                ->whereNotNull('published_at')
                 ->first()
             : self::query()->where('slug', $value)
-                ->whereNotNull('published_at')
                 ->first();
     }
 }

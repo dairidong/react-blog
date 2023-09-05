@@ -1,8 +1,13 @@
 import { Head, Link, router } from "@inertiajs/react";
 import { FC } from "react";
-import { Button, Col, List, Row, Switch, theme } from "antd";
+import { App, Button, Col, List, Row, Switch, theme } from "antd";
 import { PaginationConfig } from "antd/es/pagination";
-import { DeleteTwoTone, EditTwoTone, PlusOutlined } from "@ant-design/icons";
+import {
+  DeleteFilled,
+  EditFilled,
+  InfoCircleOutlined,
+  PlusOutlined,
+} from "@ant-design/icons";
 import { LaravelPagination } from "@/types";
 import { Article } from "@/types/models";
 import { formatTime } from "@/lib/utils";
@@ -12,8 +17,10 @@ const timeTemplate = "YYYY年MM月DD日 HH:mm:ss";
 
 const Index: FC<{ articles: LaravelPagination<Article> }> = ({ articles }) => {
   const {
-    token: { colorTextSecondary },
+    token: { colorTextSecondary, colorErrorText },
   } = theme.useToken();
+
+  const { modal } = App.useApp();
 
   const pagination: PaginationConfig = {
     pageSize: articles.per_page,
@@ -30,6 +37,19 @@ const Index: FC<{ articles: LaravelPagination<Article> }> = ({ articles }) => {
           only: ["articles"],
         },
       ),
+  };
+
+  const deleteBtnOnClick = (article: Article) => {
+    modal.confirm({
+      title: `删除文章：${article.id}`,
+      content: article.title,
+      icon: <InfoCircleOutlined style={{ color: colorErrorText }} />,
+      cancelText: "取消",
+      okText: "删除",
+      onOk: () => {
+        router.delete(route("admin.articles.destroy", article));
+      },
+    });
   };
 
   return (
@@ -60,8 +80,16 @@ const Index: FC<{ articles: LaravelPagination<Article> }> = ({ articles }) => {
                   checkedChildren="已发布"
                   unCheckedChildren="未发布"
                 />,
-                <EditTwoTone className="tw-text-xl" key="edit" />,
-                <DeleteTwoTone className="tw-text-xl" key="delete" />,
+                <Button
+                  type="primary"
+                  icon={<EditFilled className="tw-text-xl" key="edit" />}
+                />,
+                <Button
+                  type="primary"
+                  danger
+                  icon={<DeleteFilled className="tw-text-xl" key="delete" />}
+                  onClick={() => deleteBtnOnClick(article)}
+                />,
               ]}
             >
               {/* 主要内容：标题 + 描述 */}

@@ -30,4 +30,11 @@ class ArticleController extends Controller
 
         return to_route('admin.articles.index');
     }
+
+    public function destroy(Article $article)
+    {
+        $article->delete();
+
+        return back();
+    }
 }

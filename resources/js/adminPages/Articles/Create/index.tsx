@@ -1,5 +1,5 @@
 import { Head, useForm } from "@inertiajs/react";
-import { App, Button, Divider, Form, Input, Typography } from "antd";
+import { App, Button, Divider, Form, Input, Row, Typography } from "antd";
 import { Callbacks, FieldData } from "rc-field-form/es/interface";
 import { useEffect, useState } from "react";
 import Vditor from "vditor";
@@ -64,57 +64,57 @@ const Create = () => {
       <ContentContainer>
         <Title level={3}>新建文章</Title>
         <Divider />
-        <Form<ArticleFormFields>
-          labelCol={{ span: 7, offset: 7 }}
-          wrapperCol={{ span: 10, offset: 7 }}
-          layout="vertical"
-          onFinish={onFinish}
-          onValuesChange={onValuesChange}
-          initialValues={data}
-          form={form}
-        >
-          <Form.Item
-            label="文章标题"
-            name="title"
-            rules={[
-              {
-                required: true,
-                max: 255,
-                message: "文章标题不可为空",
-              },
-            ]}
+        <Row justify="center">
+          <Form<ArticleFormFields>
+            layout="vertical"
+            onFinish={onFinish}
+            onValuesChange={onValuesChange}
+            initialValues={data}
+            form={form}
           >
-            <Input allowClear />
-          </Form.Item>
-
-          <Form.Item
-            label="文章描述"
-            name="description"
-            rules={[
-              {
-                max: 500,
-                message: "文章描述不可超过 500 字",
-              },
-            ]}
-          >
-            <Input.TextArea showCount allowClear />
-          </Form.Item>
-
-          <Form.Item label="文章内容" name="content">
-            <Editor />
-          </Form.Item>
-
-          <Form.Item>
-            <Button
-              type="primary"
-              size="large"
-              htmlType="submit"
-              disabled={hasErrors || processing}
+            <Form.Item
+              label="文章标题"
+              name="title"
+              rules={[
+                {
+                  required: true,
+                  max: 255,
+                  message: "文章标题不可为空",
+                },
+              ]}
             >
-              创建文章
-            </Button>
-          </Form.Item>
-        </Form>
+              <Input allowClear />
+            </Form.Item>
+
+            <Form.Item
+              label="文章描述"
+              name="description"
+              rules={[
+                {
+                  max: 500,
+                  message: "文章描述不可超过 500 字",
+                },
+              ]}
+            >
+              <Input.TextArea showCount allowClear />
+            </Form.Item>
+
+            <Form.Item label="文章内容" name="content">
+              <Editor />
+            </Form.Item>
+
+            <Form.Item>
+              <Button
+                type="primary"
+                size="large"
+                htmlType="submit"
+                disabled={hasErrors || processing}
+              >
+                创建文章
+              </Button>
+            </Form.Item>
+          </Form>
+        </Row>
       </ContentContainer>
     </>
   );

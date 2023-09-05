@@ -23,6 +23,10 @@ class ArticleController extends Controller
 
     public function show(Article $article)
     {
+        if (!$article->is_published) {
+            abort(404, "文章不存在");
+        }
+
         return Inertia::render('Articles/Show/index', [
             'article' => $article
         ]);
