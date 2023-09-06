@@ -15,7 +15,7 @@ type Props = {
   value?: string;
   onChange?: (value: string) => void;
   options?: IOptions;
-  setEditor?: Dispatch<SetStateAction<Vditor>>;
+  setEditor?: Dispatch<SetStateAction<Vditor | null>>;
 } & Omit<HTMLAttributes<HTMLDivElement>, "onChange">;
 
 const Editor: FC<Props> = ({

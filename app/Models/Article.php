@@ -31,7 +31,11 @@ class Article extends Model
     {
         static::saving(function (Article $article) {
             if (is_null($article->slug) || $article->isDirty('title')) {
-                $article->slug = Str::slug($article->title, '-', 'zh');
+                $slug = $slugBody = Str::slug($article->title, '-', 'zh');
+                while (Article::query()->where('slug', $slug)->exists()) {
+                    $slug = $slugBody . '-' . Str::random(6);
+                }
+                $article->slug = $slug;
             }
         });
     }
