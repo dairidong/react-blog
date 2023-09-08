@@ -80,10 +80,12 @@ const Index: FC<{ articles: LaravelPagination<Article> }> = ({ articles }) => {
                   checkedChildren="已发布"
                   unCheckedChildren="未发布"
                 />,
-                <Button
-                  type="primary"
-                  icon={<EditFilled className="tw-text-xl" key="edit" />}
-                />,
+                <Link href={route("admin.articles.edit", article)}>
+                  <Button
+                    type="primary"
+                    icon={<EditFilled className="tw-text-xl" key="edit" />}
+                  />
+                </Link>,
                 <Button
                   type="primary"
                   danger

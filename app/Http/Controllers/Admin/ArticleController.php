@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CreateArticleRequest;
+use App\Http\Requests\Admin\EditArticleRequest;
 use App\Models\Article;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -29,6 +30,20 @@ class ArticleController extends Controller
         $article = new Article($request->validated());
 
         $article->save();
+
+        return to_route('admin.articles.index');
+    }
+
+    public function edit(Article $article): Response
+    {
+        return Inertia::render('Articles/Edit', [
+            'article' => $article
+        ]);
+    }
+
+    public function update(EditArticleRequest $request, Article $article): RedirectResponse
+    {
+        $article->update($request->validated());
 
         return to_route('admin.articles.index');
     }

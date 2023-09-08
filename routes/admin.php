@@ -21,6 +21,8 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/', [ArticleController::class, 'index'])->name('index');
         Route::inertia('/create', 'Articles/Create')->name('create');
         Route::post('/', [ArticleController::class, 'store'])->name('store');
+        Route::get('/{article}/edit', [ArticleController::class, 'edit'])->name('edit');
+        Route::put('/{article}', [ArticleController::class, 'update'])->name('update');
         Route::delete('/{article}', [ArticleController::class, 'destroy'])->name('destroy');
     });
 });

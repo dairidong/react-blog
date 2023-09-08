@@ -23,7 +23,7 @@ class CreateArticleRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:255'],
-            'description' => ['nullable', 'string', 'max:10'],
+            'description' => ['nullable', 'string', 'max:300'],
             'content' => ['nullable', 'string']
         ];
     }

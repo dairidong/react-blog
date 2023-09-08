@@ -33,11 +33,6 @@ module.exports = {
       }
     ],
     'max-len': 0,
-    "operator-linebreak": [
-      "error",
-      "after",
-      {"overrides": {"=": "after"}}
-    ],
 
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "off",
