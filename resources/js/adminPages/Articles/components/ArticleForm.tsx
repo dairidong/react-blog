@@ -1,10 +1,9 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { Form as AntForm, Input } from "antd";
-import Vditor from "vditor";
 import { pick } from "lodash";
 import { Article } from "@/types/models";
-import Editor from "@/components/admin/form/Editor";
 import Form from "@/components/admin/Form";
+import Editor from "@/components/admin/form/Editor";
 
 interface Props {
   article?: Article;
@@ -14,7 +13,6 @@ type ArticleFormFields = Pick<Article, "title" | "description" | "content"> &
   Partial<Pick<Article, "slug">>;
 
 const ArticleForm: FC<Props> = ({ article }) => {
-  const [editor, setEditor] = useState<Vditor | null>(null);
   const defaultValues: ArticleFormFields = article
     ? pick(article, ["title", "slug", "description", "content"])
     : {
@@ -25,7 +23,7 @@ const ArticleForm: FC<Props> = ({ article }) => {
 
   return (
     <Form<ArticleFormFields>
-      title={`${article ? "编辑" : "新建"} 文章`}
+      title={`${article ? "编辑" : "新建"}文章`}
       method={article ? "put" : "post"}
       // todo edit route
       url={
@@ -33,9 +31,6 @@ const ArticleForm: FC<Props> = ({ article }) => {
           ? route("admin.articles.update", article)
           : route("admin.articles.store")
       }
-      submitOptions={{
-        onSuccess: () => editor?.clearCache(),
-      }}
       errorMessage="创建文章失败"
       submitBtnText="创建文章"
       defaultValues={defaultValues}
@@ -86,7 +81,7 @@ const ArticleForm: FC<Props> = ({ article }) => {
       </AntForm.Item>
 
       <AntForm.Item label="文章内容" name="content">
-        <Editor setEditor={setEditor} />
+        <Editor minHeight={600} />
       </AntForm.Item>
     </Form>
   );

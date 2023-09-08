@@ -26,7 +26,7 @@ const Index: FC<{ articles: LaravelPagination<Article> }> = ({ articles }) => {
     pageSize: articles.per_page,
     total: articles.total,
     current: articles.current_page,
-    showTotal: (total, range) => `总共 ${articles.total} 项`,
+    showTotal: (total, range) => `总共 ${total} 项`,
     showSizeChanger: true,
 
     onChange: (page, pageSize) =>

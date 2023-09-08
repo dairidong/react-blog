@@ -6,6 +6,7 @@ import {
   FormProps,
   App,
   Button,
+  Col,
 } from "antd";
 import { ReactNode } from "react";
 import { useForm } from "@inertiajs/react";
@@ -90,27 +91,29 @@ export default function Form<
       <Title level={3}>{title}</Title>
       <Divider />
       <Row justify="center">
-        <AntForm<T>
-          layout="vertical"
-          form={formInstance}
-          onValuesChange={onValuesChange}
-          initialValues={{ ...data }}
-          onFinish={onFinish}
-          {...props}
-        >
-          {children}
+        <Col span={8} xs={24} sm={20} md={18} lg={16} xl={12} xxl={10}>
+          <AntForm<T>
+            layout="vertical"
+            form={formInstance}
+            onValuesChange={onValuesChange}
+            initialValues={{ ...data }}
+            onFinish={onFinish}
+            {...props}
+          >
+            {children}
 
-          <AntForm.Item>
-            <Button
-              type="primary"
-              size="large"
-              htmlType="submit"
-              disabled={hasErrors || processing}
-            >
-              {submitBtnText}
-            </Button>
-          </AntForm.Item>
-        </AntForm>
+            <AntForm.Item>
+              <Button
+                type="primary"
+                size="large"
+                htmlType="submit"
+                disabled={hasErrors || processing}
+              >
+                {submitBtnText}
+              </Button>
+            </AntForm.Item>
+          </AntForm>
+        </Col>
       </Row>
     </ContentContainer>
   );

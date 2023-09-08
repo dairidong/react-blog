@@ -1,67 +1,64 @@
-import "vditor/dist/index.css";
-import Vditor from "vditor";
-import {
-  Dispatch,
-  FC,
-  HTMLAttributes,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useRef,
-} from "react";
-import { clsx } from "clsx";
+import React, { FC, useEffect } from "react";
+import { Editor as ByteMD } from "@bytemd/react";
+import gfm from "@bytemd/plugin-gfm";
+import breaks from "@bytemd/plugin-breaks";
+import frontmatter from "@bytemd/plugin-frontmatter";
+import gemoji from "@bytemd/plugin-gemoji";
+import highlight from "@bytemd/plugin-highlight";
+import { isNumber } from "lodash";
+import zh from "bytemd/locales/zh_Hans.json";
+import gfmZh from "@bytemd/plugin-gfm/locales/zh_Hans.json";
+import "bytemd/dist/index.css";
+import "github-markdown-css";
+import "highlight.js/styles/vs.css";
 
 type Props = {
   value?: string;
   onChange?: (value: string) => void;
-  options?: IOptions;
-  setEditor?: Dispatch<SetStateAction<Vditor | null>>;
-} & Omit<HTMLAttributes<HTMLDivElement>, "onChange">;
+  height?: string | number;
+  minHeight?: string | number;
+};
+
+const plugins = [
+  gfm({ locale: gfmZh }),
+  breaks(),
+  frontmatter(),
+  gemoji(),
+  highlight(),
+];
 
 const Editor: FC<Props> = ({
   value = "",
-  options = {},
   onChange = () => {},
-  setEditor,
-  className,
-  ...props
+  height,
+  minHeight,
 }) => {
-  const editorRef = useRef<HTMLDivElement>(null);
-  const triggerChange = useCallback((changedValue: string) => {
-    if (changedValue === "\n") {
-      onChange?.("");
-    } else {
-      onChange?.(changedValue);
-    }
-  }, []);
-
   useEffect(() => {
-    let vditor: Vditor;
-    if (editorRef.current) {
-      const { id } = editorRef.current;
+    const editorStyles =
+      document.querySelector<HTMLDivElement>(".bytemd")?.style;
 
-      vditor = new Vditor(editorRef.current, {
-        after: () => {
-          if (value) vditor.setValue(value);
-        },
-        cache: {
-          id: id ? `vditor-${id}` : "vditor",
-          after: (cache: string) => triggerChange(cache),
-        },
-        input: (input: string) => triggerChange(input),
-        minHeight: 600,
-        ...options,
-      });
-      setEditor?.(vditor);
+    if (height !== undefined) {
+      editorStyles?.setProperty(
+        "height",
+        isNumber(height) ? `${height}px` : height,
+      );
     }
 
-    return () => {
-      vditor?.destroy();
-    };
-  }, []);
+    if (minHeight !== undefined) {
+      editorStyles?.setProperty(
+        "min-height",
+        isNumber(minHeight) ? `${minHeight}px` : minHeight,
+      );
+    }
+  }, [height, minHeight]);
 
   return (
-    <div ref={editorRef} className={clsx("vditor", className)} {...props} />
+    <ByteMD
+      value={value || ""}
+      onChange={onChange}
+      plugins={plugins}
+      locale={zh}
+    />
   );
 };
 
