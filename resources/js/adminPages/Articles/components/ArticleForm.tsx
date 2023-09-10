@@ -80,7 +80,12 @@ const ArticleForm: FC<Props> = ({ article }) => {
         <Input.TextArea showCount allowClear />
       </AntForm.Item>
 
-      <AntForm.Item label="文章内容" name="content">
+      <AntForm.Item
+        label="文章内容"
+        name="content"
+        labelCol={{ xs: 24, lg: { span: 20, offset: 2 } }}
+        wrapperCol={{ xs: 24, lg: { span: 20, offset: 2 } }}
+      >
         <Editor minHeight={600} />
       </AntForm.Item>
     </Form>

@@ -1,12 +1,11 @@
 import {
   Divider,
-  Row,
   Typography,
   Form as AntForm,
   FormProps,
   App,
   Button,
-  Col,
+  ColProps,
 } from "antd";
 import { ReactNode } from "react";
 import { useForm } from "@inertiajs/react";
@@ -28,6 +27,15 @@ type Props<T> = Omit<FormProps, "method" | "children" | "onValuesChange"> & {
 };
 
 const { Title } = Typography;
+
+const col: ColProps = {
+  xs: 24,
+  sm: { span: 20, offset: 2 },
+  md: { span: 18, offset: 3 },
+  lg: { span: 16, offset: 4 },
+  xl: { span: 12, offset: 6 },
+  xxl: { span: 10, offset: 7 },
+};
 
 export default function Form<
   T extends Record<string, unknown> = Record<string, unknown>,
@@ -90,31 +98,29 @@ export default function Form<
     <ContentContainer>
       <Title level={3}>{title}</Title>
       <Divider />
-      <Row justify="center">
-        <Col span={8} xs={24} sm={20} md={18} lg={16} xl={12} xxl={10}>
-          <AntForm<T>
-            layout="vertical"
-            form={formInstance}
-            onValuesChange={onValuesChange}
-            initialValues={{ ...data }}
-            onFinish={onFinish}
-            {...props}
-          >
-            {children}
+      <AntForm<T>
+        layout="vertical"
+        form={formInstance}
+        onValuesChange={onValuesChange}
+        initialValues={{ ...data }}
+        onFinish={onFinish}
+        labelCol={col}
+        wrapperCol={col}
+        {...props}
+      >
+        {children}
 
-            <AntForm.Item>
-              <Button
-                type="primary"
-                size="large"
-                htmlType="submit"
-                disabled={hasErrors || processing}
-              >
-                {submitBtnText}
-              </Button>
-            </AntForm.Item>
-          </AntForm>
-        </Col>
-      </Row>
+        <AntForm.Item>
+          <Button
+            type="primary"
+            size="large"
+            htmlType="submit"
+            disabled={hasErrors || processing}
+          >
+            {submitBtnText}
+          </Button>
+        </AntForm.Item>
+      </AntForm>
     </ContentContainer>
   );
 }

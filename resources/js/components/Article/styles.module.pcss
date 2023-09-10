@@ -1,0 +1,30 @@
+.article {
+    /* base */
+    @apply tw-prose lg:tw-prose-lg tw-max-w-full lg:tw-max-w-screen-md
+    tw-font-ali-puhui;
+
+    /* heading */
+    @apply prose-h1:tw-text-center prose-h1:tw-max-w-[32ch] prose-h1:tw-leading-normal
+    prose-h1:tw-font-ali-shuhei;
+
+    /* others */
+    @apply prose-strong:tw-font-extrabold prose-p:tw-my-1.5;
+
+    /* variables */
+    @apply [--tw-prose-body:hsl(var(--foreground))];
+
+    /* code */
+    @apply prose-pre:md:tw-text-lg
+    prose-code:tw-rounded prose-code:tw-bg-muted
+    prose-code:tw-text-muted-foreground
+    prose-code:tw-px-[0.3rem] prose-code:tw-py-[0.2rem]
+    prose-code:before:tw-content-none prose-code:after:tw-content-none;
+
+    pre {
+        @apply prose-code:tw-p-0;
+    }
+
+    h2, h3 {
+        @apply prose-a:tw-no-underline;
+    }
+}
