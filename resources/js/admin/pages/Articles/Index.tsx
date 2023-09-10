@@ -11,7 +11,7 @@ import {
 import { LaravelPagination } from "@/types";
 import { Article } from "@/types/models";
 import { formatTime } from "@/lib/utils";
-import ContentContainer from "@/layouts/AdminLayout/components/ContentContainer";
+import ContentContainer from "@/admin/layouts/components/ContentContainer";
 
 const timeTemplate = "YYYY年MM月DD日 HH:mm:ss";
 

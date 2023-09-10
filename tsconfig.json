@@ -18,6 +18,12 @@
             ],
             "@styles/*": [
                 "./resources/css/*"
+            ],
+            "@frontend/*": [
+                "./resources/js/frontend/*"
+            ],
+            "@admin/*": [
+                "./resources/js/admin/*"
             ]
         }
     },

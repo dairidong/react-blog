@@ -2,8 +2,8 @@ import { FC } from "react";
 import { Form as AntForm, Input } from "antd";
 import { pick } from "lodash";
 import { Article } from "@/types/models";
-import Form from "@/components/admin/Form";
-import Editor from "@/components/admin/form/Editor";
+import Form from "@/admin/components/Form";
+import Editor from "@/admin/components/form/Editor";
 
 interface Props {
   article?: Article;
@@ -25,14 +25,13 @@ const ArticleForm: FC<Props> = ({ article }) => {
     <Form<ArticleFormFields>
       title={`${article ? "编辑" : "新建"}文章`}
       method={article ? "put" : "post"}
-      // todo edit route
       url={
         article
           ? route("admin.articles.update", article)
           : route("admin.articles.store")
       }
-      errorMessage="创建文章失败"
-      submitBtnText="创建文章"
+      errorMessage={article ? "更新文章失败" : "创建文章失败"}
+      submitBtnText={article ? "更新文章" : "创建文章"}
       defaultValues={defaultValues}
     >
       <AntForm.Item

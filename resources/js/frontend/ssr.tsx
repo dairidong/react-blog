@@ -2,8 +2,8 @@ import ReactDOMServer from "react-dom/server";
 import { createInertiaApp } from "@inertiajs/react";
 import createServer from "@inertiajs/react/server";
 import { Page } from "@inertiajs/core";
-import route from "../../vendor/tightenco/ziggy/dist/index.m";
-import { resolveFrontendPage } from "@/lib/utils";
+import route from "../../../vendor/tightenco/ziggy/dist/index.m";
+import resolvePage from "./resolvePage";
 
 const appName = import.meta.env.VITE_APP_NAME;
 
@@ -12,7 +12,7 @@ createServer((page: Page) =>
     page,
     render: ReactDOMServer.renderToString,
     title: (title) => `${title} - ${appName}`,
-    resolve: resolveFrontendPage,
+    resolve: resolvePage,
     setup: ({ App, props }) => {
       global.route = (name, params, absolute) =>
         route(name, params, absolute, {

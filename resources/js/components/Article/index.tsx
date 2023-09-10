@@ -4,6 +4,7 @@ import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import React, { FC, HTMLAttributes } from "react";
+import { PluggableList } from "react-markdown/lib/react-markdown";
 import Pre from "./Pre";
 import Code from "./Code";
 import styles from "./styles.module.pcss";
@@ -14,6 +15,18 @@ type Props = {
   articleTitle?: string;
   markdown: string;
 } & HTMLAttributes<HTMLDivElement>;
+
+const remarkPlugins: PluggableList = [remarkGfm];
+const rehypePlugins: PluggableList = [
+  rehypePrism,
+  rehypeSlug,
+  [rehypeAutolinkHeadings, { behavior: "append", properties: {} }],
+];
+
+const components = {
+  pre: Pre,
+  code: Code,
+};
 
 const Article: FC<Props> = ({
   markdown,
@@ -27,16 +40,9 @@ const Article: FC<Props> = ({
 
       <ReactMarkdown
         children={markdown}
-        remarkPlugins={[remarkGfm]}
-        rehypePlugins={[
-          rehypePrism,
-          rehypeSlug,
-          [rehypeAutolinkHeadings, { behavior: "append", properties: {} }],
-        ]}
-        components={{
-          pre: Pre,
-          code: Code,
-        }}
+        remarkPlugins={remarkPlugins}
+        rehypePlugins={rehypePlugins}
+        components={components}
       />
     </article>
   );

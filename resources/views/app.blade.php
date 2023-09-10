@@ -9,7 +9,7 @@
         <!-- Scripts -->
         @routes('frontend')
         @viteReactRefresh
-        @vite(['resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
+        @vite(['resources/js/frontend/app.tsx', "resources/js/frontend/pages/{$page['component']}.tsx"])
         @inertiaHead
     </head>
     <body>

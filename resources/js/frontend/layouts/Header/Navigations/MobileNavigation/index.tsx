@@ -1,9 +1,9 @@
 import { Icon } from "@iconify/react";
 import githubIcon from "@iconify/icons-mdi/github";
 import React, { forwardRef, useContext } from "react";
+import Link from "@frontend/layouts/Header/Link";
 import { cn } from "@/lib/utils";
 import styles from "./styles.module.pcss";
-import Link from "@/layouts/FrontendLayout/Header/Link";
 import MobileNavControlContext from "./MobileNavControlContext";
 
 const MobileNavigation = forwardRef<HTMLDivElement>((props, ref) => {

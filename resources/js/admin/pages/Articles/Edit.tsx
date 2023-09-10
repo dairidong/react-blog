@@ -1,6 +1,6 @@
 import { Head } from "@inertiajs/react";
 import { FC } from "react";
-import ArticleForm from "@/adminPages/Articles/components/ArticleForm";
+import ArticleForm from "@/admin/pages/Articles/components/ArticleForm";
 import { Article } from "@/types/models";
 
 const Edit: FC<{ article: Article }> = ({ article }) => {

@@ -1,7 +1,7 @@
 import "@styles/app.css";
 import { createRoot } from "react-dom/client";
 import { createInertiaApp } from "@inertiajs/react";
-import { resolveFrontendPage } from "@/lib/utils";
+import resolvePage from "./resolvePage";
 
 const appName =
   window.document.getElementsByTagName("title")[0]?.innerText ||
@@ -9,7 +9,7 @@ const appName =
 
 createInertiaApp({
   title: (title) => `${title} - ${appName}`,
-  resolve: resolveFrontendPage,
+  resolve: resolvePage,
   setup({ el, App, props }) {
     const root = createRoot(el);
 

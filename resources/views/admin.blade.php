@@ -9,7 +9,7 @@
     <!-- Scripts -->
     @routes('admin')
     @viteReactRefresh
-    @vite(['resources/js/admin.tsx', "resources/js/adminPages/{$page['component']}.tsx"])
+    @vite(['resources/js/admin/app.tsx', "resources/js/admin/pages/{$page['component']}.tsx"])
     @inertiaHead
 </head>
 <body>
