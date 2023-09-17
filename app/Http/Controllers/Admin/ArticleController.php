@@ -20,9 +20,14 @@ class ArticleController extends Controller
             ->orderByDesc('id')
             ->paginate($request->input('pageSize', 10));
 
-        return Inertia::render("Articles/Index", [
-            "articles" => $articles,
+        return Inertia::render('Articles/Index', [
+            'articles' => $articles,
         ]);
+    }
+
+    public function create()
+    {
+        return Inertia::render('Articles/Create');
     }
 
     public function store(CreateArticleRequest $request): RedirectResponse
@@ -37,7 +42,7 @@ class ArticleController extends Controller
     public function edit(Article $article): Response
     {
         return Inertia::render('Articles/Edit', [
-            'article' => $article
+            'article' => $article,
         ]);
     }
 

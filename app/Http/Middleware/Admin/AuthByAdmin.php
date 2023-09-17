@@ -17,6 +17,7 @@ class AuthByAdmin
     public function handle(Request $request, Closure $next): Response
     {
         Auth::shouldUse('admin');
+
         return $next($request);
     }
 }

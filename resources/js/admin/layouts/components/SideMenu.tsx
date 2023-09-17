@@ -1,4 +1,4 @@
-import { Menu, MenuTheme, theme } from "antd";
+import { Menu, MenuTheme, Row, theme, Typography } from "antd";
 import React, { FC } from "react";
 import { MenuItemType } from "antd/es/menu/hooks/useItems";
 
@@ -8,6 +8,8 @@ interface Props {
   menuItems: MenuItemType[];
   menuTheme?: MenuTheme;
 }
+
+const { Title } = Typography;
 
 const SideMenu: FC<Props> = ({
   collapsed,
@@ -21,19 +23,19 @@ const SideMenu: FC<Props> = ({
 
   return (
     <>
-      <div
-        className="tw-font-digit tw-text-3xl"
-        style={{
-          margin: "1rem 0",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          whiteSpace: "nowrap",
-          color: menuTheme === "dark" ? "#fff" : colorText,
-        }}
-      >
-        D{(collapsed && showSider) || "RD"}
-      </div>
+      <Row justify="center" align="middle">
+        <Title
+          level={1}
+          style={{
+            marginBlock: "1rem",
+            whiteSpace: "nowrap",
+            fontFamily: "PressStart2P-Regular",
+            color: menuTheme === "dark" ? "#fff" : colorText,
+          }}
+        >
+          D{(collapsed && showSider) || "RD"}
+        </Title>
+      </Row>
       <Menu
         theme={menuTheme}
         mode="inline"

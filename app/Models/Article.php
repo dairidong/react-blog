@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasTags;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,10 +11,10 @@ use Illuminate\Support\Str;
 
 class Article extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTags;
 
     protected $casts = [
-        'published_at' => 'date'
+        'published_at' => 'date',
     ];
 
     protected $hidden = [
@@ -24,7 +25,7 @@ class Article extends Model
         'title',
         'slug',
         'description',
-        'content'
+        'content',
     ];
 
     protected static function booted()
@@ -43,7 +44,7 @@ class Article extends Model
     protected function isPublished(): Attribute
     {
         return Attribute::make(
-            get: fn($value, array $attributes): bool => !is_null($attributes['published_at'])
+            get: fn ($value, array $attributes): bool => !is_null($attributes['published_at'])
         );
     }
 

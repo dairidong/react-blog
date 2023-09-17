@@ -1,7 +1,7 @@
 import { createRoot } from "react-dom/client";
 import { createInertiaApp } from "@inertiajs/react";
-import "@styles/app.css";
-import "@styles/antd_fix.pcss";
+import "antd/dist/reset.css";
+import "@styles/admin.css";
 import resolvePage from "./resolvePage";
 
 const appName =

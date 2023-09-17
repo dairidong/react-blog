@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class ArticleController extends Controller
@@ -17,18 +16,18 @@ class ArticleController extends Controller
             ->simplePaginate(9);
 
         return Inertia::render('Articles/index', [
-            'articles' => $articles
+            'articles' => $articles,
         ]);
     }
 
     public function show(Article $article)
     {
         if (!$article->is_published) {
-            abort(404, "文章不存在");
+            abort(404, '文章不存在');
         }
 
         return Inertia::render('Articles/Show/index', [
-            'article' => $article
+            'article' => $article,
         ]);
     }
 }

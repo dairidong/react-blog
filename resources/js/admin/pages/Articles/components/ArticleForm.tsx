@@ -2,8 +2,8 @@ import { FC } from "react";
 import { Form as AntForm, Input } from "antd";
 import { pick } from "lodash";
 import { Article } from "@/types/models";
-import Form from "@/admin/components/Form";
-import Editor from "@/admin/components/form/Editor";
+import Form from "@/admin/components/form/Form";
+import Editor from "@/admin/components/form/Fields/Editor";
 
 interface Props {
   article?: Article;

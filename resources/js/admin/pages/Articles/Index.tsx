@@ -1,5 +1,5 @@
 import { Head, Link, router } from "@inertiajs/react";
-import { FC } from "react";
+import { FC, useCallback } from "react";
 import { App, Button, Col, List, Row, Switch, theme } from "antd";
 import { PaginationConfig } from "antd/es/pagination";
 import {
@@ -8,12 +8,11 @@ import {
   InfoCircleOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
+import { timeTemplate } from "@admin/constants";
 import { LaravelPagination } from "@/types";
 import { Article } from "@/types/models";
 import { formatTime } from "@/lib/utils";
 import ContentContainer from "@/admin/layouts/components/ContentContainer";
-
-const timeTemplate = "YYYY年MM月DD日 HH:mm:ss";
 
 const Index: FC<{ articles: LaravelPagination<Article> }> = ({ articles }) => {
   const {
@@ -39,39 +38,39 @@ const Index: FC<{ articles: LaravelPagination<Article> }> = ({ articles }) => {
       ),
   };
 
-  const deleteBtnOnClick = (article: Article) => {
-    modal.confirm({
-      title: `删除文章：${article.id}`,
-      content: article.title,
-      icon: <InfoCircleOutlined style={{ color: colorErrorText }} />,
-      cancelText: "取消",
-      okText: "删除",
-      onOk: () => {
-        router.delete(route("admin.articles.destroy", article));
-      },
-    });
-  };
+  const deleteBtnOnClick = useCallback(
+    (article: Article) => {
+      modal.confirm({
+        title: `删除文章：${article.id}`,
+        content: article.title,
+        icon: <InfoCircleOutlined style={{ color: colorErrorText }} />,
+        cancelText: "取消",
+        okText: "删除",
+        onOk: () => {
+          router.delete(route("admin.articles.destroy", article));
+        },
+      });
+    },
+    [modal, colorErrorText],
+  );
 
   return (
     <>
       <Head title="文章" />
-      <ContentContainer>
+      <ContentContainer
+        pageTitle="文章列表"
+        actions={
+          <Link href={route("admin.articles.create")}>
+            <Button type="primary" size="large" icon={<PlusOutlined />}>
+              新建
+            </Button>
+          </Link>
+        }
+      >
         <List<Article>
           rowKey="id"
           dataSource={articles.data}
           pagination={pagination}
-          header={
-            <div className="tw-flex tw-justify-between">
-              <h1 className="tw-text-3xl tw-font-bold">文章列表</h1>
-              <div className="actions">
-                <Link href={route("admin.articles.create")}>
-                  <Button type="primary" size="large" icon={<PlusOutlined />}>
-                    新建
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          }
           renderItem={(article) => (
             <List.Item
               actions={[
@@ -81,15 +80,12 @@ const Index: FC<{ articles: LaravelPagination<Article> }> = ({ articles }) => {
                   unCheckedChildren="未发布"
                 />,
                 <Link href={route("admin.articles.edit", article)}>
-                  <Button
-                    type="primary"
-                    icon={<EditFilled className="tw-text-xl" key="edit" />}
-                  />
+                  <Button type="primary" icon={<EditFilled key="edit" />} />
                 </Link>,
                 <Button
                   type="primary"
                   danger
-                  icon={<DeleteFilled className="tw-text-xl" key="delete" />}
+                  icon={<DeleteFilled key="delete" />}
                   onClick={() => deleteBtnOnClick(article)}
                 />,
               ]}

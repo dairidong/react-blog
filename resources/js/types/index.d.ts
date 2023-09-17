@@ -1,5 +1,7 @@
-import { FC, ReactElement } from "react";
-import { NoticeType } from "antd/es/message/interface";
+import { FC, ReactElement, ReactNode } from "react";
+import { JointContent, NoticeType } from "antd/es/message/interface";
+import { Method, VisitOptions } from "@inertiajs/core";
+import { ColProps, FormInstance, FormProps } from "antd";
 import { Authenticatable, User } from "@/types/models";
 
 export type PageProps<
@@ -55,4 +57,30 @@ export interface LaravelPagination<T> extends BasePagination<T> {
 export interface Message {
   type: NoticeType;
   text: string;
+}
+
+export interface FormHookProps<T> {
+  method?: Method;
+  url?: string;
+  defaultValues?: T;
+  form?: FormInstance;
+  errorMessage?: JointContent;
+  submitOptions?: VisitOptions;
+}
+
+export type FormComponentProps<T> = Omit<
+  FormProps,
+  "method" | "children" | "onValuesChange"
+> &
+  FormHookProps<T> & {
+    title: ReactNode;
+    submitBtn?: false | ReactNode;
+    submitBtnText?: ReactNode;
+    children?: ReactNode;
+    formCol?: ColProps;
+  };
+
+export interface OrderBy {
+  order?: string;
+  dir?: "desc" | "asc";
 }

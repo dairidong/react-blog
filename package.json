@@ -68,6 +68,7 @@
         "clsx": "^1.2.1",
         "dayjs": "^1.11.9",
         "github-markdown-css": "^5.2.0",
+        "highlight.js": "^11.8.0",
         "laravel-vite-plugin": "^0.7.5",
         "lodash": "^4.17.21",
         "lucide-react": "^0.258.0",

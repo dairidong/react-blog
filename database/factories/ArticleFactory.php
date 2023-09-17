@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
 
@@ -23,7 +22,7 @@ class ArticleFactory extends Factory
             'description' => fake()->paragraph(2),
             'content' => fake()->text(),
 
-            'published_at' => Arr::random(([now(), null]))
+            'published_at' => Arr::random(([now(), null])),
         ];
     }
 }

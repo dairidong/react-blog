@@ -4,8 +4,8 @@ return [
     'groups' => [
         'frontend' => [
             'articles.*',
-            'home'
+            'home',
         ],
-        'admin' => ['admin.*']
-    ]
+        'admin' => ['admin.*'],
+    ],
 ];

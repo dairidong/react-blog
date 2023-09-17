@@ -26,7 +26,7 @@ class AuthenticationController extends Controller
             'message' => [
                 'type' => 'success',
                 'text' => '登录成功',
-            ]
+            ],
         ]);
     }
 

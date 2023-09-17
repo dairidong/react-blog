@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Admin;
 
-
 use Illuminate\Validation\Rule;
 
 class EditArticleRequest extends CreateArticleRequest
@@ -15,7 +14,7 @@ class EditArticleRequest extends CreateArticleRequest
     public function rules(): array
     {
         return array_merge(parent::rules(), [
-            'slug' => [Rule::unique('articles')->ignoreModel($this->article)]
+            'slug' => [Rule::unique('articles')->ignoreModel($this->article)],
         ]);
     }
 }

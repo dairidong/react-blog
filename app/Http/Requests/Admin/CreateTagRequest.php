@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateArticleRequest extends FormRequest
+class CreateTagRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,18 +22,14 @@ class CreateArticleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string', 'max:255'],
-            'description' => ['nullable', 'string', 'max:300'],
-            'content' => ['nullable', 'string'],
+            'name' => ['required', 'string'],
         ];
     }
 
     public function attributes()
     {
         return [
-            'title' => '文章标题',
-            'description' => '文章描述',
-            'content' => '文章内容',
+            'name' => '标签名',
         ];
     }
 }

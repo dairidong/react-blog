@@ -22,6 +22,14 @@ export interface Article extends HasTimestamps {
   published_at: string | Date;
 }
 
+export interface Tag {
+  id: number;
+  name: string;
+  type: string | null;
+  created_at: string | Date;
+  updated_at: string | Date;
+}
+
 export interface HasTimestamps {
   created_at: string | Date;
   updated_at: string | Date;

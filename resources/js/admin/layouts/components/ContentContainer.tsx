@@ -1,10 +1,19 @@
-import React, { FC } from "react";
-import { Layout, theme } from "antd";
+import React, { FC, ReactNode } from "react";
+import { Col, Layout, Row, theme } from "antd";
 import { BasicProps } from "antd/es/layout/layout";
+import ContentHeader from "./ContentHeader";
 
 const { Content } = Layout;
 
-const ContentContainer: FC<BasicProps & React.RefAttributes<HTMLElement>> = ({
+type Props = BasicProps &
+  React.RefAttributes<HTMLElement> & {
+    pageTitle?: boolean | ReactNode;
+    actions?: ReactNode;
+  };
+
+const ContentContainer: FC<Props> = ({
+  pageTitle,
+  actions,
   children,
   style,
   ...props
@@ -17,14 +26,25 @@ const ContentContainer: FC<BasicProps & React.RefAttributes<HTMLElement>> = ({
     <Content
       style={{
         margin: "24px 16px",
+        height: "max-content",
         padding: 24,
         minHeight: 280,
         background: colorBgContainer,
+        flex: "none",
+        display: "flex",
+        flexDirection: "column",
+        gap: 10,
         ...style,
       }}
       {...props}
     >
-      {children}
+      {(pageTitle || actions) && (
+        <ContentHeader title={pageTitle} actions={actions} />
+      )}
+
+      <Row>
+        <Col span={24}>{children}</Col>
+      </Row>
     </Content>
   );
 };

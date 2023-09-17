@@ -4,8 +4,8 @@ namespace Tests\Feature;
 
 use App\Models\Article;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use Inertia\Testing\AssertableInertia as Assert;
+use Tests\TestCase;
 
 class ArticleTest extends TestCase
 {
@@ -29,7 +29,6 @@ class ArticleTest extends TestCase
                     ->has('articles.next_page_url');
             });
     }
-
 
     /**
      * @test
