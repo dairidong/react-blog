@@ -30,4 +30,11 @@ class TagController extends Controller
 
         return to_route('admin.tags.index');
     }
+
+    public function destroy(Tag $tag)
+    {
+        $tag->delete();
+
+        return redirect()->back();
+    }
 }

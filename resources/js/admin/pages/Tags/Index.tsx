@@ -1,8 +1,13 @@
 import { FC, useCallback, useMemo } from "react";
 import { Head, router } from "@inertiajs/react";
 import ContentContainer from "@admin/layouts/components/ContentContainer";
-import { Button, Form, Input, Row, Table, TableProps } from "antd";
-import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { App, Button, Form, Input, Row, Table, TableProps, theme } from "antd";
+import {
+  DeleteOutlined,
+  EditOutlined,
+  InfoCircleOutlined,
+  PlusOutlined,
+} from "@ant-design/icons";
 import ModalForm from "@admin/components/form/ModalForm";
 import { ColumnsType, ColumnType } from "antd/es/table";
 import { timeTemplate } from "@admin/constants";
@@ -48,7 +53,47 @@ const baseColumns: ColumnsType<Tag> = [
 ];
 
 const Index: FC<Props> = ({ tags }) => {
-  const [createForm] = Form.useForm();
+  const {
+    token: { colorTextSecondary, colorErrorText },
+  } = theme.useToken();
+
+  const { modal } = App.useApp();
+
+  const handleDelete = useCallback(
+    (tag: Tag) =>
+      modal.confirm({
+        title: `删除标签`,
+        content: (
+          <>
+            确认删除标签 <strong>{tag.name}</strong> 吗？
+          </>
+        ),
+        icon: <InfoCircleOutlined style={{ color: colorErrorText }} />,
+        cancelText: "取消",
+        okText: "删除",
+        onOk: () => {
+          router.delete(route("admin.tags.destroy", tag));
+        },
+      }),
+    [modal],
+  );
+
+  const handleChange = useCallback<NonNullable<TableProps<Tag>["onChange"]>>(
+    (_t, _f, sorter) => {
+      const sort = isArray(sorter) ? sorter[0] : sorter;
+
+      const sortBy =
+        sort.order === undefined
+          ? {}
+          : {
+              order: String(sort.field),
+              dir: transformOrderDirectionFromAntToRequest(sort.order),
+            };
+
+      router.get(route("admin.tags.index"), sortBy, { only: ["tags"] });
+    },
+    [],
+  );
 
   const columns = useMemo<ColumnsType<Tag>>(() => {
     const columnsWithActions: ColumnsType<Tag> = [
@@ -59,7 +104,12 @@ const Index: FC<Props> = ({ tags }) => {
         render: (text, record) => (
           <Row style={{ gap: 10 }}>
             <Button type="primary" icon={<EditOutlined />} />
-            <Button type="primary" danger icon={<DeleteOutlined />} />
+            <Button
+              type="primary"
+              danger
+              icon={<DeleteOutlined />}
+              onClick={() => handleDelete(record)}
+            />
           </Row>
         ),
       },
@@ -86,23 +136,6 @@ const Index: FC<Props> = ({ tags }) => {
     return columnsWithActions;
   }, []);
 
-  const handleChange = useCallback<NonNullable<TableProps<Tag>["onChange"]>>(
-    (_t, _f, sorter) => {
-      const sort = isArray(sorter) ? sorter[0] : sorter;
-
-      const sortBy =
-        sort.order === undefined
-          ? {}
-          : {
-              order: String(sort.field),
-              dir: transformOrderDirectionFromAntToRequest(sort.order),
-            };
-
-      router.get(route("admin.tags.index"), sortBy, { only: ["tags"] });
-    },
-    [],
-  );
-
   return (
     <>
       <Head title="标签列表" />
@@ -113,7 +146,6 @@ const Index: FC<Props> = ({ tags }) => {
             url={route("admin.tags.store")}
             method="post"
             title="新建标签"
-            form={createForm}
             layout="vertical"
             trigger={
               <Button type="primary" size="large" icon={<PlusOutlined />}>
