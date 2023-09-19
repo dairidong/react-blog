@@ -59,7 +59,6 @@ export default function useForm<
 
           submitOptions?.onError?.(errors);
         },
-
         ...omit(submitOptions, "onError"),
       },
     );
