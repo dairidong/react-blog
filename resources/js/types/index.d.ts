@@ -63,7 +63,7 @@ export interface FormHookProps<T> {
   method?: Method;
   url?: string;
   defaultValues?: T;
-  form?: FormInstance;
+  form?: FormInstance<T>;
   errorMessage?: JointContent;
   submitOptions?: VisitOptions;
 }

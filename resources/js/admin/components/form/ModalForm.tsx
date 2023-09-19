@@ -2,7 +2,6 @@ import useForm from "@admin/components/form/hooks/useForm";
 import { Form, Modal, ModalProps } from "antd";
 import { cloneElement, useMemo, useState } from "react";
 import { VisitOptions } from "@inertiajs/core";
-import { isEmpty } from "lodash";
 import { FormComponentProps } from "@/types";
 
 type Props<T> = FormComponentProps<T> & {
@@ -41,7 +40,8 @@ export default function ModalForm<
       // 如果此处触发 modal 关闭，在更新表单的情况下
       // formInstance.resetFields() 的取值为更新前的值
       // 因此使用 preserveState 直接重置整个页面组件
-      preserveState: ({ props: { errors } }) => !isEmpty(errors),
+      // preserveState: ({ props: { errors } }) => !isEmpty(errors),
+      onFinish: () => setOpen(false),
     }),
     [submitOptions],
   );
@@ -64,17 +64,19 @@ export default function ModalForm<
       key: "trigger",
       ...trigger.props,
       onClick: async (e: any) => {
+        formInstance.resetFields();
         setOpen(!open);
         trigger.props?.onClick?.(e);
       },
     });
-  }, [open, setOpen, trigger]);
+  }, [open, setOpen, trigger, formInstance]);
 
   return (
     <>
       {triggerDom}
       <Modal
         {...modalProps}
+        forceRender
         title={title}
         open={open}
         confirmLoading={processing}
@@ -85,7 +87,6 @@ export default function ModalForm<
           if (processing) return;
           setOpen(false);
           modalProps?.onCancel?.(e);
-          formInstance.resetFields();
         }}
         onOk={(e) => {
           if (processing) return;

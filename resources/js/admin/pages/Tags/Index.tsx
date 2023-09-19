@@ -60,7 +60,7 @@ const Index: FC<Props> = ({ tags }) => {
   const { modal } = App.useApp();
 
   const handleDelete = useCallback(
-    (tag: Tag) =>
+    (tag: Tag) => {
       modal.confirm({
         title: `删除标签`,
         content: (
@@ -72,9 +72,15 @@ const Index: FC<Props> = ({ tags }) => {
         cancelText: "取消",
         okText: "删除",
         onOk: () => {
-          router.delete(route("admin.tags.destroy", tag), { only: ["tags"] });
+          return new Promise((resolve) => {
+            router.delete(route("admin.tags.destroy", tag), {
+              only: ["tags"],
+              onFinish: () => resolve("deleted"),
+            });
+          });
         },
-      }),
+      });
+    },
     [modal],
   );
 
