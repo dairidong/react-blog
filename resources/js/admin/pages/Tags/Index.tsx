@@ -54,7 +54,7 @@ const baseColumns: ColumnsType<Tag> = [
 
 const Index: FC<Props> = ({ tags }) => {
   const {
-    token: { colorTextSecondary, colorErrorText },
+    token: { colorErrorText },
   } = theme.useToken();
 
   const { modal } = App.useApp();
@@ -72,7 +72,7 @@ const Index: FC<Props> = ({ tags }) => {
         cancelText: "取消",
         okText: "删除",
         onOk: () => {
-          router.delete(route("admin.tags.destroy", tag));
+          router.delete(route("admin.tags.destroy", tag), { only: ["tags"] });
         },
       }),
     [modal],
@@ -101,17 +101,34 @@ const Index: FC<Props> = ({ tags }) => {
       {
         title: "操作",
         key: "actions",
-        render: (text, record) => (
-          <Row style={{ gap: 10 }}>
-            <Button type="primary" icon={<EditOutlined />} />
-            <Button
-              type="primary"
-              danger
-              icon={<DeleteOutlined />}
-              onClick={() => handleDelete(record)}
-            />
-          </Row>
-        ),
+        render: (text, record) => {
+          return (
+            <Row style={{ gap: 10 }}>
+              <ModalForm
+                url={route("admin.tags.update", record)}
+                method="put"
+                title="更新标签"
+                layout="vertical"
+                submitOptions={{ only: ["tags", "errors", "flash"] }}
+                trigger={<Button type="primary" icon={<EditOutlined />} />}
+                defaultValues={{ name: record.name }}
+              >
+                <Form.Item
+                  name="name"
+                  rules={[{ required: true, message: "标签名不能为空" }]}
+                >
+                  <Input autoFocus placeholder="输入标签名" />
+                </Form.Item>
+              </ModalForm>
+              <Button
+                type="primary"
+                danger
+                icon={<DeleteOutlined />}
+                onClick={() => handleDelete(record)}
+              />
+            </Row>
+          );
+        },
       },
     ];
 
@@ -132,9 +149,8 @@ const Index: FC<Props> = ({ tags }) => {
         });
       }
     }
-
     return columnsWithActions;
-  }, []);
+  }, [handleDelete, tags]);
 
   return (
     <>
@@ -147,6 +163,7 @@ const Index: FC<Props> = ({ tags }) => {
             method="post"
             title="新建标签"
             layout="vertical"
+            submitOptions={{ only: ["tags"] }}
             trigger={
               <Button type="primary" size="large" icon={<PlusOutlined />}>
                 新建

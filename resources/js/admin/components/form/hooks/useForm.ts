@@ -23,6 +23,7 @@ export default function useForm<
     hasErrors,
     processing,
     wasSuccessful,
+    recentlySuccessful,
   } = useInertiaForm<T>(defaultValues);
 
   const { message } = App.useApp();
@@ -86,6 +87,7 @@ export default function useForm<
     onFinish,
     onValuesChange,
     wasSuccessful,
+    recentlySuccessful,
     hasErrors,
     processing,
     formInstance,

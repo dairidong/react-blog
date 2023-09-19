@@ -37,23 +37,22 @@ export default function ModalForm<
   const memoSubmitOptions = useMemo<VisitOptions>(
     () => ({
       ...submitOptions,
-      onSuccess: (page) => {
-        setOpen(false);
-        submitOptions?.onSuccess?.(page);
-      },
+      // 如果此处触发 modal 关闭，在更新表单的情况下
+      // formInstance.resetFields() 的取值为更新前的值
+      // 因此使用 preserveState 直接重置整个页面组件
+      preserveState: false,
     }),
-    [submitOptions, setOpen],
+    [submitOptions],
   );
 
-  const { formInstance, onValuesChange, onFinish, processing, wasSuccessful } =
-    useForm<T>({
-      defaultValues,
-      method,
-      url,
-      form,
-      errorMessage,
-      submitOptions: memoSubmitOptions,
-    });
+  const { formInstance, onValuesChange, onFinish, processing } = useForm<T>({
+    defaultValues,
+    method,
+    url,
+    form,
+    errorMessage,
+    submitOptions: memoSubmitOptions,
+  });
 
   const triggerDom = useMemo(() => {
     if (!trigger) {
@@ -77,10 +76,13 @@ export default function ModalForm<
         {...modalProps}
         title={title}
         open={open}
+        confirmLoading={processing}
+        cancelText="取消"
+        okText={submitBtnText}
+        width={width}
         onCancel={(e) => {
           if (processing) return;
           setOpen(false);
-          formInstance.resetFields();
           modalProps?.onCancel?.(e);
         }}
         onOk={(e) => {
@@ -88,10 +90,6 @@ export default function ModalForm<
           formInstance.submit();
           modalProps?.onOk?.(e);
         }}
-        confirmLoading={processing}
-        cancelText="取消"
-        okText={submitBtnText}
-        width={width}
         afterClose={() => {
           formInstance.resetFields();
           modalProps?.afterClose?.();
