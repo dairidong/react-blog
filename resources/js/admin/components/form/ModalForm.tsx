@@ -37,11 +37,10 @@ export default function ModalForm<
   const memoSubmitOptions = useMemo<VisitOptions>(
     () => ({
       ...submitOptions,
-      // 如果此处触发 modal 关闭，在更新表单的情况下
-      // formInstance.resetFields() 的取值为更新前的值
-      // 因此使用 preserveState 直接重置整个页面组件
-      // preserveState: ({ props: { errors } }) => !isEmpty(errors),
-      onFinish: () => setOpen(false),
+      onFinish: (visit) => {
+        submitOptions?.onFinish?.(visit);
+        setOpen(false);
+      },
     }),
     [submitOptions],
   );

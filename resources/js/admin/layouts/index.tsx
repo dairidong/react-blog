@@ -83,97 +83,95 @@ const AdminLayoutContainer: FC<PropsWithChildren> = ({ children }) => {
   }, [message]);
 
   return (
-    <App>
-      <Layout style={{ minHeight: "100vh" }}>
-        <Sider
-          trigger={null}
+    <Layout style={{ minHeight: "100vh" }}>
+      <Sider
+        trigger={null}
+        collapsed={collapsed}
+        collapsible
+        breakpoint="lg"
+        width={300}
+        style={{
+          display: !showSider ? "none" : "block",
+        }}
+        onBreakpoint={(broken) => {
+          setShowSider(!broken);
+          if (!broken) {
+            setDrawerOpen(false);
+          }
+        }}
+      >
+        <SideMenu
           collapsed={collapsed}
-          collapsible
-          breakpoint="lg"
-          width={300}
+          showSider={showSider}
+          menuItems={menuItems}
+        />
+      </Sider>
+
+      <Drawer
+        open={drawerOpen}
+        closeIcon={false}
+        placement="left"
+        onClose={() => setDrawerOpen(false)}
+        contentWrapperStyle={{
+          maxWidth: "50vw",
+        }}
+        bodyStyle={{
+          padding: 0,
+        }}
+      >
+        <SideMenu
+          collapsed={collapsed}
+          showSider={showSider}
+          menuItems={menuItems}
+          menuTheme="light"
+        />
+      </Drawer>
+
+      <Layout>
+        <Header
           style={{
-            display: !showSider ? "none" : "block",
-          }}
-          onBreakpoint={(broken) => {
-            setShowSider(!broken);
-            if (!broken) {
-              setDrawerOpen(false);
-            }
-          }}
-        >
-          <SideMenu
-            collapsed={collapsed}
-            showSider={showSider}
-            menuItems={menuItems}
-          />
-        </Sider>
-
-        <Drawer
-          open={drawerOpen}
-          closeIcon={false}
-          placement="left"
-          onClose={() => setDrawerOpen(false)}
-          contentWrapperStyle={{
-            maxWidth: "50vw",
-          }}
-          bodyStyle={{
             padding: 0,
+            paddingRight: 32,
+            background: colorBgContainer,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          <SideMenu
-            collapsed={collapsed}
-            showSider={showSider}
-            menuItems={menuItems}
-            menuTheme="light"
-          />
-        </Drawer>
-
-        <Layout>
-          <Header
-            style={{
-              padding: 0,
-              paddingRight: 32,
-              background: colorBgContainer,
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
+          <Button
+            type="text"
+            icon={<MenuOutlined />}
+            onClick={() => {
+              if (showSider) {
+                setCollapsed(!collapsed);
+              } else {
+                setDrawerOpen(!drawerOpen);
+              }
             }}
-          >
-            <Button
-              type="text"
-              icon={<MenuOutlined />}
-              onClick={() => {
-                if (showSider) {
-                  setCollapsed(!collapsed);
-                } else {
-                  setDrawerOpen(!drawerOpen);
-                }
-              }}
-              style={{
-                fontSize: "16px",
-                width: 64,
-                height: 64,
-              }}
-            />
+            style={{
+              fontSize: "16px",
+              width: 64,
+              height: 64,
+            }}
+          />
 
-            <Dropdown menu={dropdownMenu}>
-              <Space className="user-info" style={{ cursor: "pointer" }}>
-                <Avatar
-                  size="large"
-                  alt="user-avatar"
-                  src={user.avatar}
-                  icon={<UserOutlined />}
-                />
-                <div className="username">{user.name}</div>
-              </Space>
-            </Dropdown>
-          </Header>
+          <Dropdown menu={dropdownMenu}>
+            <Space className="user-info" style={{ cursor: "pointer" }}>
+              <Avatar
+                size="large"
+                alt="user-avatar"
+                src={user.avatar}
+                icon={<UserOutlined />}
+              />
+              <div className="username">{user.name}</div>
+            </Space>
+          </Dropdown>
+        </Header>
 
-          {/** ************************** Content ************************* */}
-          {children}
-        </Layout>
+        {/** ************************** Content ************************* */}
+        {children}
       </Layout>
-    </App>
+    </Layout>
   );
 };
 

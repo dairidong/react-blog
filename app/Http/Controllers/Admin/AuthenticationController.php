@@ -13,7 +13,7 @@ class AuthenticationController extends Controller
 {
     public function create()
     {
-        return Inertia::render('Login/index');
+        return Inertia::render('Login/Index');
     }
 
     public function store(LoginRequest $request)
