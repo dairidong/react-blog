@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CreateArticleRequest;
 use App\Http\Requests\Admin\EditArticleRequest;
 use App\Models\Article;
+use App\Models\Tag;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -27,7 +28,10 @@ class ArticleController extends Controller
 
     public function create()
     {
-        return Inertia::render('Articles/Create');
+        $tags = Tag::query()->select("id", "name")->get();
+        return Inertia::render('Articles/Create', [
+            "tags" => $tags
+        ]);
     }
 
     public function store(CreateArticleRequest $request): RedirectResponse
@@ -41,8 +45,11 @@ class ArticleController extends Controller
 
     public function edit(Article $article): Response
     {
+        $tags = Tag::query()->select("id", "name")->get();
+        $article->load("tags");
         return Inertia::render('Articles/Edit', [
             'article' => $article,
+            'tags' => $tags,
         ]);
     }
 

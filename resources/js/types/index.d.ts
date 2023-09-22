@@ -70,7 +70,7 @@ export interface FormHookProps<T> {
 
 export type FormComponentProps<T> = Omit<
   FormProps,
-  "method" | "children" | "onValuesChange"
+  "method" | "children" | "onValuesChange" | "onFinish"
 > &
   FormHookProps<T> & {
     title: ReactNode;

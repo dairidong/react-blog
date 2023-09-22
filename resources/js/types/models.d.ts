@@ -17,9 +17,10 @@ export interface Article extends HasTimestamps {
   id: number;
   title: string;
   description?: string | null;
-  content?: string;
+  content?: string | null;
+  tags?: Tag[];
   slug?: string | null;
-  published_at: string | Date;
+  published_at: string | Date | null;
 }
 
 export interface Tag {

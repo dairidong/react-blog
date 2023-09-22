@@ -1,25 +1,49 @@
-import { FC } from "react";
-import { Form as AntForm, Input } from "antd";
-import { pick } from "lodash";
-import { Article } from "@/types/models";
+import { FC, useMemo } from "react";
+import { Form as AntForm, Input, Select, SelectProps } from "antd";
+import { map } from "lodash";
+import { Article, Tag } from "@/types/models";
 import Form from "@/admin/components/form/Form";
 import Editor from "@/admin/components/form/Fields/Editor";
 
 interface Props {
-  article?: Article;
+  article?: Required<Article>;
+  tags?: Pick<Tag, "id" | "name">[];
 }
 
-type ArticleFormFields = Pick<Article, "title" | "description" | "content"> &
-  Partial<Pick<Article, "slug">>;
+interface ArticleFormFields extends Record<string, unknown> {
+  title: string;
+  description: string;
+  tags: string[];
+  content: string;
+  slug?: string;
+}
 
-const ArticleForm: FC<Props> = ({ article }) => {
-  const defaultValues: ArticleFormFields = article
-    ? pick(article, ["title", "slug", "description", "content"])
-    : {
-        title: "",
-        description: "",
-        content: "",
-      };
+const ArticleForm: FC<Props> = ({ article, tags }) => {
+  const defaultValues = useMemo<ArticleFormFields>(() => {
+    return article
+      ? {
+          title: article.title,
+          description: article.description || "",
+          tags: article.tags?.map((tag) => tag.name) || [],
+          content: article.content || "",
+          slug: article.slug || "",
+        }
+      : {
+          title: "",
+          description: "",
+          tags: [],
+          content: "",
+        };
+  }, [article]);
+
+  const tagOptions = useMemo<SelectProps["options"]>(
+    () =>
+      map(tags, (tag) => ({
+        label: tag.name,
+        value: tag.name,
+      })),
+    [tags],
+  );
 
   return (
     <Form<ArticleFormFields>
@@ -50,7 +74,6 @@ const ArticleForm: FC<Props> = ({ article }) => {
       >
         <Input allowClear />
       </AntForm.Item>
-
       {article && (
         <AntForm.Item
           label="Slug"
@@ -65,7 +88,6 @@ const ArticleForm: FC<Props> = ({ article }) => {
           <Input allowClear />
         </AntForm.Item>
       )}
-
       <AntForm.Item
         label="文章描述"
         name="description"
@@ -77,6 +99,10 @@ const ArticleForm: FC<Props> = ({ article }) => {
         ]}
       >
         <Input.TextArea showCount allowClear />
+      </AntForm.Item>
+
+      <AntForm.Item label="标签" name="tags">
+        <Select mode="tags" options={tagOptions} />
       </AntForm.Item>
 
       <AntForm.Item

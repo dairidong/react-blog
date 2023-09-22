@@ -1,13 +1,18 @@
 import { Head } from "@inertiajs/react";
 import { FC } from "react";
 import ArticleForm from "@/admin/pages/Articles/components/ArticleForm";
-import { Article } from "@/types/models";
+import { Article, Tag } from "@/types/models";
 
-const Edit: FC<{ article: Article }> = ({ article }) => {
+interface Props {
+  article: Required<Article>;
+  tags: Pick<Tag, "id" | "name">[];
+}
+
+const Edit: FC<Props> = ({ article, tags }) => {
   return (
     <>
       <Head title="编辑文章" />
-      <ArticleForm article={article} />
+      <ArticleForm article={article} tags={tags} />
     </>
   );
 };

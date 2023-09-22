@@ -18,7 +18,7 @@ class Article extends Model
     ];
 
     protected $hidden = [
-
+        'deleted_at'
     ];
 
     protected $fillable = [
@@ -26,6 +26,7 @@ class Article extends Model
         'slug',
         'description',
         'content',
+        'tags',
     ];
 
     protected static function booted()

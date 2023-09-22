@@ -25,6 +25,8 @@ class CreateArticleRequest extends FormRequest
             'title' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:300'],
             'content' => ['nullable', 'string'],
+            'tags' => ['array'],
+            'tags.*' => ['string', 'min:2', 'max:20']
         ];
     }
 
@@ -34,6 +36,8 @@ class CreateArticleRequest extends FormRequest
             'title' => '文章标题',
             'description' => '文章描述',
             'content' => '文章内容',
+            'tags' => '标签',
+            'tags.*' => '标签名'
         ];
     }
 }

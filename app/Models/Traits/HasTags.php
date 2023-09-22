@@ -59,11 +59,10 @@ trait HasTags
     {
         return $this
             ->morphToMany(self::getTagClassName(), $this->getTaggableMorphName())
-            ->using($this->getPivotModelClassName())
-            ->ordered();
+            ->using($this->getPivotModelClassName());
     }
 
-    public function setTagsAttribute(string | array | ArrayAccess | \Spatie\Tags\Tag $tags)
+    public function setTagsAttribute(string | array | ArrayAccess | Tag $tags)
     {
         if (!$this->exists) {
             $this->queuedTags = $tags;
