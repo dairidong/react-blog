@@ -1,5 +1,5 @@
-import React, { FC, useEffect } from "react";
-import { Editor as ByteMD } from "@bytemd/react";
+import React, { FC, useCallback, useEffect, useMemo } from "react";
+import { Editor as ByteMD, EditorProps } from "@bytemd/react";
 import gfm from "@bytemd/plugin-gfm";
 import breaks from "@bytemd/plugin-breaks";
 import frontmatter from "@bytemd/plugin-frontmatter";
@@ -11,12 +11,16 @@ import gfmZh from "@bytemd/plugin-gfm/locales/zh_Hans.json";
 import "bytemd/dist/index.css";
 import "github-markdown-css";
 import "highlight.js/styles/vs.css";
+import { editorUploadImage } from "@admin/requests";
+import { AxiosError } from "axios";
+import { App } from "antd";
 
 type Props = {
   value?: string;
   onChange?: (value: string) => void;
   height?: string | number;
   minHeight?: string | number;
+  placeholder: string;
 };
 
 const plugins = [
@@ -32,23 +36,58 @@ const Editor: FC<Props> = ({
   onChange = () => {},
   height,
   minHeight,
+  placeholder = "",
 }) => {
+  const { notification } = App.useApp();
+
+  const uploadUrl = useMemo(() => route("admin.images.store"), []);
+
+  const uploadImages = useCallback<NonNullable<EditorProps["uploadImages"]>>(
+    (files) => {
+      return Promise.all(
+        files.map(async (file) => {
+          try {
+            const { url } = await editorUploadImage(uploadUrl, file, {});
+
+            notification.success({
+              message: "图片上传成功",
+              description: file.name,
+            });
+
+            return { url };
+          } catch (e) {
+            if (e instanceof AxiosError) {
+              notification.error({
+                message: "图片上传失败",
+                description: e.response?.data.message || "服务器错误",
+              });
+            }
+            throw e;
+          }
+        }),
+      );
+    },
+    [uploadUrl, notification],
+  );
+
   useEffect(() => {
     const editorStyles =
       document.querySelector<HTMLDivElement>(".bytemd")?.style;
 
-    if (height !== undefined) {
-      editorStyles?.setProperty(
-        "height",
-        isNumber(height) ? `${height}px` : height,
-      );
-    }
+    if (editorStyles) {
+      if (height !== undefined) {
+        editorStyles.setProperty(
+          "height",
+          isNumber(height) ? `${height}px` : height,
+        );
+      }
 
-    if (minHeight !== undefined) {
-      editorStyles?.setProperty(
-        "min-height",
-        isNumber(minHeight) ? `${minHeight}px` : minHeight,
-      );
+      if (minHeight !== undefined) {
+        editorStyles.setProperty(
+          "min-height",
+          isNumber(minHeight) ? `${minHeight}px` : minHeight,
+        );
+      }
     }
   }, [height, minHeight]);
 
@@ -58,6 +97,8 @@ const Editor: FC<Props> = ({
       onChange={onChange}
       plugins={plugins}
       locale={zh}
+      placeholder={placeholder}
+      uploadImages={uploadImages}
     />
   );
 };

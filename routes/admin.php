@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Api\UploadImageController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\AuthenticationController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -20,4 +21,6 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('/articles', ArticleController::class);
 
     Route::resource('/tags', TagController::class)->except(['create', 'edit']);
+
+    Route::post('/images', [UploadImageController::class, 'store'])->name('images.store');
 });
