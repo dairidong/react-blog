@@ -1,5 +1,5 @@
 import { Menu, MenuTheme, Row, theme, Typography } from "antd";
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import { MenuItemType } from "antd/es/menu/hooks/useItems";
 
 interface Props {
@@ -21,6 +21,8 @@ const SideMenu: FC<Props> = ({
     token: { colorText },
   } = theme.useToken();
 
+  const defaultSelectKeys = useMemo(() => route().current() || "", []);
+
   return (
     <>
       <Row justify="center" align="middle">
@@ -39,11 +41,9 @@ const SideMenu: FC<Props> = ({
       <Menu
         theme={menuTheme}
         mode="inline"
-        defaultSelectedKeys={[route().current() ?? ""]}
+        defaultSelectedKeys={[defaultSelectKeys]}
         items={menuItems}
-        style={{
-          border: "none",
-        }}
+        style={{ border: "none" }}
       />
     </>
   );

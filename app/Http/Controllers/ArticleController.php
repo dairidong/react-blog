@@ -11,11 +11,12 @@ class ArticleController extends Controller
     {
         $articles = Article::query()
             ->select('id', 'title', 'description', 'slug', 'created_at', 'published_at', 'updated_at')
+            ->with('tags:id,name')
             ->published()
             ->orderByDesc('published_at')
-            ->simplePaginate(9);
+            ->simplePaginate(5);
 
-        return Inertia::render('Articles/index', [
+        return Inertia::render('Articles/Index', [
             'articles' => $articles,
         ]);
     }
@@ -26,7 +27,7 @@ class ArticleController extends Controller
             abort(404, '文章不存在');
         }
 
-        return Inertia::render('Articles/Show/index', [
+        return Inertia::render('Articles/Show', [
             'article' => $article,
         ]);
     }
