@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Api\UploadImageController;
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\ArticlePublishController;
 use App\Http\Controllers\Admin\AuthenticationController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\TagController;
@@ -19,6 +20,10 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('/articles', ArticleController::class);
+    Route::post('/articles/{article}/publish', [ArticlePublishController::class, 'store'])
+        ->name('articles.publish');
+    Route::delete('/articles/{article}/publish', [ArticlePublishController::class, 'destroy'])
+        ->name('articles.unpublish');
 
     Route::resource('/tags', TagController::class)->except(['create', 'edit']);
 

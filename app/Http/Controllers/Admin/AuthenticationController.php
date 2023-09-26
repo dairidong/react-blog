@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\Message\Message;
+use App\Helpers\Message\MessageType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\LoginRequest;
 use Illuminate\Http\RedirectResponse;
@@ -23,10 +25,7 @@ class AuthenticationController extends Controller
         $request->session()->regenerate();
 
         return redirect()->intended(route('admin.dashboard'))->with([
-            'message' => [
-                'type' => 'success',
-                'text' => '登录成功',
-            ],
+            'message' => Message::create(MessageType::SUCCESS, '登录成功'),
         ]);
     }
 

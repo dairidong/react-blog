@@ -42,6 +42,12 @@ const AdminLayoutContainer: FC<PropsWithChildren> = ({ children }) => {
     auth: { user },
   } = usePage<Props>().props;
 
+  useEffect(() => {
+    if (message) {
+      AntMessage.open({ type: message.type, content: message.text });
+    }
+  }, [message]);
+
   const menuItems: MenuItemType[] = [
     {
       key: "admin.dashboard",
@@ -72,15 +78,6 @@ const AdminLayoutContainer: FC<PropsWithChildren> = ({ children }) => {
       },
     ],
   };
-
-  useEffect(() => {
-    if (message) {
-      AntMessage.open({
-        type: message.type,
-        content: message.text,
-      });
-    }
-  }, [message]);
 
   return (
     <Layout style={{ minHeight: "100vh" }}>

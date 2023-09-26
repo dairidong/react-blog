@@ -27,6 +27,7 @@ class Article extends Model
         'description',
         'content',
         'tags',
+        'published_at'
     ];
 
     protected static function booted()
@@ -45,13 +46,23 @@ class Article extends Model
     protected function isPublished(): Attribute
     {
         return Attribute::make(
-            get: fn ($value, array $attributes): bool => !is_null($attributes['published_at'])
+            get: fn($value, array $attributes): bool => !is_null($attributes['published_at'])
         );
     }
 
     public function scopePublished(Builder $query)
     {
         $query->whereNotNull('published_at');
+    }
+
+    public function publish(): bool
+    {
+        return $this->update(['published_at' => now()]);
+    }
+
+    public function unPublish(): bool
+    {
+        return $this->update(['published_at' => null]);
     }
 
     public function resolveRouteBinding($value, $field = null)

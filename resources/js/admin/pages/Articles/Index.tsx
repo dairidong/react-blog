@@ -47,11 +47,38 @@ const Index: FC<{ articles: LaravelPagination<Article> }> = ({ articles }) => {
         cancelText: "取消",
         okText: "删除",
         onOk: () => {
-          router.delete(route("admin.articles.destroy", article));
+          return new Promise((resolve) => {
+            router.delete(route("admin.articles.destroy", article), {
+              onFinish: () => resolve("deleted"),
+              preserveScroll: true,
+              only: ["articles", "flash", "errors"],
+            });
+          });
         },
       });
     },
     [modal, colorErrorText],
+  );
+
+  const switchPublish = useCallback(
+    (article: Article) => {
+      if (article.published_at === null) {
+        router.post(
+          route("admin.articles.publish", article),
+          {},
+          {
+            preserveScroll: true,
+            only: ["articles", "flash", "errors"],
+          },
+        );
+      } else {
+        router.delete(route("admin.articles.unpublish", article), {
+          preserveScroll: true,
+          only: ["articles", "flash", "errors"],
+        });
+      }
+    },
+    [modal],
   );
 
   return (
@@ -78,6 +105,7 @@ const Index: FC<{ articles: LaravelPagination<Article> }> = ({ articles }) => {
                   checked={article.published_at !== null}
                   checkedChildren="已发布"
                   unCheckedChildren="未发布"
+                  onChange={(checked, event) => switchPublish(article)}
                 />,
                 <Link href={route("admin.articles.edit", article)}>
                   <Button type="primary" icon={<EditFilled key="edit" />} />
