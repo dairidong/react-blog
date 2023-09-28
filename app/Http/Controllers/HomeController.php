@@ -9,9 +9,11 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $articles = Article::query()->latest()->take(3)->get();
+        $latestArticles = Article::query()->latest()->take(3)->get();
+        $hottestArticles = visits(Article::class)->top(3);
         return Inertia::render('Home/Index', [
-            'articles' => $articles
+            'latestArticles' => $latestArticles,
+            'hottestArticles' => $hottestArticles,
         ]);
     }
 }

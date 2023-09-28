@@ -27,6 +27,8 @@ class ArticleController extends Controller
             abort(404, '文章不存在');
         }
 
+        $article->visits()->increment();
+
         return Inertia::render('Articles/Show', [
             'article' => $article,
         ]);

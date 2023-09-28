@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\HasTags;
+use App\Models\Traits\HasVisits;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,7 +12,7 @@ use Illuminate\Support\Str;
 
 class Article extends Model
 {
-    use HasFactory, HasTags;
+    use HasFactory, HasTags, HasVisits;
 
     protected $casts = [
         'published_at' => 'date',
