@@ -67,6 +67,7 @@ const Articles: FC<{ articles: SimplePagination<Article> }> = ({
             <Link
               className={cn(styles.paginationBtn, styles.prev)}
               href={articles.prev_page_url}
+              only={["articles"]}
             >
               <Icon icon={arrowPreviousLtr} />
               <div>上一页</div>
@@ -78,6 +79,7 @@ const Articles: FC<{ articles: SimplePagination<Article> }> = ({
             <Link
               className={cn(styles.paginationBtn, styles.next)}
               href={articles.next_page_url}
+              only={["articles"]}
             >
               <div>下一页</div>
               <Icon icon={arrowNextLtr} />

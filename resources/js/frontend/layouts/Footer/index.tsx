@@ -1,10 +1,17 @@
+import { FC } from "react";
 import styles from "./styles.module.pcss";
 
-const Footer = () => (
+const Footer: FC<{
+  icp?: {
+    icp_no: string | null;
+    police_icp_no: string | null;
+    police_icp_url: string | null;
+  };
+}> = ({ icp }) => (
   <div className={styles.footerContainer}>
     <section>
       <div>
-        &copy;{" 2023 "}
+        &copy; 2023 &nbsp;
         <a
           href="https://github.com/dairidong"
           className="tw-underline tw-decoration-2 tw-underline-offset-4"
@@ -17,27 +24,31 @@ const Footer = () => (
     </section>
 
     <section className="tw-flex tw-flex-row tw-justify-center tw-gap-3">
-      <div>
-        <a
-          href="http://beian.miit.gov.cn/"
-          target="_blank"
-          rel="noreferrer"
-          className="hover:tw-text-muted-foreground/80"
-        >
-          粤ICP备2021112135号
-        </a>
-      </div>
+      {icp?.icp_no && (
+        <div>
+          <a
+            href="http://beian.miit.gov.cn/"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:tw-text-muted-foreground/80"
+          >
+            {icp.icp_no}
+          </a>
+        </div>
+      )}
 
-      <div>
-        <a
-          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44190002005713"
-          target="_blank"
-          rel="noreferrer"
-          className="hover:tw-text-muted-foreground/80"
-        >
-          粤公网安备 44190002005713号
-        </a>
-      </div>
+      {icp?.police_icp_no && icp?.police_icp_url && (
+        <div>
+          <a
+            href={icp.police_icp_url}
+            target="_blank"
+            rel="noreferrer"
+            className="hover:tw-text-muted-foreground/80"
+          >
+            {icp.police_icp_no}
+          </a>
+        </div>
+      )}
     </section>
   </div>
 );
