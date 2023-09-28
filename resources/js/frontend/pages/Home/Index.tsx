@@ -31,21 +31,21 @@ const Home: FC<Props> = ({ latestArticles, hottestArticles }) => {
         </section>
 
         <div className="tw-flex tw-flex-col tw-gap-y-16">
-          <section className="tw-container tw-flex tw-flex-col tw-gap-y-5">
-            <div className="tw-flex tw-flex-row tw-items-end tw-justify-between tw-border-b-4 tw-pb-2">
-              <h3 className="tw-text-3xl sm:tw-text-4xl">最新文章</h3>
-              <div className="tw-text-2xl sm:tw-text-3xl">
-                <Link
-                  href={route("articles.index")}
-                  className="tw-flex tw-items-center"
-                >
-                  更多 <Icon icon={arrowNextLtr} />
-                </Link>
+          {!isEmpty(latestArticles) && (
+            <section className="tw-container tw-flex tw-flex-col tw-gap-y-5">
+              <div className="tw-flex tw-flex-row tw-items-end tw-justify-between tw-border-b-4 tw-pb-2">
+                <h3 className="tw-text-3xl sm:tw-text-4xl">最新文章</h3>
+                <div className="tw-text-2xl sm:tw-text-3xl">
+                  <Link
+                    href={route("articles.index")}
+                    className="tw-flex tw-items-center"
+                  >
+                    更多 <Icon icon={arrowNextLtr} />
+                  </Link>
+                </div>
               </div>
-            </div>
-            <div className="tw-grid tw-gap-5 md:tw-grid-cols-3">
-              {!isEmpty(latestArticles) &&
-                latestArticles.map((article) => (
+              <div className="tw-grid tw-gap-5 md:tw-grid-cols-3">
+                {latestArticles.map((article) => (
                   <Link
                     href={route("articles.show", article.slug ?? article.id)}
                     key={article.id}
@@ -65,24 +65,25 @@ const Home: FC<Props> = ({ latestArticles, hottestArticles }) => {
                     </Card>
                   </Link>
                 ))}
-            </div>
-          </section>
+              </div>
+            </section>
+          )}
 
-          <section className="tw-container tw-flex tw-flex-col tw-gap-y-5">
-            <div className="tw-flex tw-flex-row tw-items-end tw-justify-between tw-border-b-4 tw-pb-2">
-              <h3 className="tw-text-3xl sm:tw-text-4xl">最热文章</h3>
-              <div className="tw-text-2xl sm:tw-text-3xl">
-                <Link
-                  href={route("articles.index")}
-                  className="tw-flex tw-items-center"
-                >
-                  更多 <Icon icon={arrowNextLtr} />
-                </Link>
+          {!isEmpty(hottestArticles) && (
+            <section className="tw-container tw-flex tw-flex-col tw-gap-y-5">
+              <div className="tw-flex tw-flex-row tw-items-end tw-justify-between tw-border-b-4 tw-pb-2">
+                <h3 className="tw-text-3xl sm:tw-text-4xl">最热文章</h3>
+                <div className="tw-text-2xl sm:tw-text-3xl">
+                  <Link
+                    href={route("articles.index")}
+                    className="tw-flex tw-items-center"
+                  >
+                    更多 <Icon icon={arrowNextLtr} />
+                  </Link>
+                </div>
               </div>
-            </div>
-            <div className="tw-grid tw-gap-5 md:tw-grid-cols-3">
-              {!isEmpty(hottestArticles) &&
-                hottestArticles.map((article) => (
+              <div className="tw-grid tw-gap-5 md:tw-grid-cols-3">
+                {hottestArticles.map((article) => (
                   <Link
                     href={route("articles.show", article.slug ?? article.id)}
                     key={article.id}
@@ -102,8 +103,9 @@ const Home: FC<Props> = ({ latestArticles, hottestArticles }) => {
                     </Card>
                   </Link>
                 ))}
-            </div>
-          </section>
+              </div>
+            </section>
+          )}
         </div>
       </div>
     </>
