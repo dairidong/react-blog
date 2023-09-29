@@ -9,10 +9,7 @@ const Show: FC<{ article: Required<ArticleModel> }> = ({ article }) => {
       <Head title={article.title} />
       <div className="tw-mt-5 lg:tw-mt-10">
         <div className="tw-container tw-flex tw-justify-center">
-          <Article
-            markdown={article.content || ""}
-            articleTitle={article.title}
-          />
+          <Article article={article} />
         </div>
       </div>
     </>

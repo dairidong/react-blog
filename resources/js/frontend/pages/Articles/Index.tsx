@@ -11,9 +11,7 @@ import styles from "./styles.module.pcss";
 import { cn, formatTime } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 
-const Articles: FC<{ articles: SimplePagination<Article> }> = ({
-  articles,
-}) => (
+const Index: FC<{ articles: SimplePagination<Article> }> = ({ articles }) => (
   <>
     <Head title="文章" />
     <div className="tw-container tw-mt-5 tw-flex tw-max-w-screen-lg tw-flex-col tw-gap-y-10 lg:tw-mt-10">
@@ -51,12 +49,17 @@ const Articles: FC<{ articles: SimplePagination<Article> }> = ({
                   {article.description || article.title}
                 </p>
 
-                <Link
-                  href={route("articles.show", article.slug || article.id)}
-                  className="tw-g-1 animated-underline tw-flex tw-items-center tw-gap-1 tw-font-ali-puhui"
-                >
-                  <span>Read More</span> <Icon icon={arrowNextLtr} />
-                </Link>
+                <div className="tw-flex tw-justify-between">
+                  <div className="tw-text-muted-foreground">
+                    阅读量：{article.visits_count}
+                  </div>
+                  <Link
+                    href={route("articles.show", article.slug || article.id)}
+                    className="tw-g-1 animated-underline tw-flex tw-items-center tw-gap-1 tw-font-ali-puhui"
+                  >
+                    <span>Read More</span> <Icon icon={arrowNextLtr} />
+                  </Link>
+                </div>
               </section>
             </li>
           ))}
@@ -93,4 +96,4 @@ const Articles: FC<{ articles: SimplePagination<Article> }> = ({
   </>
 );
 
-export default Articles;
+export default Index;

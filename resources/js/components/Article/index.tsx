@@ -9,11 +9,12 @@ import Pre from "./Pre";
 import Code from "./Code";
 import styles from "./styles.module.pcss";
 import "@styles/prism.pcss";
-import { cn } from "@/lib/utils";
+import { cn, formatTime } from "@/lib/utils";
+import { Article as ArticleModel } from "@/types/models";
+import { Separator } from "@/components/ui/separator";
 
 type Props = {
-  articleTitle?: string;
-  markdown: string;
+  article: ArticleModel;
 } & HTMLAttributes<HTMLDivElement>;
 
 const remarkPlugins: PluggableList = [remarkGfm];
@@ -28,18 +29,30 @@ const components = {
   code: Code,
 };
 
-const Article: FC<Props> = ({
-  markdown,
-  articleTitle,
-  className,
-  ...props
-}) => {
+const Article: FC<Props> = ({ article, className, ...props }) => {
   return (
     <article className={cn(styles.article, className)} {...props}>
-      {articleTitle && <h1>{articleTitle}</h1>}
+      <h1>{article.title}</h1>
+      <section className="tw-flex tw-justify-around tw-gap-5 tw-text-base tw-text-secondary-foreground">
+        <div className="tw-flex tw-flex-col tw-items-center">
+          <div>发布时间</div>
+          <Separator />
+          {formatTime(article.published_at)}
+        </div>
+        <div className="tw-flex tw-flex-col tw-items-center">
+          <div>最后更新时间</div>
+          <Separator />
+          {formatTime(article.updated_at)}
+        </div>
+        <div className="tw-flex tw-flex-col tw-items-center">
+          <div>阅读量</div>
+          <Separator />
+          {article.visits_count}
+        </div>
+      </section>
 
       <ReactMarkdown
-        children={markdown}
+        children={article.content || ""}
         remarkPlugins={remarkPlugins}
         rehypePlugins={rehypePlugins}
         components={components}

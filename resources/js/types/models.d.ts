@@ -21,6 +21,7 @@ export interface Article extends HasTimestamps {
   tags?: Tag[];
   slug?: string | null;
   published_at: string | Date | null;
+  visits_count?: number | null;
 }
 
 export interface Tag {

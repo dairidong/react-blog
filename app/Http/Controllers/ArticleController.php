@@ -16,6 +16,9 @@ class ArticleController extends Controller
             ->orderByDesc('published_at')
             ->simplePaginate(5);
 
+        $articles->getCollection()
+            ->each(fn(Article $article) => $article->append('visits_count'));
+
         return Inertia::render('Articles/Index', [
             'articles' => $articles,
         ]);
@@ -29,6 +32,7 @@ class ArticleController extends Controller
 
         $article->visits()->increment();
 
+        $article->append('visits_count');
         return Inertia::render('Articles/Show', [
             'article' => $article,
         ]);

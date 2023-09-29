@@ -51,6 +51,13 @@ class Article extends Model
         );
     }
 
+    protected function visitsCount(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->visits()->count()
+        );
+    }
+
     public function scopePublished(Builder $query)
     {
         $query->whereNotNull('published_at');
