@@ -20,7 +20,7 @@ type Props = {
   onChange?: (value: string) => void;
   height?: string | number;
   minHeight?: string | number;
-  placeholder: string;
+  placeholder?: string;
 };
 
 const plugins = [

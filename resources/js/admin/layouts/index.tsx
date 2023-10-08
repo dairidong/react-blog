@@ -69,6 +69,14 @@ const AdminLayoutContainer: FC<PropsWithChildren> = ({ children }) => {
   const dropdownMenu: MenuProps = {
     items: [
       {
+        key: "me.edit",
+        label: (
+          <Link href={route("admin.me.edit")} as="div">
+            个人信息
+          </Link>
+        ),
+      },
+      {
         key: "logout",
         label: (
           <Link href={route("admin.logout")} method="delete" as="div">
