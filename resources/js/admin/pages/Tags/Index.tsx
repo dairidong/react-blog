@@ -40,14 +40,22 @@ const baseColumns: ColumnsType<Tag> = [
     title: "创建时间",
     dataIndex: "created_at",
     key: "created_at",
-    render: (text) => formatTime(text, timeTemplate, false),
+    render: (text) =>
+      formatTime(text, {
+        template: timeTemplate,
+        human: false,
+      }),
     sorter: true,
   },
   {
     title: "更新时间",
     dataIndex: "updated_at",
     key: "updated_at",
-    render: (text) => formatTime(text, timeTemplate, false),
+    render: (text) =>
+      formatTime(text, {
+        template: timeTemplate,
+        human: false,
+      }),
     sorter: true,
   },
 ];

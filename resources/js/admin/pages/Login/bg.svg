@@ -1,6 +1,6 @@
 <svg width="100%" height="100%" id="svg" viewBox="0 0 1440 690" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150"><style>
   .path-0{
-  animation:pathAnim-0 4s;
+  animation:pathAnim-0 6s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   }
@@ -22,7 +22,7 @@
   }
   }</style><path d="M 0,700 C 0,700 0,233 0,233 C 123.54066985645932,204.4736842105263 247.08133971291863,175.94736842105263 331,185 C 414.91866028708137,194.05263157894737 459.2153110047848,240.68421052631584 544,274 C 628.7846889952152,307.31578947368416 754.0574162679424,327.31578947368416 863,299 C 971.9425837320576,270.68421052631584 1064.555023923445,194.05263157894737 1158,175 C 1251.444976076555,155.94736842105263 1345.7224880382773,194.4736842105263 1440,233 C 1440,233 1440,700 1440,700 Z" stroke="none" stroke-width="0" fill="#4096ff" fill-opacity="0.53" class="transition-all duration-300 ease-in-out delay-150 path-0"></path><style>
   .path-1{
-  animation:pathAnim-1 4s;
+  animation:pathAnim-1 6s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   }

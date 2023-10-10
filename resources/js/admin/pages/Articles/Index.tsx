@@ -141,13 +141,19 @@ const Index: FC<{ articles: LaravelPagination<Article> }> = ({ articles }) => {
                 <Col xs={0} md={12}>
                   <div>创建时间：</div>
                   <div>
-                    {formatTime(article.created_at, timeTemplate, false)}
+                    {formatTime(article.created_at, {
+                      template: timeTemplate,
+                      human: false,
+                    })}
                   </div>
                 </Col>
                 <Col xs={0} sm={0} md={12}>
                   <div>最后更新时间：</div>
                   <div>
-                    {formatTime(article.updated_at, timeTemplate, false)}
+                    {formatTime(article.updated_at, {
+                      template: timeTemplate,
+                      human: false,
+                    })}
                   </div>
                 </Col>
               </Row>

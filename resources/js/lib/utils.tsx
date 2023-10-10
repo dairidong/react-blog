@@ -15,15 +15,35 @@ dayjs.extend(duration);
 dayjs.extend(relativeTime);
 dayjs.locale(locale_zhCn);
 
+interface FormatTimeOptions {
+  template?: string;
+  human?: boolean;
+}
+
 export const formatTime = (
   date: dayjs.ConfigType,
-  template: string = "YYYY-MM-DD",
-  human: boolean = true,
+  options?: FormatTimeOptions,
 ) => {
-  if (dayjs().isAfter(dayjs(date).add(15, "day"))) {
+  const defaultOptions: FormatTimeOptions = {
+    template: "YYYY-MM-DD",
+    human: true,
+  };
+  const { template, human } = {
+    ...defaultOptions,
+    ...options,
+  };
+
+  const dayjsDate = dayjs(date);
+
+  if (dayjs().isAfter(dayjsDate.clone().add(15, "day"))) {
     return dayjs(date).format(template);
   }
-  return human ? dayjs(date).fromNow() : dayjs(date).format(template);
+
+  if (human) {
+    return dayjsDate.isAfter() ? dayjs(date).fromNow() : dayjs(date).toNow();
+  }
+
+  return dayjs(date).format(template);
 };
 
 export function transformOrderDirectionFromAntToRequest(order?: SortOrder) {
