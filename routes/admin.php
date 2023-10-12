@@ -16,11 +16,11 @@ Route::middleware('guest:admin')->group(function () {
 });
 
 Route::middleware('auth:admin')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::get('/me/edit', [MeController::class, 'edit'])->name('me.edit');
     Route::put('/me', [MeController::class, 'update'])->name('me.update');
     Route::delete('/logout', [AuthenticationController::class, 'destroy'])->name('logout');
-
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('/articles', ArticleController::class);
     Route::post('/articles/{article}/publish', [ArticlePublishController::class, 'store'])

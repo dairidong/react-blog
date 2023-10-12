@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { formatTime } from "@/lib/utils";
+import { formatTime } from "@/lib/dayjs";
 import { Article } from "@/types/models";
 import styles from "./styles.module.pcss";
 

@@ -8,7 +8,8 @@ import { SimplePagination } from "@/types";
 import { Article } from "@/types/models";
 
 import styles from "./styles.module.pcss";
-import { cn, formatTime } from "@/lib/utils";
+import { cn } from "@/lib/utils";
+import { formatTime } from "@/lib/dayjs";
 import { Badge } from "@/components/ui/badge";
 
 const Index: FC<{ articles: SimplePagination<Article> }> = ({ articles }) => (

@@ -14,10 +14,11 @@ import { timeTemplate } from "@admin/constants";
 import { has, isArray, isPlainObject, map } from "lodash";
 import { Tag } from "@/types/models";
 import {
-  formatTime,
   transformOrderDirectionFromAntToRequest,
   transformOrderDirectionFromRequestToAnt,
 } from "@/lib/utils";
+import { formatTime } from "@/lib/dayjs";
+
 import { OrderBy } from "@/types";
 
 interface Props {

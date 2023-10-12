@@ -9,7 +9,8 @@ import Pre from "./Pre";
 import Code from "./Code";
 import styles from "./styles.module.pcss";
 import "@styles/prism.pcss";
-import { cn, formatTime } from "@/lib/utils";
+import { cn } from "@/lib/utils";
+import { formatTime } from "@/lib/dayjs";
 import { Article as ArticleModel } from "@/types/models";
 import { Separator } from "@/components/ui/separator";
 

@@ -1,9 +1,10 @@
 import { Head } from "@inertiajs/react";
 import ContentContainer from "@admin/layouts/components/ContentContainer";
 import { Card, Col, Row, Table } from "antd";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { ColumnsType } from "antd/es/table";
-import { formatTime } from "@/lib/utils";
+import { map } from "lodash";
+import dayjs from "@/lib/dayjs";
 
 interface AppStatsColumn {
   key: string;
@@ -23,16 +24,45 @@ const columns: ColumnsType<AppStatsColumn> = [
   {
     key: "value",
     dataIndex: "value",
-    render: (value, { key }) => {
-      if (key === "octaneRunningTime") {
-        return formatTime(value);
-      }
-      return value;
-    },
   },
 ];
 
 const Dashboard: FC<Props> = ({ appStats }) => {
+  const [stats, setStats] = useState<AppStatsColumn[] | null>();
+
+  useEffect(() => {
+    const transformRunningTime = (statsToTransform: AppStatsColumn[]) =>
+      setStats(
+        map(statsToTransform, (stat) => {
+          if (stat.key === "octaneRunningTime") {
+            const duration = dayjs.duration(dayjs().diff(dayjs(stat.value)));
+            return {
+              ...stat,
+              value: [
+                duration.days() > 0 && `${duration.days()} 天`,
+                duration.hours() > 0 && `${duration.hours()} 小时`,
+                duration.minutes() > 0 && `${duration.minutes()} 分钟`,
+                `${duration.seconds()} 秒`,
+              ]
+                .filter((part) => Boolean(part))
+                .join(" "),
+            };
+          }
+          return stat;
+        }),
+      );
+
+    transformRunningTime(appStats);
+
+    const intervalId = setInterval(() => {
+      transformRunningTime(appStats);
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [appStats, setStats]);
+
   return (
     <>
       <Head title="总览" />
@@ -43,7 +73,7 @@ const Dashboard: FC<Props> = ({ appStats }) => {
               <Table
                 showHeader={false}
                 columns={columns}
-                dataSource={appStats}
+                dataSource={stats || []}
                 pagination={false}
                 rowKey="key"
                 bordered

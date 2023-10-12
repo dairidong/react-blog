@@ -11,7 +11,7 @@ import {
 import { timeTemplate } from "@admin/constants";
 import { LaravelPagination } from "@/types";
 import { Article } from "@/types/models";
-import { formatTime } from "@/lib/utils";
+import { formatTime } from "@/lib/dayjs";
 import ContentContainer from "@/admin/layouts/components/ContentContainer";
 
 const Index: FC<{ articles: LaravelPagination<Article> }> = ({ articles }) => {
