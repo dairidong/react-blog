@@ -28,7 +28,7 @@ const columns: ColumnsType<AppStatsColumn> = [
 ];
 
 const Dashboard: FC<Props> = ({ appStats }) => {
-  const [stats, setStats] = useState<AppStatsColumn[] | null>();
+  const [stats, setStats] = useState<AppStatsColumn[]>(appStats);
 
   useEffect(() => {
     const transformRunningTime = (statsToTransform: AppStatsColumn[]) =>
@@ -52,11 +52,14 @@ const Dashboard: FC<Props> = ({ appStats }) => {
         }),
       );
 
-    transformRunningTime(appStats);
-
-    const intervalId = setInterval(() => {
+    let intervalId: NodeJS.Timer;
+    if (appStats.find((stat) => stat.key === "octaneRunningTime")) {
       transformRunningTime(appStats);
-    }, 1000);
+
+      intervalId = setInterval(() => {
+        transformRunningTime(appStats);
+      }, 1000);
+    }
 
     return () => {
       clearInterval(intervalId);
@@ -73,7 +76,7 @@ const Dashboard: FC<Props> = ({ appStats }) => {
               <Table
                 showHeader={false}
                 columns={columns}
-                dataSource={stats || []}
+                dataSource={stats}
                 pagination={false}
                 rowKey="key"
                 bordered
