@@ -15,6 +15,7 @@ class AccessLog extends Model
     public $timestamps = false;
 
     protected $casts = [
+        'response_code' => 'integer',
         'input' => 'json',
         'method' => RequestMethod::class,
         'requested_at' => 'datetime',

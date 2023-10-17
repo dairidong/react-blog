@@ -13,6 +13,17 @@ export interface Administrator extends Authenticatable, HasTimestamps {
   avatar: string | null;
 }
 
+export interface AccessLog {
+  id: number;
+  path: string;
+  method: string;
+  response_code: number;
+  input: Record<string, any>;
+  user_agent: string;
+  ip: string;
+  requested_at: string;
+}
+
 export interface Article extends HasTimestamps {
   id: number;
   title: string;

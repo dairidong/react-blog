@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AccessLogController;
 use App\Http\Controllers\Admin\Api\UploadImageController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\ArticlePublishController;
@@ -27,6 +28,9 @@ Route::middleware('auth:admin')->group(function () {
         ->name('articles.publish');
     Route::delete('/articles/{article}/publish', [ArticlePublishController::class, 'destroy'])
         ->name('articles.unpublish');
+
+    Route::get('/access_logs', [AccessLogController::class, 'index'])
+        ->name('access_logs.index');
 
     Route::resource('/tags', TagController::class)->except(['create', 'edit']);
 
