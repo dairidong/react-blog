@@ -1,7 +1,17 @@
 import { Head, router } from "@inertiajs/react";
 import ContentContainer from "@admin/layouts/components/ContentContainer";
-import { PaginationProps, Table, Tag, theme, Tooltip } from "antd";
-import { FC } from "react";
+import {
+  Button,
+  Form,
+  FormProps,
+  Input,
+  PaginationProps,
+  Table,
+  Tag,
+  theme,
+  Tooltip,
+} from "antd";
+import React, { FC, MouseEventHandler, useCallback } from "react";
 import { ColumnsType } from "antd/es/table";
 import { timeTemplate } from "@admin/constants";
 import { LaravelPagination } from "@/types";
@@ -10,6 +20,15 @@ import { formatTime } from "@/lib/dayjs";
 
 interface Props {
   logs: LaravelPagination<AccessLog>;
+  search: {
+    ip: string | null;
+    ua: string | null;
+  };
+}
+
+interface SearchFormColumns {
+  ip: string;
+  ua: string;
 }
 
 const getResponseCodeColor = (code: number) => {
@@ -79,7 +98,7 @@ const columns: ColumnsType<AccessLog> = [
   },
 ];
 
-const Index: FC<Props> = ({ logs }) => {
+const Index: FC<Props> = ({ logs, search: { ip, ua } }) => {
   const pagination: PaginationProps = {
     pageSize: logs.per_page,
     total: logs.total,
@@ -90,18 +109,68 @@ const Index: FC<Props> = ({ logs }) => {
     onChange: (page, pageSize) =>
       router.get(
         route("admin.access_logs.index"),
-        { page, pageSize },
+        { page, pageSize, ip, ua },
         {
-          only: ["logs"],
+          only: ["logs", "search"],
         },
       ),
   };
 
+  const handleSearch = useCallback<
+    NonNullable<FormProps<SearchFormColumns>["onFinish"]>
+  >((search) => {
+    router.get(
+      route("admin.access_logs.index"),
+      {
+        ...search,
+      },
+      {
+        only: ["logs", "search"],
+      },
+    );
+  }, []);
+
+  const resetSearch = useCallback<MouseEventHandler>((e) => {
+    e.preventDefault();
+    router.get(
+      route("admin.access_logs.index"),
+      {},
+      {
+        only: ["logs", "search"],
+      },
+    );
+  }, []);
+
   return (
     <>
       <Head title="访问日志" />
-      <ContentContainer>
-        <Table
+      <ContentContainer pageTitle="访问日志">
+        <div style={{ marginBottom: 24 }}>
+          <Form<SearchFormColumns>
+            layout="inline"
+            onFinish={handleSearch}
+            initialValues={{ ip, ua }}
+          >
+            <Form.Item name="ip" label="IP">
+              <Input placeholder="搜索 IP" />
+            </Form.Item>
+            <Form.Item name="ua" label="UA">
+              <Input placeholder="搜索 UA" />
+            </Form.Item>
+
+            <Form.Item>
+              <Button type="primary" htmlType="submit">
+                搜索
+              </Button>
+            </Form.Item>
+
+            <Form.Item>
+              <Button onClick={resetSearch}>重置搜索</Button>
+            </Form.Item>
+          </Form>
+        </div>
+
+        <Table<AccessLog>
           bordered
           dataSource={logs.data}
           columns={columns}

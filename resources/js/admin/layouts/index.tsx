@@ -1,6 +1,7 @@
 import React, { FC, PropsWithChildren, useEffect, useState } from "react";
 import {
   FileTextOutlined,
+  HistoryOutlined,
   HomeOutlined,
   MenuOutlined,
   TagOutlined,
@@ -63,6 +64,11 @@ const AdminLayoutContainer: FC<PropsWithChildren> = ({ children }) => {
       key: "admin.tags.index",
       icon: <TagOutlined />,
       label: <Link href={route("admin.tags.index")}>标签管理</Link>,
+    },
+    {
+      key: "admin.access_logs.index",
+      icon: <HistoryOutlined />,
+      label: <Link href={route("admin.access_logs.index")}>访问日志</Link>,
     },
   ];
 

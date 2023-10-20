@@ -2,7 +2,8 @@ import { createRoot } from "react-dom/client";
 import { createInertiaApp } from "@inertiajs/react";
 import "antd/dist/reset.css";
 import "@styles/admin.css";
-import { App as AntApp } from "antd";
+import { App as AntApp, ConfigProvider } from "antd";
+import zhCn from "antd/locale/zh_CN";
 import resolvePage from "./resolvePage";
 
 const appName =
@@ -16,9 +17,11 @@ createInertiaApp({
     const root = createRoot(el);
 
     root.render(
-      <AntApp>
-        <App {...props} />
-      </AntApp>,
+      <ConfigProvider locale={zhCn}>
+        <AntApp>
+          <App {...props} />
+        </AntApp>
+      </ConfigProvider>,
     );
   },
 });
