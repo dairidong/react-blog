@@ -6,6 +6,7 @@ import {
   FormProps,
   Input,
   PaginationProps,
+  Space,
   Table,
   Tag,
   theme,
@@ -147,26 +148,38 @@ const Index: FC<Props> = ({ logs, search: { ip, ua } }) => {
       <ContentContainer pageTitle="访问日志">
         <div style={{ marginBottom: 24 }}>
           <Form<SearchFormColumns>
-            layout="inline"
             onFinish={handleSearch}
             initialValues={{ ip, ua }}
           >
-            <Form.Item name="ip" label="IP">
-              <Input placeholder="搜索 IP" />
-            </Form.Item>
-            <Form.Item name="ua" label="UA">
-              <Input placeholder="搜索 UA" />
-            </Form.Item>
+            <Space align="center" size="large" wrap>
+              <Space size="middle">
+                <Space>
+                  <label htmlFor="ip">IP：</label>
+                  <Form.Item name="ip" noStyle>
+                    <Input placeholder="搜索 IP" />
+                  </Form.Item>
+                </Space>
 
-            <Form.Item>
-              <Button type="primary" htmlType="submit">
-                搜索
-              </Button>
-            </Form.Item>
+                <Space>
+                  <label htmlFor="ua">UA：</label>
+                  <Form.Item name="ua" noStyle>
+                    <Input placeholder="搜索 UA" />
+                  </Form.Item>
+                </Space>
+              </Space>
 
-            <Form.Item>
-              <Button onClick={resetSearch}>重置搜索</Button>
-            </Form.Item>
+              <Space>
+                <Form.Item noStyle>
+                  <Button type="primary" htmlType="submit">
+                    搜索
+                  </Button>
+                </Form.Item>
+
+                <Form.Item noStyle>
+                  <Button onClick={resetSearch}>重置搜索</Button>
+                </Form.Item>
+              </Space>
+            </Space>
           </Form>
         </div>
 
