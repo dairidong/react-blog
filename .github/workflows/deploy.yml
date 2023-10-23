@@ -22,4 +22,4 @@ jobs:
           key: ${{ secrets.SSHKEY }}
           script: |
             cd ${{ vars.PATH }}
-            ./deploy_blog.sh
+            ./deploy_react_blog.sh
