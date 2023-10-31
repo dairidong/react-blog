@@ -1,6 +1,6 @@
 import { FC, useMemo } from "react";
 import { Form as AntForm, Input, Select, SelectProps } from "antd";
-import { map } from "lodash";
+import { map } from "lodash-es";
 import { Article, Tag } from "@/types/models";
 import Form from "@/admin/components/form/Form";
 import Editor from "@/admin/components/form/Fields/Editor";

@@ -1,7 +1,7 @@
 import { App, Form as AntForm } from "antd";
 import { Callbacks, FieldData } from "rc-field-form/es/interface";
 import { useForm as useInertiaForm } from "@inertiajs/react";
-import { map, omit } from "lodash";
+import { map, omit } from "lodash-es";
 import { useCallback, useMemo } from "react";
 import { FormHookProps } from "@/types";
 

@@ -11,7 +11,7 @@ import {
 import ModalForm from "@admin/components/form/ModalForm";
 import { ColumnsType, ColumnType } from "antd/es/table";
 import { timeTemplate } from "@admin/constants";
-import { has, isArray, isPlainObject, map } from "lodash";
+import { has, isArray, isPlainObject, map } from "lodash-es";
 import { Tag } from "@/types/models";
 import {
   transformOrderDirectionFromAntToRequest,

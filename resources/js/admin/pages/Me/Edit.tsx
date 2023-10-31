@@ -3,7 +3,7 @@ import Form from "@admin/components/form/Form";
 import { FC, useMemo } from "react";
 import { Divider, Form as AntForm, Input } from "antd";
 import { EditOutlined, UserOutlined } from "@ant-design/icons";
-import { pick } from "lodash";
+import { pick } from "lodash-es";
 import { Administrator } from "@/types/models";
 
 interface Props {

@@ -1,6 +1,6 @@
 import { Head, Link } from "@inertiajs/react";
 import { FC } from "react";
-import { isEmpty } from "lodash";
+import { isEmpty } from "lodash-es";
 import arrowNextLtr from "@iconify/icons-ooui/arrow-next-ltr";
 import { Icon } from "@iconify/react";
 import {

@@ -3,7 +3,7 @@ import { Head, Link } from "@inertiajs/react";
 import { Icon } from "@iconify/react";
 import arrowNextLtr from "@iconify/icons-ooui/arrow-next-ltr";
 import arrowPreviousLtr from "@iconify/icons-ooui/arrow-previous-ltr";
-import { isEmpty } from "lodash";
+import { isEmpty } from "lodash-es";
 import { SimplePagination } from "@/types";
 import { Article } from "@/types/models";
 

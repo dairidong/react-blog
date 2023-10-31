@@ -5,7 +5,7 @@ import breaks from "@bytemd/plugin-breaks";
 import frontmatter from "@bytemd/plugin-frontmatter";
 import gemoji from "@bytemd/plugin-gemoji";
 import highlight from "@bytemd/plugin-highlight";
-import { isNumber } from "lodash";
+import { isNumber } from "lodash-es";
 import zh from "bytemd/locales/zh_Hans.json";
 import gfmZh from "@bytemd/plugin-gfm/locales/zh_Hans.json";
 import "bytemd/dist/index.css";
