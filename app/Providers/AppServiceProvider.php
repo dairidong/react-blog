@@ -2,10 +2,16 @@
 
 namespace App\Providers;
 
+use App\Inertia\HttpGateway;
 use Illuminate\Support\ServiceProvider;
+use Inertia\Ssr\Gateway;
 
 class AppServiceProvider extends ServiceProvider
 {
+    public array $bindings = [
+        Gateway::class => HttpGateway::class,
+    ];
+
     /**
      * Register any application services.
      */
