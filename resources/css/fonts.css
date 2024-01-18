@@ -1,52 +1,52 @@
 @font-face {
     font-family: 'PressStart2P-Regular';
-    src: url("../fonts/PressStart2P-Regular.ttf");
+    src: url("/assets/fonts/PressStart2P-Regular.ttf");
 }
 
 @font-face {
     font-family: AlimamaShuHeiTi-Bold;
-    src: url("../fonts/AlimamaShuHeiTi-bold/AlimamaShuHeiTi-Bold.otf") format('opentype'),
-    url("../fonts/AlimamaShuHeiTi-bold/AlimamaShuHeiTi-Bold.ttf") format('TrueType'),
-    url("../fonts/AlimamaShuHeiTi-bold/AlimamaShuHeiTi-Bold.woff") format('woff'),
-    url("../fonts/AlimamaShuHeiTi-bold/AlimamaShuHeiTi-Bold.woff2") format('woff2');
+    src: url("/assets/fonts/AlimamaShuHeiTi-bold/AlimamaShuHeiTi-Bold.otf") format('opentype'),
+    url("/assets/fonts/AlimamaShuHeiTi-bold/AlimamaShuHeiTi-Bold.ttf") format('TrueType'),
+    url("/assets/fonts/AlimamaShuHeiTi-bold/AlimamaShuHeiTi-Bold.woff") format('woff'),
+    url("/assets/fonts/AlimamaShuHeiTi-bold/AlimamaShuHeiTi-Bold.woff2") format('woff2');
 }
 
 @font-face {
     font-family: AlibabaPuHuiTi-3;
-    src:url("../fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-45-Light/AlibabaPuHuiTi-3-45-Light.eot") format('embedded-opentype'),
-    url("../fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-45-Light/AlibabaPuHuiTi-3-45-Light.otf") format('opentype'),
-    url("../fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-45-Light/AlibabaPuHuiTi-3-45-Light.ttf") format('TrueType'),
-    url("../fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-45-Light/AlibabaPuHuiTi-3-45-Light.woff") format('woff'),
-    url("../fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-45-Light/AlibabaPuHuiTi-3-45-Light.woff2") format('woff2');
+    src:url("/assets/fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-45-Light/AlibabaPuHuiTi-3-45-Light.eot") format('embedded-opentype'),
+    url("/assets/fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-45-Light/AlibabaPuHuiTi-3-45-Light.otf") format('opentype'),
+    url("/assets/fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-45-Light/AlibabaPuHuiTi-3-45-Light.ttf") format('TrueType'),
+    url("/assets/fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-45-Light/AlibabaPuHuiTi-3-45-Light.woff") format('woff'),
+    url("/assets/fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-45-Light/AlibabaPuHuiTi-3-45-Light.woff2") format('woff2');
     font-weight: 200;
 }
 
 @font-face {
     font-family: AlibabaPuHuiTi-3;
-    src:url("../fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.eot") format('embedded-opentype'),
-    url("../fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.otf") format('opentype'),
-    url("../fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.ttf") format('TrueType'),
-    url("../fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.woff") format('woff'),
-    url("../fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.woff2") format('woff2');
+    src:url("/assets/fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.eot") format('embedded-opentype'),
+    url("/assets/fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.otf") format('opentype'),
+    url("/assets/fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.ttf") format('TrueType'),
+    url("/assets/fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.woff") format('woff'),
+    url("/assets/fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.woff2") format('woff2');
     font-weight: 300;
 }
 
 @font-face {
     font-family: AlibabaPuHuiTi-3;
-    src: url("../fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-65-Medium/AlibabaPuHuiTi-3-65-Medium.eot") format('embedded-opentype'),
-    url("../fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-65-Medium/AlibabaPuHuiTi-3-65-Medium.otf") format('opentype'),
-    url("../fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-65-Medium/AlibabaPuHuiTi-3-65-Medium.ttf") format('TrueType'),
-    url("../fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-65-Medium/AlibabaPuHuiTi-3-65-Medium.woff") format('woff'),
-    url("../fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-65-Medium/AlibabaPuHuiTi-3-65-Medium.woff2") format('woff2');
+    src: url("/assets/fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-65-Medium/AlibabaPuHuiTi-3-65-Medium.eot") format('embedded-opentype'),
+    url("/assets/fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-65-Medium/AlibabaPuHuiTi-3-65-Medium.otf") format('opentype'),
+    url("/assets/fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-65-Medium/AlibabaPuHuiTi-3-65-Medium.ttf") format('TrueType'),
+    url("/assets/fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-65-Medium/AlibabaPuHuiTi-3-65-Medium.woff") format('woff'),
+    url("/assets/fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-65-Medium/AlibabaPuHuiTi-3-65-Medium.woff2") format('woff2');
     font-weight: 500;
 }
 
 @font-face {
     font-family: AlibabaPuHuiTi-3;
-    src: url("../fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-105-Heavy/AlibabaPuHuiTi-3-105-Heavy.eot") format('embedded-opentype'),
-    url("../fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-105-Heavy/AlibabaPuHuiTi-3-105-Heavy.otf") format('opentype'),
-    url("../fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-105-Heavy/AlibabaPuHuiTi-3-105-Heavy.ttf") format('TrueType'),
-    url("../fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-105-Heavy/AlibabaPuHuiTi-3-105-Heavy.woff") format('woff'),
-    url("../fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-105-Heavy/AlibabaPuHuiTi-3-105-Heavy.woff2") format('woff2');
+    src: url("/assets/fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-105-Heavy/AlibabaPuHuiTi-3-105-Heavy.eot") format('embedded-opentype'),
+    url("/assets/fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-105-Heavy/AlibabaPuHuiTi-3-105-Heavy.otf") format('opentype'),
+    url("/assets/fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-105-Heavy/AlibabaPuHuiTi-3-105-Heavy.ttf") format('TrueType'),
+    url("/assets/fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-105-Heavy/AlibabaPuHuiTi-3-105-Heavy.woff") format('woff'),
+    url("/assets/fonts/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-105-Heavy/AlibabaPuHuiTi-3-105-Heavy.woff2") format('woff2');
     font-weight: 900;
 }
