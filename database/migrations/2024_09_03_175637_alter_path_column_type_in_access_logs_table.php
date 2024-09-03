@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('access_logs', function (Blueprint $table) {
-            $table->text('path')->change();
+            $table->string('path', 3000)->change();
         });
     }
 
