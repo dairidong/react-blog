@@ -1,18 +1,18 @@
-import { FC } from "react";
-import { Head, Link } from "@inertiajs/react";
-import { Icon } from "@iconify/react";
+import {FC} from "react";
+import {Head, Link} from "@inertiajs/react";
+import {Icon} from "@iconify/react";
 import arrowNextLtr from "@iconify/icons-ooui/arrow-next-ltr";
 import arrowPreviousLtr from "@iconify/icons-ooui/arrow-previous-ltr";
-import { isEmpty } from "lodash-es";
-import { SimplePagination } from "@/types";
-import { Article } from "@/types/models";
+import {isEmpty} from "lodash-es";
+import {SimplePagination} from "@/types";
+import {Article} from "@/types/models";
 
 import styles from "./styles.module.pcss";
-import { cn } from "@/lib/utils";
-import { formatTime } from "@/lib/dayjs";
-import { Badge } from "@/components/ui/badge";
+import {cn} from "@/lib/utils";
+import {formatTime} from "@/lib/dayjs";
+import {Badge} from "@/components/ui/badge";
 
-const Index: FC<{ articles: SimplePagination<Article> }> = ({ articles }) => (
+const Index: FC<{ articles: SimplePagination<Article> }> = ({articles}) => (
   <>
     <Head title="文章" />
     <div className="tw-container tw-mt-5 tw-flex tw-max-w-screen-lg tw-flex-col tw-gap-y-10 lg:tw-mt-10">
@@ -42,21 +42,22 @@ const Index: FC<{ articles: SimplePagination<Article> }> = ({ articles }) => (
                     ))}
                   </div>
                 )}
-                <div className="tw-flex tw-flex-wrap tw-gap-x-5 tw-font-ali-puhui tw-text-muted-foreground">
+                <div className="tw-flex tw-flex-wrap tw-gap-x-5 tw-font-nato tw-text-muted-foreground">
                   <div>发布时间：{formatTime(article.created_at)}</div>
                   <div>最后更新于：{formatTime(article.updated_at)}</div>
                 </div>
-                <p className="tw-my-3 tw-font-ali-puhui tw-text-sm tw-text-muted-foreground">
+                <p className="tw-my-3 tw-font-nato tw-text-sm tw-text-muted-foreground">
                   {article.description || article.title}
                 </p>
 
                 <div className="tw-flex tw-justify-between">
-                  <div className="tw-text-muted-foreground">
-                    阅读量：{article.visits_count}
+                  <div className="tw-text-muted-foreground tw-font-nato">
+                    <span>阅读量：</span>
+                    <span>{article.visits_count}</span>
                   </div>
                   <Link
                     href={route("articles.show", article.slug || article.id)}
-                    className="tw-g-1 animated-underline tw-flex tw-items-center tw-gap-1 tw-font-ali-puhui"
+                    className="tw-g-1 animated-underline tw-flex tw-items-center tw-gap-1 tw-font-nato"
                   >
                     <span>Read More</span> <Icon icon={arrowNextLtr} />
                   </Link>

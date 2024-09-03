@@ -71,7 +71,7 @@ const Login = () => {
               >
                 <Title
                   level={3}
-                  style={{ fontFamily: "PressStart2P-Regular", margin: 0 }}
+                  style={{ fontFamily: "'Press Start 2P'", margin: 0 }}
                 >
                   DRD BLOG
                 </Title>

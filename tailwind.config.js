@@ -72,9 +72,9 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        digit: ["PressStart2P-Regular", "ui-sans-serif", "system-ui"],
-        "ali-shuhei": ["AlimamaShuHeiTi-Bold", "ui-sans-serif", "system-ui"],
-        "ali-puhui": ["AlibabaPuHuiTi-3", "ui-sans-serif", "system-ui"],
+        digit: ['"Press Start 2P"', "ui-sans-serif", "system-ui"],
+        "junjun": ["'荆南俊俊体'", "ui-sans-serif", "system-ui"],
+        "nato": ["'Noto Sans CJK SC'", "ui-sans-serif", "system-ui"],
         code: [
           "Fira Code",
           "Fira Mono",
