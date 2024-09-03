@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b2e092e1e7a09cef74735e6d1b66956d",
+    "content-hash": "228fe2be64d450b5a7be71e6edae3d32",
     "packages": [
         {
             "name": "awssat/laravel-visits",
@@ -7310,8 +7310,9 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.1"
+        "php": "^8.1",
+        "ext-swoole": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
