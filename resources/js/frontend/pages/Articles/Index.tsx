@@ -1,18 +1,18 @@
-import {FC} from "react";
-import {Head, Link} from "@inertiajs/react";
-import {Icon} from "@iconify/react";
+import { FC } from "react";
+import { Head, Link } from "@inertiajs/react";
+import { Icon } from "@iconify/react";
 import arrowNextLtr from "@iconify/icons-ooui/arrow-next-ltr";
 import arrowPreviousLtr from "@iconify/icons-ooui/arrow-previous-ltr";
-import {isEmpty} from "lodash-es";
-import {SimplePagination} from "@/types";
-import {Article} from "@/types/models";
+import { isEmpty } from "lodash-es";
+import { SimplePagination } from "@/types";
+import { Article } from "@/types/models";
 
 import styles from "./styles.module.pcss";
-import {cn} from "@/lib/utils";
-import {formatTime} from "@/lib/dayjs";
-import {Badge} from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+import { formatTime } from "@/lib/dayjs";
+import { Badge } from "@/components/ui/badge";
 
-const Index: FC<{ articles: SimplePagination<Article> }> = ({articles}) => (
+const Index: FC<{ articles: SimplePagination<Article> }> = ({ articles }) => (
   <>
     <Head title="文章" />
     <div className="tw-container tw-mt-5 tw-flex tw-max-w-screen-lg tw-flex-col tw-gap-y-10 lg:tw-mt-10">
@@ -51,7 +51,7 @@ const Index: FC<{ articles: SimplePagination<Article> }> = ({articles}) => (
                 </p>
 
                 <div className="tw-flex tw-justify-between">
-                  <div className="tw-text-muted-foreground tw-font-nato">
+                  <div className="tw-font-nato tw-text-muted-foreground">
                     <span>阅读量：</span>
                     <span>{article.visits_count}</span>
                   </div>

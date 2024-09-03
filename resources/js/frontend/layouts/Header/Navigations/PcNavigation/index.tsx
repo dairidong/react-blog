@@ -43,6 +43,7 @@ const PcNavigation: FC = () => {
               rel="noreferrer"
             >
               <Icon icon={githubIcon} className="tw-text-4xl" />
+              <span aria-hidden="true" className="tw-hidden">github</span>
             </a>
           </NavigationMenuLink>
         </NavigationMenuItem>
