@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { Icon } from "@iconify/react";
 import githubIcon from "@iconify/icons-mdi/github";
 import { Link } from "@inertiajs/react";
+import { useRoute } from "ziggy-js";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -12,6 +13,8 @@ import {
 import { cn } from "@/lib/utils";
 
 const PcNavigation: FC = () => {
+  const route = useRoute();
+
   return (
     <NavigationMenu className="tw-hidden md:tw-flex">
       <NavigationMenuList>
@@ -43,7 +46,9 @@ const PcNavigation: FC = () => {
               rel="noreferrer"
             >
               <Icon icon={githubIcon} className="tw-text-4xl" />
-              <span aria-hidden="true" className="tw-hidden">github</span>
+              <span aria-hidden="true" className="tw-hidden">
+                github
+              </span>
             </a>
           </NavigationMenuLink>
         </NavigationMenuItem>

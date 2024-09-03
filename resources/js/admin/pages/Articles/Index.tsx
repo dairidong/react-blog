@@ -9,12 +9,15 @@ import {
   PlusOutlined,
 } from "@ant-design/icons";
 import { timeTemplate } from "@admin/constants";
+import { useRoute } from "ziggy-js";
 import { LaravelPagination } from "@/types";
 import { Article } from "@/types/models";
 import { formatTime } from "@/lib/dayjs";
 import ContentContainer from "@/admin/layouts/components/ContentContainer";
 
 const Index: FC<{ articles: LaravelPagination<Article> }> = ({ articles }) => {
+  const route = useRoute();
+
   const {
     token: { colorTextSecondary, colorErrorText },
   } = theme.useToken();
@@ -48,7 +51,7 @@ const Index: FC<{ articles: LaravelPagination<Article> }> = ({ articles }) => {
         okText: "删除",
         onOk: () => {
           return new Promise((resolve) => {
-            router.delete(route("admin.articles.destroy", article), {
+            router.delete(route("admin.articles.destroy", article.id), {
               onFinish: () => resolve("deleted"),
               preserveScroll: true,
               only: ["articles", "flash", "errors"],
@@ -64,7 +67,7 @@ const Index: FC<{ articles: LaravelPagination<Article> }> = ({ articles }) => {
     (article: Article) => {
       if (article.published_at === null) {
         router.post(
-          route("admin.articles.publish", article),
+          route("admin.articles.publish", article.id),
           {},
           {
             preserveScroll: true,
@@ -72,7 +75,7 @@ const Index: FC<{ articles: LaravelPagination<Article> }> = ({ articles }) => {
           },
         );
       } else {
-        router.delete(route("admin.articles.unpublish", article), {
+        router.delete(route("admin.articles.unpublish", article.id), {
           preserveScroll: true,
           only: ["articles", "flash", "errors"],
         });
@@ -107,7 +110,7 @@ const Index: FC<{ articles: LaravelPagination<Article> }> = ({ articles }) => {
                   unCheckedChildren="未发布"
                   onChange={(checked, event) => switchPublish(article)}
                 />,
-                <Link href={route("admin.articles.edit", article)}>
+                <Link href={route("admin.articles.edit", article.id)}>
                   <Button type="primary" icon={<EditFilled key="edit" />} />
                 </Link>,
                 <Button

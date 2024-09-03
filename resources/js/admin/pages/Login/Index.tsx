@@ -3,6 +3,7 @@ import React from "react";
 import { Button, Card, Checkbox, Form, Input, theme, Typography } from "antd";
 import useForm from "@admin/components/form/hooks/useForm";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { useRoute } from "ziggy-js";
 import svg from "./bg.svg?url";
 
 interface Credentials extends Record<string, any> {
@@ -24,6 +25,8 @@ const Login = () => {
   const {
     token: { colorBgLayout, colorTextSecondary, colorTextDescription },
   } = theme.useToken();
+
+  const route = useRoute();
 
   const { formInstance, onValuesChange, onFinish, processing, hasErrors } =
     useForm<Credentials>({

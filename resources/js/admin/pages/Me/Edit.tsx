@@ -4,6 +4,7 @@ import { FC, useMemo } from "react";
 import { Divider, Form as AntForm, Input } from "antd";
 import { EditOutlined, UserOutlined } from "@ant-design/icons";
 import { pick } from "lodash-es";
+import { useRoute } from "ziggy-js";
 import { Administrator } from "@/types/models";
 
 interface Props {
@@ -11,10 +12,12 @@ interface Props {
 }
 
 const Edit: FC<Props> = ({ user }) => {
+  const route = useRoute();
   const formDefaultValues = useMemo(
     () => pick(user, ["username", "name"]),
     [user],
   );
+
   return (
     <>
       <Head title="个人设置" />

@@ -1,11 +1,11 @@
-import { Menu, MenuTheme, Row, theme, Typography } from "antd";
+import { Menu, MenuTheme, Row, theme, Typography, MenuProps } from "antd";
 import React, { FC, useMemo } from "react";
-import { MenuItemType } from "antd/es/menu/hooks/useItems";
+import { useRoute } from "ziggy-js";
 
 interface Props {
   collapsed: boolean;
   showSider: boolean;
-  menuItems: MenuItemType[];
+  menuItems: MenuProps["items"];
   menuTheme?: MenuTheme;
 }
 
@@ -20,6 +20,8 @@ const SideMenu: FC<Props> = ({
   const {
     token: { colorText },
   } = theme.useToken();
+
+  const route = useRoute();
 
   const defaultSelectKeys = useMemo(() => route().current() || "", []);
 

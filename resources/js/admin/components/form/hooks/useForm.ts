@@ -3,6 +3,7 @@ import { Callbacks, FieldData } from "rc-field-form/es/interface";
 import { useForm as useInertiaForm } from "@inertiajs/react";
 import { map, omit } from "lodash-es";
 import { useCallback, useMemo } from "react";
+import { useRoute } from "ziggy-js";
 import { FormHookProps } from "@/types";
 
 export default function useForm<
@@ -15,6 +16,8 @@ export default function useForm<
   errorMessage,
   submitOptions,
 }: FormHookProps<T>) {
+  const route = useRoute();
+
   const {
     data,
     setData,

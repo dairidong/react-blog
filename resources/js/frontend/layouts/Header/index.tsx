@@ -1,4 +1,5 @@
 import React, { memo, useRef, useState } from "react";
+import { useRoute } from "ziggy-js";
 import styles from "./styles.module.pcss";
 import mobileStyles from "./Navigations/MobileNavigation/styles.module.pcss";
 import PcNavigation from "./Navigations/PcNavigation";
@@ -13,6 +14,7 @@ import Logo from "@/components/Logo";
 const Header = memo(() => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const route = useRoute();
 
   const triggerMenu = (withAnimation: boolean) => {
     menuRef.current?.classList.toggle(

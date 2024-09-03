@@ -1,6 +1,7 @@
 import { FC, useMemo } from "react";
 import { Form as AntForm, Input, Select, SelectProps } from "antd";
 import { map } from "lodash-es";
+import { useRoute } from "ziggy-js";
 import { Article, Tag } from "@/types/models";
 import Form from "@/admin/components/form/Form";
 import Editor from "@/admin/components/form/Fields/Editor";
@@ -19,6 +20,8 @@ interface ArticleFormFields extends Record<string, unknown> {
 }
 
 const ArticleForm: FC<Props> = ({ article, tags }) => {
+  const route = useRoute();
+
   const defaultValues = useMemo<ArticleFormFields>(() => {
     return article
       ? {

@@ -12,6 +12,7 @@ import ModalForm from "@admin/components/form/ModalForm";
 import { ColumnsType, ColumnType } from "antd/es/table";
 import { timeTemplate } from "@admin/constants";
 import { has, isArray, isPlainObject, map } from "lodash-es";
+import { useRoute } from "ziggy-js";
 import { Tag } from "@/types/models";
 import {
   transformOrderDirectionFromAntToRequest,
@@ -65,6 +66,7 @@ const Index: FC<Props> = ({ tags }) => {
   const {
     token: { colorErrorText },
   } = theme.useToken();
+  const route = useRoute();
 
   const { modal } = App.useApp();
 
@@ -82,7 +84,7 @@ const Index: FC<Props> = ({ tags }) => {
         okText: "删除",
         onOk: () => {
           return new Promise((resolve) => {
-            router.delete(route("admin.tags.destroy", tag), {
+            router.delete(route("admin.tags.destroy", tag.id), {
               only: ["tags"],
               onFinish: () => resolve("deleted"),
             });
@@ -120,7 +122,7 @@ const Index: FC<Props> = ({ tags }) => {
           return (
             <Row style={{ gap: 10 }}>
               <ModalForm
-                url={route("admin.tags.update", record)}
+                url={route("admin.tags.update", record.id)}
                 method="put"
                 title="更新标签"
                 layout="vertical"

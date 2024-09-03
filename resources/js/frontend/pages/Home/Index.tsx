@@ -3,6 +3,7 @@ import { FC } from "react";
 import { isEmpty } from "lodash-es";
 import arrowNextLtr from "@iconify/icons-ooui/arrow-next-ltr";
 import { Icon } from "@iconify/react";
+import { useRoute } from "ziggy-js";
 import {
   Card,
   CardDescription,
@@ -20,6 +21,8 @@ interface Props {
 }
 
 const Home: FC<Props> = ({ latestArticles, hottestArticles }) => {
+  const route = useRoute();
+
   return (
     <>
       <Head title="首页" />

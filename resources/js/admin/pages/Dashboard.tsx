@@ -52,7 +52,7 @@ const Dashboard: FC<Props> = ({ appStats }) => {
         }),
       );
 
-    let intervalId: NodeJS.Timer;
+    let intervalId: number | NodeJS.Timeout | undefined;
     if (appStats.find((stat) => stat.key === "octaneRunningTime")) {
       transformRunningTime(appStats);
 

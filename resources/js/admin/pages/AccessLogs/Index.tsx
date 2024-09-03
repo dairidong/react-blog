@@ -15,6 +15,7 @@ import {
 import React, { FC, MouseEventHandler, useCallback } from "react";
 import { ColumnsType } from "antd/es/table";
 import { timeTemplate } from "@admin/constants";
+import { useRoute } from "ziggy-js";
 import { LaravelPagination } from "@/types";
 import { AccessLog } from "@/types/models";
 import { formatTime } from "@/lib/dayjs";
@@ -100,6 +101,8 @@ const columns: ColumnsType<AccessLog> = [
 ];
 
 const Index: FC<Props> = ({ logs, search: { ip, ua } }) => {
+  const route = useRoute();
+
   const pagination: PaginationProps = {
     pageSize: logs.per_page,
     total: logs.total,

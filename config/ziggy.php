@@ -8,4 +8,5 @@ return [
         ],
         'admin' => ['admin.*'],
     ],
+    'skip-route-function' => true
 ];

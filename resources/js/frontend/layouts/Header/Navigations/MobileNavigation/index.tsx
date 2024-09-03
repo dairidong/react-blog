@@ -2,12 +2,15 @@ import { Icon } from "@iconify/react";
 import githubIcon from "@iconify/icons-mdi/github";
 import React, { forwardRef, useContext } from "react";
 import Link from "@frontend/layouts/Header/Link";
+import { useRoute } from "ziggy-js";
 import { cn } from "@/lib/utils";
 import styles from "./styles.module.pcss";
 import MobileNavControlContext from "./MobileNavControlContext";
 
 const MobileNavigation = forwardRef<HTMLDivElement>((props, ref) => {
   const { menuOpen, triggerMenu } = useContext(MobileNavControlContext);
+  const route = useRoute();
+
   return (
     <>
       <div

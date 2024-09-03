@@ -19,7 +19,7 @@ import {
   theme,
 } from "antd";
 import { Link, usePage } from "@inertiajs/react";
-import { MenuItemType } from "antd/es/menu/hooks/useItems";
+import { useRoute } from "ziggy-js";
 import { Message, PageProps } from "@/types";
 import { Administrator } from "@/types/models";
 import SideMenu from "./components/SideMenu";
@@ -38,6 +38,8 @@ const AdminLayoutContainer: FC<PropsWithChildren> = ({ children }) => {
     token: { colorBgContainer },
   } = theme.useToken();
 
+  const route = useRoute();
+
   const {
     flash: { message },
     auth: { user },
@@ -49,7 +51,7 @@ const AdminLayoutContainer: FC<PropsWithChildren> = ({ children }) => {
     }
   }, [message]);
 
-  const menuItems: MenuItemType[] = [
+  const menuItems: MenuProps["items"] = [
     {
       key: "admin.dashboard",
       icon: <HomeOutlined />,
@@ -123,11 +125,13 @@ const AdminLayoutContainer: FC<PropsWithChildren> = ({ children }) => {
         closeIcon={false}
         placement="left"
         onClose={() => setDrawerOpen(false)}
-        contentWrapperStyle={{
-          maxWidth: "50vw",
-        }}
-        bodyStyle={{
-          padding: 0,
+        styles={{
+          body: {
+            padding: 0,
+          },
+          wrapper: {
+            maxWidth: "50vw",
+          },
         }}
       >
         <SideMenu

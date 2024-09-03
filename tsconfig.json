@@ -24,7 +24,8 @@
             ],
             "@admin/*": [
                 "./resources/js/admin/*"
-            ]
+            ],
+            "ziggy-js": ["./vendor/tightenco/ziggy"]
         }
     },
     "include": [

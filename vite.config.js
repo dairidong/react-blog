@@ -19,6 +19,7 @@ export default defineConfig({
       "@styles": path.resolve(__dirname, "./resources/css"),
       "@frontend": path.resolve(__dirname, "./resources/js/frontend"),
       "@admin": path.resolve(__dirname, "./resources/js/admin"),
+      "ziggy-js": path.resolve(__dirname, "vendor/tightenco/ziggy")
     },
   },
   server: {

@@ -14,6 +14,7 @@ import "highlight.js/styles/vs.css";
 import { editorUploadImage } from "@admin/requests";
 import { AxiosError } from "axios";
 import { App } from "antd";
+import { useRoute } from "ziggy-js";
 
 type Props = {
   value?: string;
@@ -38,6 +39,7 @@ const Editor: FC<Props> = ({
   minHeight,
   placeholder = "",
 }) => {
+  const route = useRoute();
   const { notification } = App.useApp();
 
   const uploadUrl = useMemo(() => route("admin.images.store"), []);
