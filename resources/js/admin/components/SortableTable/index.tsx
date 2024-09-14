@@ -11,14 +11,6 @@ import { Table, TableProps } from "antd";
 import { AnyObject } from "antd/es/_util/type";
 import Row from "./Row";
 
-const getRowKey = <T extends AnyObject>(
-  rowData: T,
-  rowKey: TableProps<T>["rowKey"] = "key",
-  index: number | undefined = undefined,
-) => {
-  return typeof rowKey === "function" ? rowKey(rowData, index) : rowKey;
-};
-
 export type DragSortEndEventFn<T = unknown> = (
   newDataSource: T[],
 ) => Promise<void> | void;
@@ -39,12 +31,8 @@ const SortableTable = <T extends AnyObject>({
 
   const onDragEnd = ({ active, over, collisions }: DragEndEvent) => {
     if (active.id !== over?.id) {
-      const activeIndex = data.findIndex(
-        (i) => i[getRowKey(i, rowKey)] === active.id,
-      );
-      const overIndex = data.findIndex(
-        (i) => i[getRowKey(i, rowKey)] === over?.id,
-      );
+      const activeIndex = data.findIndex((i) => i.key === active.id);
+      const overIndex = data.findIndex((i) => i.key === over?.id);
       const newData = arrayMove(data, activeIndex, overIndex);
 
       setData((previous) => newData);
@@ -59,7 +47,7 @@ const SortableTable = <T extends AnyObject>({
     <DndContext modifiers={[restrictToVerticalAxis]} onDragEnd={onDragEnd}>
       <SortableContext
         // rowKey array
-        items={data.map((i) => i[getRowKey(i, rowKey)])}
+        items={data.map((i) => i.key)}
         strategy={verticalListSortingStrategy}
       >
         <Table
