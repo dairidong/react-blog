@@ -4,16 +4,8 @@ import { isEmpty } from "lodash-es";
 import arrowNextLtr from "@iconify/icons-ooui/arrow-next-ltr";
 import { Icon } from "@iconify/react";
 import { useRoute } from "ziggy-js";
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { formatTime } from "@/lib/dayjs";
 import { Article } from "@/types/models";
-import styles from "./styles.module.pcss";
+import ArticleCard from "@frontend/pages/Home/article-card";
 
 interface Props {
   latestArticles: Article[];
@@ -53,19 +45,7 @@ const Home: FC<Props> = ({ latestArticles, hottestArticles }) => {
                     href={route("articles.show", article.slug ?? article.id)}
                     key={article.id}
                   >
-                    <Card className={styles.articleCard}>
-                      <CardHeader className="tw-gap-y-2">
-                        <CardTitle className="xs:tw-text-xl sm:tw-text-2xl">
-                          {article.title}
-                        </CardTitle>
-                        <CardDescription>
-                          {article.description ?? article.title}
-                        </CardDescription>
-                      </CardHeader>
-                      <CardFooter className="tw-justify-between">
-                        <section>{formatTime(article.created_at)}</section>
-                      </CardFooter>
-                    </Card>
+                    <ArticleCard article={article} />
                   </Link>
                 ))}
               </div>
@@ -91,19 +71,7 @@ const Home: FC<Props> = ({ latestArticles, hottestArticles }) => {
                     href={route("articles.show", article.slug ?? article.id)}
                     key={article.id}
                   >
-                    <Card className={styles.articleCard}>
-                      <CardHeader className="tw-gap-y-2">
-                        <CardTitle className="xs:tw-text-xl sm:tw-text-2xl">
-                          {article.title}
-                        </CardTitle>
-                        <CardDescription>
-                          {article.description ?? article.title}
-                        </CardDescription>
-                      </CardHeader>
-                      <CardFooter className="tw-justify-between">
-                        <section>{formatTime(article.created_at)}</section>
-                      </CardFooter>
-                    </Card>
+                    <ArticleCard article={article} />
                   </Link>
                 ))}
               </div>

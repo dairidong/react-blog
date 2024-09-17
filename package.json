@@ -68,6 +68,7 @@
         "class-variance-authority": "^0.6.1",
         "clsx": "^1.2.1",
         "dayjs": "^1.11.9",
+        "framer-motion": "^11.5.4",
         "github-markdown-css": "^5.2.0",
         "highlight.js": "^11.8.0",
         "laravel-vite-plugin": "^0.7.5",
