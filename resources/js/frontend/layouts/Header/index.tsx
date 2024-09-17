@@ -26,30 +26,32 @@ const Header = memo(() => {
   };
 
   return (
-    <div className={styles.navbarContainer}>
-      <MobileNavControlProvider
-        value={{
-          menuOpen,
-          triggerMenu,
-        }}
-      >
-        <div className={styles.navbar}>
-          {/* Logo */}
-          <div>
-            <Link href={route("home")} closeMenu>
-              <Logo />
-            </Link>
-          </div>
+    <header>
+      <div className={styles.navbarContainer}>
+        <MobileNavControlProvider
+          value={{
+            menuOpen,
+            triggerMenu,
+          }}
+        >
+          <div className={styles.navbar}>
+            {/* Logo */}
+            <div>
+              <Link href={route("home")} closeMenu>
+                <Logo />
+              </Link>
+            </div>
 
-          <PcNavigation />
-          <MobileNavTrigger
-            id="mobile-nav-trigger"
-            aria-controls="mobile-nav"
-          />
-        </div>
-        <MobileNavigation ref={menuRef} />
-      </MobileNavControlProvider>
-    </div>
+            <PcNavigation />
+            <MobileNavTrigger
+              id="mobile-nav-trigger"
+              aria-controls="mobile-nav"
+            />
+          </div>
+          <MobileNavigation ref={menuRef} />
+        </MobileNavControlProvider>
+      </div>
+    </header>
   );
 });
 
