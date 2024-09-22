@@ -34,7 +34,7 @@ const Article: FC<Props> = ({ article, className, ...props }) => {
   return (
     <article className={cn(styles.article, className)} {...props}>
       <h1>{article.title}</h1>
-      <section className="tw-flex tw-justify-around tw-gap-5 tw-text-base tw-text-secondary-foreground">
+      <section className="tw-mb-16 tw-flex tw-justify-around tw-gap-5 tw-text-base tw-text-secondary-foreground">
         <div className="tw-flex tw-flex-col tw-items-center">
           <div>发布时间</div>
           <Separator />
