@@ -1,13 +1,13 @@
 import { Link } from "@inertiajs/react";
 import { isEmpty } from "lodash-es";
-import { Badge } from "@/components/ui/badge";
-import { formatTime } from "@/lib/dayjs";
 import { Icon } from "@iconify/react";
 import arrowNextLtr from "@iconify/icons-ooui/arrow-next-ltr";
 import { useRoute } from "ziggy-js";
-import { Article } from "@/types/models";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
+import { Article } from "@/types/models";
+import { formatTime } from "@/lib/dayjs";
+import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
 const ArticleListItem = ({ article }: { article: Article }) => {

@@ -1,18 +1,13 @@
 import { FC, useRef } from "react";
-import { Head, Link } from "@inertiajs/react";
-import { Icon } from "@iconify/react";
-import arrowNextLtr from "@iconify/icons-ooui/arrow-next-ltr";
-import { isEmpty } from "lodash-es";
+import { Head } from "@inertiajs/react";
 import { useRoute } from "ziggy-js";
+import { useInView } from "framer-motion";
+import ArticleListItem from "@frontend/pages/Articles/ArticleListItem";
 import { SimplePagination } from "@/types";
 import { Article } from "@/types/models";
 
-import { formatTime } from "@/lib/dayjs";
-import { Badge } from "@/components/ui/badge";
 import Pagination from "./pagination";
-import { useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
-import ArticleListItem from "@frontend/pages/Articles/ArticleListItem";
 
 const Index: FC<{ articles: SimplePagination<Article> }> = ({ articles }) => {
   const route = useRoute();

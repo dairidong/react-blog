@@ -1,3 +1,5 @@
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 import {
   Card,
   CardDescription,
@@ -7,8 +9,6 @@ import {
 } from "@/components/ui/card";
 import { formatTime } from "@/lib/dayjs";
 import { Article } from "@/types/models";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 import { cn } from "@/lib/utils";
 
 const ArticleCard = ({ article }: { article: Article }) => {

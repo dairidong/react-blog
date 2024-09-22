@@ -4,8 +4,8 @@ import { isEmpty } from "lodash-es";
 import arrowNextLtr from "@iconify/icons-ooui/arrow-next-ltr";
 import { Icon } from "@iconify/react";
 import { useRoute } from "ziggy-js";
-import { Article } from "@/types/models";
 import ArticleCard from "@frontend/pages/Home/article-card";
+import { Article } from "@/types/models";
 
 interface Props {
   latestArticles: Article[];
