@@ -12,8 +12,12 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
       <Head>
-        <meta name="description" content={appDescription} />
-        <meta name="keywords" content={appKeywords} />
+        <meta
+          head-key="description"
+          name="description"
+          content={appDescription}
+        />
+        <meta head-key="keywords" name="keywords" content={appKeywords} />
       </Head>
       <div className="tw-flex tw-min-h-screen tw-flex-col tw-bg-background tw-font-junjun tw-text-foreground tw-antialiased">
         <Header />

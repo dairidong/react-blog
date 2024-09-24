@@ -1,5 +1,4 @@
 import { Link } from "@inertiajs/react";
-import styles from "@frontend/pages/Articles/styles.module.pcss";
 import { Icon } from "@iconify/react";
 import arrowPreviousLtr from "@iconify/icons-ooui/arrow-previous-ltr";
 import arrowNextLtr from "@iconify/icons-ooui/arrow-next-ltr";
@@ -16,7 +15,10 @@ const Pagination = ({
     <div className="tw-flex tw-justify-evenly">
       {prevUrl ? (
         <Link
-          className={cn(styles.paginationBtn, styles.prev)}
+          className={cn(
+            "tw-flex tw-transform tw-cursor-pointer tw-items-center tw-gap-1 tw-border-4 tw-border-black tw-bg-primary tw-px-5 tw-py-2 tw-text-xl tw-text-primary-foreground hover:tw-bg-primary hover:tw-text-primary-foreground  md:tw-px-10 md:tw-text-2xl lg:tw-bg-background lg:tw-text-foreground",
+            "tw-skew-x-12",
+          )}
           href={prevUrl}
           only={["articles"]}
         >
@@ -28,7 +30,10 @@ const Pagination = ({
       )}
       {nextUrl ? (
         <Link
-          className={cn(styles.paginationBtn, styles.next)}
+          className={cn(
+            "tw-flex tw-transform tw-cursor-pointer tw-items-center tw-gap-1 tw-border-4 tw-border-black tw-bg-primary tw-px-5 tw-py-2 tw-text-xl tw-text-primary-foreground hover:tw-bg-primary hover:tw-text-primary-foreground  md:tw-px-10 md:tw-text-2xl lg:tw-bg-background lg:tw-text-foreground",
+            "-tw-skew-x-12",
+          )}
           href={nextUrl}
           only={["articles"]}
         >
