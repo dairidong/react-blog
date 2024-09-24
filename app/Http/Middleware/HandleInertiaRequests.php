@@ -39,7 +39,9 @@ class HandleInertiaRequests extends Middleware
                     'location' => $request->url(),
                 ]);
             },
-            'icp' => fn() => config('icp')
+            'icp' => fn() => config('icp'),
+            'appDescription' => fn() => config('seo.description'),
+            'appKeywords' => fn() => config('seo.keywords'),
         ]);
     }
 }
