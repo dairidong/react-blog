@@ -19,28 +19,19 @@ const Index: FC<{ articles: SimplePagination<Article> }> = ({ articles }) => {
       <Head title="文章" />
       <div className="tw-container tw-mt-5 tw-flex tw-max-w-screen-lg tw-flex-col tw-gap-y-10 lg:tw-mt-10">
         <div className="tw-text-center sm:tw-text-left" ref={titleRef}>
-          <h1
-            className={cn(
-              "tw-my-4 tw-text-4xl tw-tracking-tight tw-text-foreground tw-transition-[transform,opacity] tw-duration-700 md:tw-text-5xl lg:tw-text-6xl",
-              isInView
-                ? "tw-translate-x-0 tw-opacity-100"
-                : "-tw-translate-x-32 tw-opacity-0",
-            )}
-          >
+          <h1 className="tw-my-4 tw-text-4xl tw-tracking-tight tw-text-foreground md:tw-text-5xl lg:tw-text-6xl">
             文章
           </h1>
-          {articles.current_page > 1 && (
-            <p
-              className={cn(
-                "tw-text-xl tw-text-secondary-foreground tw-transition-[transform,opacity] tw-delay-200 tw-duration-700",
-                isInView
-                  ? "tw-translate-x-0 tw-opacity-100"
-                  : "tw-translate-x-16 tw-opacity-0",
-              )}
-            >
-              {`第 ${articles.current_page} 页`}
-            </p>
-          )}
+          <p
+            className={cn(
+              "tw-text-xl tw-text-secondary-foreground tw-transition-[transform,opacity] tw-delay-200 tw-duration-700",
+              isInView
+                ? "tw-translate-x-0 tw-opacity-100"
+                : "tw-translate-x-16 tw-opacity-0",
+            )}
+          >
+            {`第 ${articles.current_page} 页`}
+          </p>
         </div>
 
         <div className="tw-flex tw-flex-col tw-gap-y-8 md:tw-gap-y-16">
