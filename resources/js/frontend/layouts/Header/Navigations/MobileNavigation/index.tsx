@@ -36,9 +36,8 @@ const MobileNavigation = forwardRef<HTMLDivElement>((props, ref) => {
             </Link>
           </li>
           <li className="tw-text-4xl">
-            {/* TODO 更换链接 */}
             <Link
-              href={route("articles.index")}
+              href={route("about")}
               className="tw-flex tw-px-5 tw-py-2"
               closeMenu
             >
@@ -48,6 +47,7 @@ const MobileNavigation = forwardRef<HTMLDivElement>((props, ref) => {
           <li className="tw-text-4xl">
             <a
               href="https://github.com/dairidong"
+              target="_blank"
               className="tw-flex tw-items-center tw-gap-1 tw-px-5 tw-py-2"
             >
               <Icon icon={githubIcon} className="tw-text-5xl" />

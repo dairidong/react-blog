@@ -28,10 +28,11 @@ const PcNavigation: FC = () => {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <div className={cn(navigationMenuTriggerStyle(), "tw-text-xl")}>
-              关于
-            </div>
+          <NavigationMenuLink
+            className={cn(navigationMenuTriggerStyle(), "tw-text-xl")}
+            asChild
+          >
+            <Link href={route("about")}>关于</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
 

@@ -5,6 +5,7 @@ return [
         'frontend' => [
             'articles.*',
             'home',
+            'about',
         ],
         'admin' => ['admin.*'],
     ],
