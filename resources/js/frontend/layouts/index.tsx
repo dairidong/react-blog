@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren } from "react";
+import { Head, usePage } from "@inertiajs/react";
 import Header from "./Header";
 import Footer from "./Footer";
-import { Head, usePage } from "@inertiajs/react";
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
   const { appDescription = "", appKeywords = "" } = usePage<{

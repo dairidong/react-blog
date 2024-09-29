@@ -11,7 +11,8 @@ import {
 import ModalForm from "@admin/components/form/ModalForm";
 import { ColumnsType, ColumnType } from "antd/es/table";
 import { timeTemplate } from "@admin/constants";
-import { has, isArray, isPlainObject, map } from "lodash-es";
+import { isPlainObject } from "es-toolkit";
+import { has, isArray } from "es-toolkit/compat";
 import { useRoute } from "ziggy-js";
 import { Tag } from "@/types/models";
 import {
@@ -152,7 +153,7 @@ const Index: FC<Props> = ({ tags }) => {
     if (isPlainObject(route().params)) {
       const params = route().params as OrderBy;
       if (params.order) {
-        return map(columnsWithActions, (column) => {
+        return columnsWithActions.map((column) => {
           if (column.sorter && has(column, "dataIndex")) {
             return {
               ...column,

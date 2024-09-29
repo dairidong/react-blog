@@ -1,6 +1,5 @@
 import { FC, useMemo } from "react";
 import { Form as AntForm, Input, Select, SelectProps } from "antd";
-import { map } from "lodash-es";
 import { useRoute } from "ziggy-js";
 import { Article, Tag } from "@/types/models";
 import Form from "@/admin/components/form/Form";
@@ -41,7 +40,7 @@ const ArticleForm: FC<Props> = ({ article, tags }) => {
 
   const tagOptions = useMemo<SelectProps["options"]>(
     () =>
-      map(tags, (tag) => ({
+      tags?.map((tag) => ({
         label: tag.name,
         value: tag.name,
       })),

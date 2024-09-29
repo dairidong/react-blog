@@ -2,7 +2,9 @@ import { FC } from "react";
 import { Head } from "@inertiajs/react";
 import { Article as ArticleModel } from "@/types/models";
 import Article from "@/components/Article";
+import { truncate } from "@/lib/utils";
 
+// generate by tongyi
 function generateMetaDescription(
   title: string,
   description: string | null,
@@ -18,7 +20,7 @@ function generateMetaDescription(
   if (content && content.trim().length > 0) {
     // 使用正则表达式匹配句子
     const sentences = content.match(/[^.!?]+[.!?]*/g) || [];
-    let generatedDescription = sentences.slice(0, 2).join(" "); // 使用前两句
+    const generatedDescription = sentences.slice(0, 2).join(" "); // 使用前两句
 
     // 确保生成的描述不超过最大长度
     return truncate(generatedDescription, maxLength);
@@ -26,14 +28,6 @@ function generateMetaDescription(
 
   // 如果都没有，则使用文章标题
   return truncate(title, maxLength);
-}
-
-// 辅助函数：截断字符串并添加省略号
-function truncate(str: string, maxLength: number): string {
-  if (str.length <= maxLength) {
-    return str;
-  }
-  return str.substring(0, maxLength - 3) + "...";
 }
 
 const Show: FC<{ article: Required<ArticleModel> }> = ({ article }) => {
@@ -51,7 +45,7 @@ const Show: FC<{ article: Required<ArticleModel> }> = ({ article }) => {
           )}
         />
       </Head>
-      {/*<Head title={article.title} />*/}
+      {/* <Head title={article.title} /> */}
       <div className="tw-mt-5 lg:tw-mt-10">
         <div className="tw-container tw-flex tw-justify-center">
           <Article article={article} />

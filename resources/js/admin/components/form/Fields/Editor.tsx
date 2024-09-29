@@ -5,7 +5,6 @@ import breaks from "@bytemd/plugin-breaks";
 import frontmatter from "@bytemd/plugin-frontmatter";
 import gemoji from "@bytemd/plugin-gemoji";
 import highlight from "@bytemd/plugin-highlight";
-import { isNumber } from "lodash-es";
 import zh from "bytemd/locales/zh_Hans.json";
 import gfmZh from "@bytemd/plugin-gfm/locales/zh_Hans.json";
 import "bytemd/dist/index.css";
@@ -80,14 +79,14 @@ const Editor: FC<Props> = ({
       if (height !== undefined) {
         editorStyles.setProperty(
           "height",
-          isNumber(height) ? `${height}px` : height,
+          Number.isFinite(height) ? `${height}px` : (height as string),
         );
       }
 
       if (minHeight !== undefined) {
         editorStyles.setProperty(
           "min-height",
-          isNumber(minHeight) ? `${minHeight}px` : minHeight,
+          Number.isFinite(minHeight) ? `${minHeight}px` : (minHeight as string),
         );
       }
     }

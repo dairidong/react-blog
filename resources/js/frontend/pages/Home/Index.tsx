@@ -1,10 +1,10 @@
 import { Head, Link } from "@inertiajs/react";
 import { FC } from "react";
-import { isEmpty } from "lodash-es";
 import arrowNextLtr from "@iconify/icons-ooui/arrow-next-ltr";
 import { Icon } from "@iconify/react";
 import { useRoute } from "ziggy-js";
 import ArticleCard from "@frontend/pages/Home/article-card";
+import { isEmpty } from "@/lib/utils";
 import { Article } from "@/types/models";
 
 interface Props {

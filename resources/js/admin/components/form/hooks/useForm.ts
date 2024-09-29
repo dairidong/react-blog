@@ -1,9 +1,9 @@
 import { App, Form as AntForm } from "antd";
 import { Callbacks, FieldData } from "rc-field-form/es/interface";
 import { useForm as useInertiaForm } from "@inertiajs/react";
-import { map, omit } from "lodash-es";
 import { useCallback, useMemo } from "react";
 import { useRoute } from "ziggy-js";
+import { omit } from "es-toolkit";
 import { FormHookProps } from "@/types";
 
 export default function useForm<
@@ -46,9 +46,8 @@ export default function useForm<
           message.error(errorMessage);
 
           // set error to antd form
-          const fields: FieldData[] = map(
-            values,
-            (value, field, collection) => {
+          const fields: FieldData[] = Object.entries(values).map(
+            ([field, value]) => {
               const error = errors[field];
 
               return {
@@ -62,7 +61,7 @@ export default function useForm<
 
           submitOptions?.onError?.(errors);
         },
-        ...omit(submitOptions, "onError"),
+        ...(submitOptions ? omit(submitOptions, ["onError"]) : {}),
       },
     );
   };

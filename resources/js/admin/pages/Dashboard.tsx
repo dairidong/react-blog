@@ -3,7 +3,6 @@ import ContentContainer from "@admin/layouts/components/ContentContainer";
 import { Card, Col, Row, Table } from "antd";
 import { FC, useEffect, useState } from "react";
 import { ColumnsType } from "antd/es/table";
-import { map } from "lodash-es";
 import dayjs from "@/lib/dayjs";
 
 interface AppStatsColumn {
@@ -33,7 +32,7 @@ const Dashboard: FC<Props> = ({ appStats }) => {
   useEffect(() => {
     const transformRunningTime = (statsToTransform: AppStatsColumn[]) =>
       setStats(
-        map(statsToTransform, (stat) => {
+        statsToTransform.map((stat) => {
           if (stat.key === "octaneRunningTime") {
             const duration = dayjs.duration(dayjs().diff(dayjs(stat.value)));
             return {
